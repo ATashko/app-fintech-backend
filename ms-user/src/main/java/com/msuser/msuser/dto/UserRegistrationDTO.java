@@ -19,11 +19,11 @@ public record UserRegistrationDTO(
         String email,
 
         @NotBlank(message = "first name is mandatory")
-        @Length(min = 3,max = 25,message = "first name must have between 3 and 35 characters")
+        @Length(min = 3,max = 25,message = "first name must have between 3 and 25 characters")
         String firstName,
 
         @NotBlank(message = "last name is mandatory")
-        @Length(min = 3,max = 25,message = "last name must have between 3 and 35 characters")
+        @Length(min = 3,max = 25,message = "last name must have between 3 and 25 characters")
         String lastName,
 
         @NotNull

@@ -10,15 +10,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 @RestController
-@RequestMapping("/user")
-@PreAuthorize("hasRole('ROLE_user_client_role')")
-public class UserController {
+@RequestMapping("/admin")
+@PreAuthorize("hasRole('ROLE_admin_client_role')")
+public class AdminController {
 
     private final IUserService userService;
 
-    public UserController(IUserService userService) {
+    public AdminController(IUserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> findAllUsers() {
+        return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> findUserByUserName(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO) throws URISyntaxException {
+        String response = userService.createUser(userRegistrationDTO);
+        return ResponseEntity.created(new URI("/keycloak/user/create")).body(response);
     }
 
     @GetMapping("/search/{username}")
@@ -32,4 +46,10 @@ public class UserController {
         return ResponseEntity.ok("User successfully updated");
     }
 
+
+    @DeleteMapping("/delete/{userId}")
+    public ResponseEntity<?> deleteUserById(@PathVariable @NotNull String userId){
+        userService.deleteUser(userId);
+        return ResponseEntity.noContent().build();
+    }
 }

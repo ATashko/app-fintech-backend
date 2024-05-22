@@ -11,11 +11,11 @@ import org.springframework.security.oauth2.jwt.JwtClaimNames;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.stereotype.Component;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+
 
 @Component
 public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationToken> {
@@ -23,10 +23,10 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
     private final JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
 
 
-    @Value("${jwt.auth.converter.main-attr}")
+    @Value("${jwtConverter.auth.converter.main-attr}")
     private String mainAttribute;
 
-    @Value("${jwt.auth.converter.resource-id}")
+    @Value("${jwtConverter.auth.converter.resource-id}")
     private String resourceId;
 
     @Override

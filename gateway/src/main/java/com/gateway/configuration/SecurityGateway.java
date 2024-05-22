@@ -9,7 +9,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 public class SecurityGateway {
 
     @Bean
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity httpSecurity) {
+    public SecurityWebFilterChain securityGatewayFilterChain(ServerHttpSecurity httpSecurity) {
         httpSecurity
                 .authorizeExchange()
                 .anyExchange()
