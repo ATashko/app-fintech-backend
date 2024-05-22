@@ -4,43 +4,4 @@ spring:
   config:
     import: optional:configserver:http://localhost:8888
 
-eureka:
-  instance:
-    hostname: localhost
-    prefer-ip-address: true
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka
-
-  security:
-    oauth2:
-      client:
-        provider:
-          keycloak-gateway:
-           issuer-uri: http://localhost:9090/realms/TorresSebastian
-        registration:
-          keycloak-gateway:
-            client-id: triwal-app
-            client-secret: xAO6D6zn9ELy3DIQbQmh2s9cH8jX1MER
-            scope:
-              - openid
-            authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8090/login/oauth2/code/keycloak
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      default-filters: TokenRelay
-      routes:
-        - id: ms-transaction
-          uri: lb://ms-transaction
-          predicates:
-            - Path=/transaction/**
-        - id: ms-users
-          uri: lb://ms-users
-          predicates:
-            - Path=/user/**
 

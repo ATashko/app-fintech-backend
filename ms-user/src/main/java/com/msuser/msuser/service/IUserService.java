@@ -11,5 +11,5 @@ public interface IUserService {
     List<UserRepresentation> searchUserByUsername(String username);
     String createUser(UserRegistrationDTO userDTO);
     void deleteUser(String userId);
-    void updateUser(String UserId,UserRegistrationDTO userDTO);
+    void updateUser(String userId,UserRegistrationDTO userDTO);
 }
