@@ -2,10 +2,11 @@ package com.msuser.msuser;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class MsUserApplication {
 
 	public static void main(String[] args) {

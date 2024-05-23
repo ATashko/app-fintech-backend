@@ -2,7 +2,6 @@ package com.msuser.msuser.configuration;
 
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -11,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -31,16 +29,16 @@ public class SecurityConfiguration {
 
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(http ->{
+                .authorizeHttpRequests(http -> {
                     http
-                            .requestMatchers("/registration/**").permitAll()
+                            .requestMatchers("authentication/**").permitAll()
                             .anyRequest().authenticated();
                 })
                 .oauth2ResourceServer(oauth -> {
-                    oauth.jwt(jwt ->jwt.jwtAuthenticationConverter(jwtAuthConverter));
+                    oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthConverter));
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
@@ -51,7 +49,6 @@ public class SecurityConfiguration {
     public JwtDecoder jwtDecoder() {
         return NimbusJwtDecoder.withIssuerLocation(issuerUri).build();
     }
-
 
 
 }
