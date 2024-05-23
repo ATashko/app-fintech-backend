@@ -35,7 +35,9 @@ public class SecurityConfiguration {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(http ->{
-                    http.anyRequest().authenticated();
+                    http
+                            .requestMatchers("/registration/**").permitAll()
+                            .anyRequest().authenticated();
                 })
                 .oauth2ResourceServer(oauth -> {
                     oauth.jwt(jwt ->jwt.jwtAuthenticationConverter(jwtAuthConverter));

@@ -30,7 +30,7 @@ public class AdminController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> findUserByUserName(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO) throws URISyntaxException {
+    public ResponseEntity<?> create(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO) throws URISyntaxException {
         String response = userService.createUser(userRegistrationDTO);
         return ResponseEntity.created(new URI("/keycloak/user/create")).body(response);
     }
@@ -41,13 +41,13 @@ public class AdminController {
     }
 
     @PutMapping("/update/{userId}")
-    public ResponseEntity<?> findUserByUserName(@PathVariable @NotNull String userId, @RequestBody @Valid UserRegistrationDTO userRegistrationDTO)  {
+    public ResponseEntity<?> update(@PathVariable @NotNull String userId, @RequestBody @Valid UserRegistrationDTO userRegistrationDTO)  {
         userService.updateUser(userId,userRegistrationDTO);
         return ResponseEntity.ok("User successfully updated");
     }
 
 
-    @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("delete/{userId}")
     public ResponseEntity<?> deleteUserById(@PathVariable @NotNull String userId){
         userService.deleteUser(userId);
         return ResponseEntity.noContent().build();

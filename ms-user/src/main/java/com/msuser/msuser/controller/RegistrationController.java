@@ -14,7 +14,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @RestController
-@RequestMapping("/registration")
+@RequestMapping("/user")
 public class RegistrationController {
 
     private final IUserService userService;
@@ -22,11 +22,11 @@ public class RegistrationController {
     public RegistrationController(IUserService userService) {
         this.userService = userService;
     }
-    @PermitAll
-    @PostMapping("/create")
-    public ResponseEntity<?> findUserByUserName(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO) throws URISyntaxException {
+
+    @PostMapping("registration/create")
+    public ResponseEntity<?> create(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO) throws URISyntaxException {
         String response = userService.createUser(userRegistrationDTO);
-        return ResponseEntity.created(new URI("/keycloak/user/create")).body(response);
+        return ResponseEntity.created(new URI("/keycloak/user/registration/create")).body(response);
     }
 
 
