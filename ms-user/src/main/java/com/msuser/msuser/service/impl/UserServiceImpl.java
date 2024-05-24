@@ -5,6 +5,7 @@ import com.msuser.msuser.service.IUserService;
 import jakarta.ws.rs.core.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.OAuth2Constants;
+import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
@@ -141,5 +142,18 @@ public class UserServiceImpl implements IUserService {
         UserResource userResource = getUserResource().get(userId);
         userResource.update(userRepresentation);
 
+    }
+
+    public UserRepresentation authenticateUser(String username, String password) {
+        UsersResource usersResource = getUserResource();
+        List<UserRepresentation> users = usersResource.search(username);
+        if (users.isEmpty()) {
+            return null;
+        }
+
+        UserRepresentation user = users.get(0);
+
+
+        return user;
     }
 }

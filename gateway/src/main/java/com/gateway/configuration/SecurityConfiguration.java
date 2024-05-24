@@ -17,7 +17,6 @@ public class SecurityConfiguration {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("authentication/**").permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2Login(withDefaults());
