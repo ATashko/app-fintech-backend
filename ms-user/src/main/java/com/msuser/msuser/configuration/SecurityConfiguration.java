@@ -38,11 +38,20 @@ public class SecurityConfiguration {
                     http
                             .requestMatchers("auth/**").permitAll()
                             .anyRequest().authenticated();
+
                 })
                 .oauth2ResourceServer(oauth -> {
                     oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthConverter));
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .logout(logout ->
+                        logout
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/login?logout")
+                                .invalidateHttpSession(true)
+                                .clearAuthentication(true)
+                                .deleteCookies("JSESSIONID")
+                                .permitAll())
                 .cors(withDefaults())
                 .build();
     }

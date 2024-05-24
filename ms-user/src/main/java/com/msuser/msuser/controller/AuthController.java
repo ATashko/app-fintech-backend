@@ -2,12 +2,15 @@ package com.msuser.msuser.controller;
 
 import com.msuser.msuser.dto.UserRegistrationDTO;
 import com.msuser.msuser.service.IUserService;
+import com.msuser.msuser.util.TokenProvider;
 import jakarta.validation.Valid;
+import lombok.Getter;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.io.IOException;
 import java.net.URISyntaxException;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -15,9 +18,11 @@ import java.net.URISyntaxException;
 public class AuthController {
 
     private final IUserService userService;
+    private final TokenProvider tokenProvider;
 
-    public AuthController(IUserService userService) {
+    public AuthController(IUserService userService, TokenProvider tokenProvider) {
         this.userService = userService;
+        this.tokenProvider = tokenProvider;
     }
 
     @PostMapping("/register")
@@ -27,10 +32,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) throws IOException {
         UserRepresentation user = userService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
+
         if (user != null) {
-            return ResponseEntity.ok("Login successful");
+            String accessToken = tokenProvider.requestToken(loginRequest.getUsername(), loginRequest.getPassword());
+            return ResponseEntity.ok(accessToken);
         } else {
             return ResponseEntity.status(401).body("Invalid username or password");
         }
@@ -38,22 +45,20 @@ public class AuthController {
 
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/home";
+    }
+
+    @Getter
     public static class LoginRequest {
         private String username;
         private String password;
 
         // Getters y setters
 
-        public String getUsername() {
-            return username;
-        }
-
         public void setUsername(String username) {
             this.username = username;
-        }
-
-        public String getPassword() {
-            return password;
         }
 
         public void setPassword(String password) {
