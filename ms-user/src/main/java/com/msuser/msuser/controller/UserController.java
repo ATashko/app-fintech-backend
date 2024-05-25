@@ -18,7 +18,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/user")
 public class UserController {
 
