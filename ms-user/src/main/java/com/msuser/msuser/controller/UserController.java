@@ -2,10 +2,12 @@ package com.msuser.msuser.controller;
 
 
 import com.msuser.msuser.dto.UserRegistrationDTO;
+import com.msuser.msuser.dto.UserResponseDTO;
 import com.msuser.msuser.service.IUserService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -50,6 +53,11 @@ public class UserController {
     public ResponseEntity<?> deleteUserById(@PathVariable @NotNull String userId){
         userService.deleteUser(userId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping ("/setStatus/{username}")
+    public ResponseEntity<?> setEnableUserStatus(@PathVariable @Valid String username) {
+        return new ResponseEntity<>(userService.setEnableUserStatus(username), HttpStatus.ACCEPTED);
     }
 
 }

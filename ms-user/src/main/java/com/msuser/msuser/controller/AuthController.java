@@ -40,13 +40,15 @@ public class AuthController {
 
         if (user != null) {
             String accessToken = tokenProvider.requestToken(loginRequest.getUsername(), loginRequest.getPassword());
-             UserResponseDTO userDTO = new UserResponseDTO(user.getUsername(),
+            UserResponseDTO userDTO = new UserResponseDTO(
+                    user.getId(),
+                    user.getUsername(),
                     user.getFirstName(),
                     user.getLastName(),
                     user.getEmail(),
                     user.isEmailVerified(),
-                    user.isEnabled(),"Colombia");
-            return ResponseEntity.ok(new DataResponseToken(userDTO,accessToken));
+                    user.isEnabled(), "Colombia");
+            return ResponseEntity.ok(new DataResponseToken(userDTO, accessToken));
         } else {
             return ResponseEntity.status(401).body("Invalid username or password");
         }

@@ -1,14 +1,15 @@
 package com.msuser.msuser.service.impl;
 
 import com.msuser.msuser.dto.UserRegistrationDTO;
+import com.msuser.msuser.dto.UserResponseDTO;
 import com.msuser.msuser.service.IUserService;
 import jakarta.ws.rs.core.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.OAuth2Constants;
-import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
+import org.keycloak.representations.idm.AbstractUserRepresentation;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
@@ -142,6 +143,24 @@ public class UserServiceImpl implements IUserService {
         UserResource userResource = getUserResource().get(userId);
         userResource.update(userRepresentation);
 
+    }
+
+    @Override
+    public UserResponseDTO setEnableUserStatus(String username) {
+
+        List<UserRepresentation> userRepresentation = searchUserByUsername(username);
+        userRepresentation.forEach(user -> user.setEnabled(!user.isEnabled()));
+        UserResource userResource = getUserResource().get(userRepresentation.get(0).getId());
+        userResource.update(userRepresentation.get(0));
+        return new UserResponseDTO(
+                userRepresentation.get(0).getId(),
+                userRepresentation.get(0).getUsername(),
+                userRepresentation.get(0).getFirstName(),
+                userRepresentation.get(0).getLastName(),
+                userRepresentation.get(0).getEmail(),
+                userRepresentation.get(0).isEmailVerified(),
+                userRepresentation.get(0).isEnabled(),
+                "Colombia");
     }
 
     public UserRepresentation authenticateUser(String username, String password) {
