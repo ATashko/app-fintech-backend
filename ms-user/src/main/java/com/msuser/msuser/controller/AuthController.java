@@ -1,6 +1,8 @@
 package com.msuser.msuser.controller;
 
+import com.msuser.msuser.dto.DataResponseToken;
 import com.msuser.msuser.dto.UserRegistrationDTO;
+import com.msuser.msuser.dto.UserResponseDTO;
 import com.msuser.msuser.service.IUserService;
 import com.msuser.msuser.util.TokenProvider;
 import jakarta.validation.Valid;
@@ -8,6 +10,7 @@ import lombok.Getter;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -32,12 +35,18 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) throws IOException {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws IOException {
         UserRepresentation user = userService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
 
         if (user != null) {
             String accessToken = tokenProvider.requestToken(loginRequest.getUsername(), loginRequest.getPassword());
-            return ResponseEntity.ok(accessToken);//todo: devolver token y username.
+             UserResponseDTO userDTO = new UserResponseDTO(user.getUsername(),
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.getEmail(),
+                    user.isEmailVerified(),
+                    user.isEnabled(),"Colombia");
+            return ResponseEntity.ok(new DataResponseToken(userDTO,accessToken));
         } else {
             return ResponseEntity.status(401).body("Invalid username or password");
         }
