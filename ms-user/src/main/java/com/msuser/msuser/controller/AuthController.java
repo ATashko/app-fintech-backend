@@ -47,7 +47,7 @@ public class AuthController {
                     user.getLastName(),
                     user.getEmail(),
                     user.isEmailVerified(),
-                    user.isEnabled(), "Colombia");
+                    user.isEnabled(), "Colombia"); // todo: update with country persistence
             return ResponseEntity.ok(new DataResponseToken(userDTO, accessToken));
         } else {
             return ResponseEntity.status(401).body("Invalid username or password");
