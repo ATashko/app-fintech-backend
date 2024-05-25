@@ -37,7 +37,7 @@ public class AuthController {
 
         if (user != null) {
             String accessToken = tokenProvider.requestToken(loginRequest.getUsername(), loginRequest.getPassword());
-            return ResponseEntity.ok(accessToken);
+            return ResponseEntity.ok(accessToken);//todo: devolver token y username.
         } else {
             return ResponseEntity.status(401).body("Invalid username or password");
         }

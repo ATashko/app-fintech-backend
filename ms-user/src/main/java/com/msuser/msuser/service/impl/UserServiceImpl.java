@@ -83,7 +83,7 @@ public class UserServiceImpl implements IUserService {
 
             if (userRegistrationDTO.roles() == null || userRegistrationDTO.roles().isEmpty()) {
                 roleRepresentations = List.of(realmResource.roles().get("user-role-realm").toRepresentation());
-            } else {
+            } else {//todo: actualizar roles para que permita hacer consultas por defecto.
                 roleRepresentations = realmResource.roles().list()
                         .stream().filter(role -> userRegistrationDTO.roles()
                                 .stream()

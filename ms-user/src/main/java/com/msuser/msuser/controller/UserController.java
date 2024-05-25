@@ -38,7 +38,6 @@ public class UserController {
     }
 
 
-
     @PreAuthorize("hasRole('ROLE_user_client_role') or hasRole('ROLE_admin_client_role')")
     @PutMapping("/update/{userId}")
     public ResponseEntity<?> findUserByUserName(@PathVariable @NotNull String userId, @RequestBody @Valid UserRegistrationDTO userRegistrationDTO)  {
@@ -46,7 +45,7 @@ public class UserController {
         return ResponseEntity.ok("User successfully updated");
     }
 
-    @PreAuthorize("hasRole('ROLE_admin_client_role')")
+    @PreAuthorize("hasRole('ROLE_admin_client_role') or hasRole('ROLE_user_client_role') ")
     @DeleteMapping("delete/{userId}")
     public ResponseEntity<?> deleteUserById(@PathVariable @NotNull String userId){
         userService.deleteUser(userId);
