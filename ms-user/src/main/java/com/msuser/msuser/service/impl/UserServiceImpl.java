@@ -1,5 +1,7 @@
 package com.msuser.msuser.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.msuser.msuser.dto.UserRegistrationDTO;
 import com.msuser.msuser.dto.UserResponseDTO;
 import com.msuser.msuser.service.IUserService;
@@ -16,6 +18,8 @@ import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,6 +29,8 @@ import static com.msuser.msuser.util.keycloakProvider.getUserResource;
 @Service
 @Slf4j
 public class UserServiceImpl implements IUserService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     /*
      * Method for list user by its own username
@@ -175,4 +181,25 @@ public class UserServiceImpl implements IUserService {
 
         return user;
     }
+
+
+	@Override
+	public void forgotPassword(String username) {
+		 try {
+	            UsersResource usersResource = getUserResource();
+	            List<UserRepresentation> representationList = usersResource.searchByUsername(username, true);
+	            UserRepresentation userRepresentation = representationList.stream().findFirst().orElse(null);
+
+	            if (userRepresentation != null) {
+	                String userId = userRepresentation.getId();
+	                usersResource.get(userId).executeActionsEmail(Arrays.asList("UPDATE_PASSWORD"));
+	            } else {
+	                logger.warn("No user found with username: {}", username);
+	            }
+	        } catch (Exception e) {
+	            logger.error("An error occurred while trying to reset the password for username: {}", username, e);
+	            throw e;
+	        }
+		
+	}
 }

@@ -1,21 +1,23 @@
 package com.msuser.msuser.controller;
 
 
-import com.msuser.msuser.dto.UserRegistrationDTO;
-import com.msuser.msuser.dto.UserResponseDTO;
-import com.msuser.msuser.service.IUserService;
-import jakarta.annotation.security.PermitAll;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
+import com.msuser.msuser.dto.UserRegistrationDTO;
+import com.msuser.msuser.service.IUserService;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -59,5 +61,10 @@ public class UserController {
     public ResponseEntity<?> setEnableUserStatus(@PathVariable @Valid String username) {
         return new ResponseEntity<>(userService.setEnableUserStatus(username), HttpStatus.ACCEPTED);
     }
-
+    
+    @PutMapping ("/forgotPassword/{username}")
+    public ResponseEntity<?> forgotPassword(@PathVariable String username) {
+        userService.forgotPassword(username);
+        return ResponseEntity.noContent().build();
+    }
 }
