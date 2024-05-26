@@ -39,7 +39,7 @@ public class SecurityConfiguration {
 	private ServerLogoutSuccessHandler oidcServerLogoutSuccessHandler() {
 		OidcClientInitiatedServerLogoutSuccessHandler oidcClientInitiatedServerLogoutSuccesHandler
 		            = new OidcClientInitiatedServerLogoutSuccessHandler(reactiveClientRegistrationRepository);
-		oidcClientInitiatedServerLogoutSuccesHandler.setPostLogoutRedirectUri("http://localhost:9090/login");
+		oidcClientInitiatedServerLogoutSuccesHandler.setPostLogoutRedirectUri("http://localhost:8080/login");
 		return oidcClientInitiatedServerLogoutSuccesHandler;
 	}
 }
