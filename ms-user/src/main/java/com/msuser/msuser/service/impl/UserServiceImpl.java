@@ -1,38 +1,41 @@
 package com.msuser.msuser.service.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.msuser.msuser.dto.UserRegistrationDTO;
-import com.msuser.msuser.dto.UserResponseDTO;
-import com.msuser.msuser.service.IUserService;
-import jakarta.ws.rs.core.Response;
-import lombok.extern.slf4j.Slf4j;
+import static com.msuser.msuser.util.keycloakProvider.getRealmResource;
+import static com.msuser.msuser.util.keycloakProvider.getUserResource;
+
+import java.util.Collections;
+import java.util.List;
+
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
-import org.keycloak.representations.idm.AbstractUserRepresentation;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import com.msuser.msuser.dto.UserRegistrationDTO;
+import com.msuser.msuser.dto.UserResponseDTO;
+import com.msuser.msuser.service.IUserService;
+import com.msuser.msuser.util.TokenProvider;
 
-import static com.msuser.msuser.util.keycloakProvider.getRealmResource;
-import static com.msuser.msuser.util.keycloakProvider.getUserResource;
+import jakarta.ws.rs.core.Response;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
 public class UserServiceImpl implements IUserService {
 	
-	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	private final TokenProvider tokenProvider;
+	
+    public UserServiceImpl(TokenProvider tokenProvider) {
+		this.tokenProvider = tokenProvider;
+	}
 
-    /*
+
+	/*
      * Method for list user by its own username
      * @return List<UserRepresentation>
      * */
@@ -184,22 +187,22 @@ public class UserServiceImpl implements IUserService {
 
 
 	@Override
-	public void forgotPassword(String username) {
-		 try {
-	            UsersResource usersResource = getUserResource();
-	            List<UserRepresentation> representationList = usersResource.searchByUsername(username, true);
-	            UserRepresentation userRepresentation = representationList.stream().findFirst().orElse(null);
+	public String resetPassword(String userEmail) {
+	    try {
+	        UsersResource usersResource = getUserResource();
+	        List<UserRepresentation> representationList = usersResource.searchByEmail(userEmail, true);
+	        UserRepresentation userRepresentation = representationList.stream().findFirst().orElse(null);
 
-	            if (userRepresentation != null) {
-	                String userId = userRepresentation.getId();
-	                usersResource.get(userId).executeActionsEmail(Arrays.asList("UPDATE_PASSWORD"));
-	            } else {
-	                logger.warn("No user found with username: {}", username);
-	            }
-	        } catch (Exception e) {
-	            logger.error("An error occurred while trying to reset the password for username: {}", username, e);
-	            throw e;
+	        if (userRepresentation != null) {
+	            String userId = userRepresentation.getId();
+	            tokenProvider.sendResetPasswordEmail(userId);
+	            return "Link para restablecer contraseña enviado.";
+	        } else {
+	            return "No se encontró ningún usuario con el correo electrónico proporcionado.";
 	        }
+	    } catch (Exception e) {
+	        return "Se produjo un error al intentar restablecer la contraseña.";
+	    }
 		
 	}
 }

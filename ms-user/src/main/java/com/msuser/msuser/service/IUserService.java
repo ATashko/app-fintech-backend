@@ -16,5 +16,5 @@ public interface IUserService {
     void deleteUser(String userId);
     void updateUser(String userId,UserRegistrationDTO userDTO);
     UserResponseDTO setEnableUserStatus(String username);
-    void forgotPassword(String username);
+    String resetPassword(String username);
 }

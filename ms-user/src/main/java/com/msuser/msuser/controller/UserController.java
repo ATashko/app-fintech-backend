@@ -61,10 +61,4 @@ public class UserController {
     public ResponseEntity<?> setEnableUserStatus(@PathVariable @Valid String username) {
         return new ResponseEntity<>(userService.setEnableUserStatus(username), HttpStatus.ACCEPTED);
     }
-    
-    @PutMapping ("/forgotPassword/{username}")
-    public ResponseEntity<?> forgotPassword(@PathVariable String username) {
-        userService.forgotPassword(username);
-        return ResponseEntity.noContent().build();
-    }
 }

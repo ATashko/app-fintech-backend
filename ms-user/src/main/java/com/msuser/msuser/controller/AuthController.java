@@ -55,6 +55,12 @@ public class AuthController {
 
 
     }
+    
+    @PutMapping ("/resetPassword")
+    public ResponseEntity<?> resetPassword(@RequestParam String userEmail) {
+    	String result = userService.resetPassword(userEmail);
+        return ResponseEntity.ok(result);
+    }  
 
     @GetMapping("/logout")
     public String logout() {
