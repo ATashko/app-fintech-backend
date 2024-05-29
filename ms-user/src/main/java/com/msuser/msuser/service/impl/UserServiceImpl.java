@@ -3,9 +3,12 @@ package com.msuser.msuser.service.impl;
 import static com.msuser.msuser.util.keycloakProvider.getRealmResource;
 import static com.msuser.msuser.util.keycloakProvider.getUserResource;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UserResource;
@@ -53,6 +56,8 @@ public class UserServiceImpl implements IUserService {
     public List<UserRepresentation> searchUserByUsername(String username) {
         return getRealmResource().users().searchByUsername(username, true);
     }
+
+    //todo: add method to validate: a user only can request information about his own user.
 
 
     /*
@@ -179,10 +184,7 @@ public class UserServiceImpl implements IUserService {
             return null;
         }
 
-        UserRepresentation user = users.get(0);
-
-
-        return user;
+        return users.get(0);
     }
 
 
@@ -205,4 +207,13 @@ public class UserServiceImpl implements IUserService {
 	    }
 		
 	}
+
+    @Override
+    public String logoutSession(@NotNull @NotBlank String refreshToken) throws IOException {
+        if(!refreshToken.isEmpty()) {
+            return tokenProvider.requestLogout(refreshToken);
+        }
+        return "logout failed";
+
+    }
 }

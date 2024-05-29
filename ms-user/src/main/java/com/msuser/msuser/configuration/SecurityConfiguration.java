@@ -9,9 +9,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -37,6 +39,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(http -> {
                     http
                             .requestMatchers("auth/**").permitAll()
+                            .requestMatchers("auth/logout/**").authenticated()
+                            .requestMatchers("user/setStatus/**").permitAll()
                             .anyRequest().authenticated();
 
                 })
@@ -44,17 +48,11 @@ public class SecurityConfiguration {
                     oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthConverter));
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .logout(logout ->
-                        logout
-                                .logoutUrl("/logout")
-                                .logoutSuccessUrl("/login?logout")
-                                .invalidateHttpSession(true)
-                                .clearAuthentication(true)
-                                .deleteCookies("JSESSIONID")
-                                .permitAll())
                 .cors(withDefaults())
                 .build();
     }
+
+
 
 
     @Bean

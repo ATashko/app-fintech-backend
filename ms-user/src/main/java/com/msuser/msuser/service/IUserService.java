@@ -4,6 +4,7 @@ import com.msuser.msuser.dto.UserRegistrationDTO;
 import com.msuser.msuser.dto.UserResponseDTO;
 import org.keycloak.representations.idm.UserRepresentation;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IUserService {
@@ -17,4 +18,5 @@ public interface IUserService {
     void updateUser(String userId,UserRegistrationDTO userDTO);
     UserResponseDTO setEnableUserStatus(String username);
     String resetPassword(String username);
+    String logoutSession(String authorizationHeader) throws IOException;
 }

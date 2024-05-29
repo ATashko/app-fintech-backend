@@ -48,6 +48,7 @@ public class AuthController {
                     user.getEmail(),
                     user.isEmailVerified(),
                     user.isEnabled(), "Colombia"); // todo: update with country persistence
+            System.out.println(user);
             return ResponseEntity.ok(new DataResponseToken(userDTO, accessToken));
         } else {
             return ResponseEntity.status(401).body("Invalid username or password");
@@ -60,11 +61,12 @@ public class AuthController {
     public ResponseEntity<?> resetPassword(@RequestParam String userEmail) {
     	String result = userService.resetPassword(userEmail);
         return ResponseEntity.ok(result);
-    }  
+    }
 
-    @GetMapping("/logout")
-    public String logout() {
-        return "redirect:/home";
+    @PostMapping(value = "/logout", consumes = "application/x-www-form-urlencoded")
+    public ResponseEntity<?> logout(@RequestParam("refresh_token") String refreshToken) throws IOException {
+        userService.logoutSession(refreshToken);
+        return ResponseEntity.noContent().build();
     }
 
     @Getter
