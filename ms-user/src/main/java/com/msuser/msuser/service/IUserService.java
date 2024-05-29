@@ -19,4 +19,6 @@ public interface IUserService {
     UserResponseDTO setEnableUserStatus(String username);
     String resetPassword(String username);
     String logoutSession(String authorizationHeader) throws IOException;
+    public void emailVerification(String userId);
+
 }

@@ -1,14 +1,13 @@
 package com.msuser.msuser.service.impl;
 
-import static com.msuser.msuser.util.keycloakProvider.getRealmResource;
-import static com.msuser.msuser.util.keycloakProvider.getUserResource;
-
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-
+import com.msuser.msuser.dto.UserRegistrationDTO;
+import com.msuser.msuser.dto.UserResponseDTO;
+import com.msuser.msuser.service.IUserService;
+import com.msuser.msuser.util.TokenProvider;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.core.Response;
+import lombok.extern.slf4j.Slf4j;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UserResource;
@@ -19,26 +18,25 @@ import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
-import com.msuser.msuser.dto.UserRegistrationDTO;
-import com.msuser.msuser.dto.UserResponseDTO;
-import com.msuser.msuser.service.IUserService;
-import com.msuser.msuser.util.TokenProvider;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
-import jakarta.ws.rs.core.Response;
-import lombok.extern.slf4j.Slf4j;
+import static com.msuser.msuser.util.keycloakProvider.getRealmResource;
+import static com.msuser.msuser.util.keycloakProvider.getUserResource;
 
 @Service
 @Slf4j
 public class UserServiceImpl implements IUserService {
-	
-	private final TokenProvider tokenProvider;
-	
+
+    private final TokenProvider tokenProvider;
+
     public UserServiceImpl(TokenProvider tokenProvider) {
-		this.tokenProvider = tokenProvider;
-	}
+        this.tokenProvider = tokenProvider;
+    }
 
 
-	/*
+    /*
      * Method for list user by its own username
      * @return List<UserRepresentation>
      * */
@@ -76,7 +74,7 @@ public class UserServiceImpl implements IUserService {
         userRepresentation.setLastName(userRegistrationDTO.lastName());
         userRepresentation.setEmail(userRegistrationDTO.email());
         userRepresentation.setUsername(userRegistrationDTO.username());
-        userRepresentation.setEmailVerified(true);
+        userRepresentation.setEmailVerified(false);
         userRepresentation.setEnabled(true);
 
         Response response = userResource.create(userRepresentation);
@@ -96,6 +94,7 @@ public class UserServiceImpl implements IUserService {
             RealmResource realmResource = getRealmResource();
             List<RoleRepresentation> roleRepresentations = null;
 
+
             if (userRegistrationDTO.roles() == null || userRegistrationDTO.roles().isEmpty()) {
                 roleRepresentations = List.of(realmResource.roles().get("user-role-realm").toRepresentation());
             } else {//todo: actualizar roles para que permita hacer consultas por defecto.
@@ -111,6 +110,19 @@ public class UserServiceImpl implements IUserService {
                     .roles()
                     .realmLevel()
                     .add(roleRepresentations);
+
+            List<UserRepresentation> representationList = userResource.searchByUsername(userRegistrationDTO.username(), true);
+            if (!representationList.isEmpty()) {
+                UserRepresentation userRep = representationList.stream()
+                        .filter(ur -> !ur.isEmailVerified())
+                        .findFirst()
+                        .orElse(null);
+
+                if (userRep != null) {
+                    emailVerification(userRep.getId());
+                }
+            }
+
         } else if (status == 409) {
             log.error("User already exist");
             return "User already exist";
@@ -121,10 +133,7 @@ public class UserServiceImpl implements IUserService {
         return null;
     }
 
-    /*
-     * Method for remove a user in keycloak
-     * @return void
-     * */
+
     @Override
     public void deleteUser(String userId) {
         getUserResource()
@@ -188,32 +197,37 @@ public class UserServiceImpl implements IUserService {
     }
 
 
-	@Override
-	public String resetPassword(String userEmail) {
-	    try {
-	        UsersResource usersResource = getUserResource();
-	        List<UserRepresentation> representationList = usersResource.searchByEmail(userEmail, true);
-	        UserRepresentation userRepresentation = representationList.stream().findFirst().orElse(null);
+    @Override
+    public String resetPassword(String userEmail) {
+        try {
+            UsersResource usersResource = getUserResource();
+            List<UserRepresentation> representationList = usersResource.searchByEmail(userEmail, true);
+            UserRepresentation userRepresentation = representationList.stream().findFirst().orElse(null);
 
-	        if (userRepresentation != null) {
-	            String userId = userRepresentation.getId();
-	            tokenProvider.sendResetPasswordEmail(userId);
-	            return "Link para restablecer contraseña enviado.";
-	        } else {
-	            return "No se encontró ningún usuario con el correo electrónico proporcionado.";
-	        }
-	    } catch (Exception e) {
-	        return "Se produjo un error al intentar restablecer la contraseña.";
-	    }
-		
-	}
+            if (userRepresentation != null) {
+                String userId = userRepresentation.getId();
+                tokenProvider.sendResetPasswordEmail(userId);
+                return "Link para restablecer contraseña enviado.";
+            } else {
+                return "No se encontró ningún usuario con el correo electrónico proporcionado.";
+            }
+        } catch (Exception e) {
+            return "Se produjo un error al intentar restablecer la contraseña.";
+        }
+
+    }
 
     @Override
     public String logoutSession(@NotNull @NotBlank String refreshToken) throws IOException {
-        if(!refreshToken.isEmpty()) {
+        if (!refreshToken.isEmpty()) {
             return tokenProvider.requestLogout(refreshToken);
         }
         return "logout failed";
+    }
 
+    @Override
+    public void emailVerification(String userId) {
+        UsersResource usersResource = getUserResource();
+        usersResource.get(userId).sendVerifyEmail();
     }
 }
