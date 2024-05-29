@@ -67,6 +67,10 @@ public class UserController {
         userService.emailVerification(userId);
     }
 
+    @GetMapping("/sendEmail/{email}/username/{username}")
+    public void sendEmail(@PathVariable String email, @PathVariable @Valid String username) {
+        userService.sendEmail(email, username);
+    }
 
 
 }
