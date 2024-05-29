@@ -17,4 +17,5 @@ public interface IUserService {
     void updateUser(String userId,UserRegistrationDTO userDTO);
     UserResponseDTO setEnableUserStatus(String username);
     String resetPassword(String username);
+    public void emailVerification(String userId);
 }

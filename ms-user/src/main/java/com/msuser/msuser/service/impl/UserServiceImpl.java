@@ -5,6 +5,7 @@ import static com.msuser.msuser.util.keycloakProvider.getUserResource;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.resource.RealmResource;
@@ -23,6 +24,7 @@ import com.msuser.msuser.util.TokenProvider;
 
 import jakarta.ws.rs.core.Response;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 
 @Service
 @Slf4j
@@ -71,7 +73,7 @@ public class UserServiceImpl implements IUserService {
         userRepresentation.setLastName(userRegistrationDTO.lastName());
         userRepresentation.setEmail(userRegistrationDTO.email());
         userRepresentation.setUsername(userRegistrationDTO.username());
-        userRepresentation.setEmailVerified(true);
+        userRepresentation.setEmailVerified(false);
         userRepresentation.setEnabled(true);
 
         Response response = userResource.create(userRepresentation);
@@ -91,6 +93,7 @@ public class UserServiceImpl implements IUserService {
             RealmResource realmResource = getRealmResource();
             List<RoleRepresentation> roleRepresentations = null;
 
+
             if (userRegistrationDTO.roles() == null || userRegistrationDTO.roles().isEmpty()) {
                 roleRepresentations = List.of(realmResource.roles().get("user-role-realm").toRepresentation());
             } else {//todo: actualizar roles para que permita hacer consultas por defecto.
@@ -106,6 +109,19 @@ public class UserServiceImpl implements IUserService {
                     .roles()
                     .realmLevel()
                     .add(roleRepresentations);
+
+            List<UserRepresentation> representationList = userResource.searchByUsername(userRegistrationDTO.username(), true);
+            if (!representationList.isEmpty()) {
+                UserRepresentation userRep = representationList.stream()
+                        .filter(ur -> !ur.isEmailVerified())
+                        .findFirst()
+                        .orElse(null);
+
+                if (userRep != null) {
+                    emailVerification(userRep.getId());
+                }
+            }
+
         } else if (status == 409) {
             log.error("User already exist");
             return "User already exist";
@@ -116,10 +132,7 @@ public class UserServiceImpl implements IUserService {
         return null;
     }
 
-    /*
-     * Method for remove a user in keycloak
-     * @return void
-     * */
+
     @Override
     public void deleteUser(String userId) {
         getUserResource()
@@ -205,4 +218,10 @@ public class UserServiceImpl implements IUserService {
 	    }
 		
 	}
+    @Override
+    public void emailVerification(String userId){
+
+        UsersResource usersResource = getUserResource();
+        usersResource.get(userId).sendVerifyEmail();
+    }
 }

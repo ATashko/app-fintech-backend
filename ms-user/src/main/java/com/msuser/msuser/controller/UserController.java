@@ -61,4 +61,12 @@ public class UserController {
     public ResponseEntity<?> setEnableUserStatus(@PathVariable @Valid String username) {
         return new ResponseEntity<>(userService.setEnableUserStatus(username), HttpStatus.ACCEPTED);
     }
+
+    @PutMapping("/{userId}/send-verify-email")
+    public void sendVerificationEmail(@PathVariable String userId) {
+        userService.emailVerification(userId);
+    }
+
+
+
 }
