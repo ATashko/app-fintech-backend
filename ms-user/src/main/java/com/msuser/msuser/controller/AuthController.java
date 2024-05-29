@@ -64,7 +64,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "/logout", consumes = "application/x-www-form-urlencoded")
-    public ResponseEntity<?> logout(@RequestParam("refresh_token") String refreshToken) throws IOException {
+    public ResponseEntity<?> logout(@RequestParam("refresh_token") @Valid String refreshToken) throws IOException {
         userService.logoutSession(refreshToken);
         return ResponseEntity.noContent().build();
     }
