@@ -29,7 +29,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> create(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO) throws URISyntaxException {
+    public ResponseEntity<?> create(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO)  {
         String response = userService.createUser(userRegistrationDTO);
         return ResponseEntity.ok(response);
     }
@@ -48,7 +48,6 @@ public class AuthController {
                     user.getEmail(),
                     user.isEmailVerified(),
                     user.isEnabled(), "Colombia"); // todo: update with country persistence
-            System.out.println(user);
             return ResponseEntity.ok(new DataResponseToken(userDTO, accessToken));
         } else {
             return ResponseEntity.status(401).body("Invalid username or password");
