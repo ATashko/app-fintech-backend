@@ -20,7 +20,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.msuser.msuser.util.keycloakProvider.getRealmResource;
 import static com.msuser.msuser.util.keycloakProvider.getUserResource;
@@ -30,7 +32,7 @@ import static com.msuser.msuser.util.keycloakProvider.getUserResource;
 public class UserServiceImpl implements IUserService {
 
     private final TokenProvider tokenProvider;
-    private EmailService emailService;
+    private final EmailService emailService;
 
     public UserServiceImpl(TokenProvider tokenProvider, EmailService emailService) {
         this.tokenProvider = tokenProvider;
@@ -76,6 +78,9 @@ public class UserServiceImpl implements IUserService {
         userRepresentation.setLastName(userRegistrationDTO.lastName());
         userRepresentation.setEmail(userRegistrationDTO.email());
         userRepresentation.setUsername(userRegistrationDTO.username());
+        Map<String, List<String>> attributes = new HashMap<>();
+        attributes.put("country", Collections.singletonList(userRegistrationDTO.country()));
+        userRepresentation.setAttributes(attributes);
         userRepresentation.setEmailVerified(false);
         userRepresentation.setEnabled(true);
 
@@ -99,7 +104,7 @@ public class UserServiceImpl implements IUserService {
 
             if (userRegistrationDTO.roles() == null || userRegistrationDTO.roles().isEmpty()) {
                 roleRepresentations = List.of(realmResource.roles().get("user-role-realm").toRepresentation());
-            } else {//todo: actualizar roles para que permita hacer consultas por defecto.
+            } else {
                 roleRepresentations = realmResource.roles().list()
                         .stream().filter(role -> userRegistrationDTO.roles()
                                 .stream()
@@ -162,6 +167,9 @@ public class UserServiceImpl implements IUserService {
         userRepresentation.setLastName(userRegistrationDTO.lastName());
         userRepresentation.setEmail(userRegistrationDTO.email());
         userRepresentation.setUsername(userRegistrationDTO.username());
+        Map<String, List<String>> attributes = new HashMap<>();
+        attributes.put("country", Collections.singletonList(userRegistrationDTO.country()));
+        userRepresentation.setAttributes(attributes);
         userRepresentation.setEmailVerified(true);
         userRepresentation.setEnabled(true);
 
@@ -187,7 +195,7 @@ public class UserServiceImpl implements IUserService {
                 userRepresentation.get(0).getEmail(),
                 userRepresentation.get(0).isEmailVerified(),
                 userRepresentation.get(0).isEnabled(),
-                "Colombia");
+                userRepresentation.get(0).getAttributes().toString());
     }
 
     public UserRepresentation authenticateUser(String username, String password) {

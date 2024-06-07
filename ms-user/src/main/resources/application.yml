@@ -5,12 +5,8 @@ server:
 spring:
   application:
     name: ms-user
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:9090/realms/triwal-realm-dev
-          jwk-set-uri: http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/certs
+  config:
+    import: optional:configserver:http://localhost:8888
 
 # ESTO ME PERMITE ENVIAR EL LINK AL CORREO PARA HABILITAR NUEVAMENTE LA CUENTA
   mail:
@@ -25,24 +21,3 @@ spring:
           starttls:
             enable: true
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    registry-fetch-interval-seconds: 5
-    healthcheck:
-      enabled: true
-    service-url:
-      default-zone: http://localhost:8761/eureka
-  instance:
-    hostname: localhost
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 5
-    lease-expiration-duration-in-seconds: 10
-
-jwtConverter:
-  auth:
-    converter:
-      resource-id: triwal-app
-      main-attr: preferred_username

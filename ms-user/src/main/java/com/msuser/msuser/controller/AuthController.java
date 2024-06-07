@@ -37,7 +37,6 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws IOException {
         UserRepresentation user = userService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
-
         if (user != null) {
             String accessToken = tokenProvider.requestToken(loginRequest.getUsername(), loginRequest.getPassword());
             UserResponseDTO userDTO = new UserResponseDTO(
@@ -47,7 +46,7 @@ public class AuthController {
                     user.getLastName(),
                     user.getEmail(),
                     user.isEmailVerified(),
-                    user.isEnabled(), "Colombia"); // todo: update with country persistence
+                    user.isEnabled(), user.getAttributes().toString());
             return ResponseEntity.ok(new DataResponseToken(userDTO, accessToken));
         } else {
             return ResponseEntity.status(401).body("Invalid username or password");
@@ -70,10 +69,9 @@ public class AuthController {
 
     @Getter
     public static class LoginRequest {
+
         private String username;
         private String password;
-
-        // Getters y setters
 
         public void setUsername(String username) {
             this.username = username;

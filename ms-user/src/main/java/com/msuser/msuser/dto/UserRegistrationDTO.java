@@ -32,6 +32,8 @@ public record UserRegistrationDTO(
         @ValidPassword
         String pass,
 
+        String country,
+
         @Size(min = 1, max = 5)
         Set<String> roles) {
 
