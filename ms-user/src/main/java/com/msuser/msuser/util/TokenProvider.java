@@ -18,7 +18,7 @@ public class TokenProvider {
     public static String getAdminToken() {
         try {
             return getToken("http://localhost:9090/realms/master/protocol/openid-connect/token",
-                    "admin-cli", "", "admin", "admin");
+                    "admin-cli", "qNjA34gkt1JeGWOkKw6qPH4o9O6X1bUf", "admin", "admin");
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
@@ -56,7 +56,7 @@ public class TokenProvider {
     public String requestLogout(String refreshToken) throws IOException {
         String uri = "http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/logout";
         String clientId = "triwal-app";
-        String clientSecret = "2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p";
+        String clientSecret = "o9QcPh61kKSpFZS1jjz2rm7ucz0npNW6";
         return getLogout(uri, refreshToken, clientId, clientSecret);
 
     }
@@ -67,6 +67,7 @@ public class TokenProvider {
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         connection.setDoOutput(true);
+
         String data = "refresh_token=" + refreshToken + "&client_id=" + clientId + "&client_secret=" + clientSecret;
 
         try (OutputStream os = connection.getOutputStream()) {
@@ -91,7 +92,7 @@ public class TokenProvider {
     public String requestToken(String username, String password) {
         try {
             return getToken("http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/token",
-                    "triwal-app", "2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p", username, password);
+                    "triwal-app", "o9QcPh61kKSpFZS1jjz2rm7ucz0npNW6", username, password);
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }

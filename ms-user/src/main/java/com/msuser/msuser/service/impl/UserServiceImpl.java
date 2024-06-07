@@ -30,9 +30,11 @@ import static com.msuser.msuser.util.keycloakProvider.getUserResource;
 public class UserServiceImpl implements IUserService {
 
     private final TokenProvider tokenProvider;
+    private EmailService emailService;
 
-    public UserServiceImpl(TokenProvider tokenProvider) {
+    public UserServiceImpl(TokenProvider tokenProvider, EmailService emailService) {
         this.tokenProvider = tokenProvider;
+        this.emailService = emailService;
     }
 
 
@@ -112,6 +114,7 @@ public class UserServiceImpl implements IUserService {
                     .add(roleRepresentations);
 
             List<UserRepresentation> representationList = userResource.searchByUsername(userRegistrationDTO.username(), true);
+
             if (!representationList.isEmpty()) {
                 UserRepresentation userRep = representationList.stream()
                         .filter(ur -> !ur.isEmailVerified())
@@ -122,6 +125,7 @@ public class UserServiceImpl implements IUserService {
                     emailVerification(userRep.getId());
                 }
             }
+
 
         } else if (status == 409) {
             log.error("User already exist");
@@ -229,5 +233,10 @@ public class UserServiceImpl implements IUserService {
     public void emailVerification(String userId) {
         UsersResource usersResource = getUserResource();
         usersResource.get(userId).sendVerifyEmail();
+    }
+
+    @Override
+    public void sendEmail(String email, String username) {
+        emailService.sendActivationEmail(email, username);
     }
 }

@@ -41,6 +41,7 @@ public class SecurityConfiguration {
                             .requestMatchers("auth/register/**","auth/login/**").permitAll()
                             .requestMatchers("auth/logout/**").authenticated()
                             .requestMatchers("user/setStatus/**").permitAll()
+                            .requestMatchers("user/sendEmail/**").permitAll()
                             .anyRequest().authenticated();
 
                 })
