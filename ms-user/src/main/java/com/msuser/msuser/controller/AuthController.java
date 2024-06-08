@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RequestMapping("/auth")
 public class AuthController {
 
