@@ -27,6 +27,6 @@ public class CurrencyConverterService {
         String jsonResponse = restTemplate.getForObject(url, String.class);
         System.out.println("Response JSON: " + jsonResponse);
         ExchangeRateResponse response = restTemplate.getForObject(url, ExchangeRateResponse.class);
-        return response.getConversion_result();
+        return jsonResponse.toString();
     }
 }
