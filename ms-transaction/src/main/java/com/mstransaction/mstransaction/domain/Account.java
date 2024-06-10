@@ -36,6 +36,16 @@ public class Account {
 	@Column(name = "user_id")
 	private String userId;
 	
+	public Account() {
+	}
+	
+    public Account(AccountDTO accountDTO) {
+    	this.amount = 0.0f;
+        this.currency = Currency.valueOf(accountDTO.getCurrency());
+        this.typeAccount = TypeAccount.valueOf(accountDTO.getTypeAccount());
+        this.userId = accountDTO.getUserId();
+    }
+	
     @PrePersist
     public void generateAccountNumber() {
         SecureRandom secureRandom = new SecureRandom();
@@ -46,10 +56,4 @@ public class Account {
         this.accountNumber = sb.toString();
     }
     
-    public Account(AccountDTO accountDTO) {
-    	this.amount = 0.0f;
-        this.currency = Currency.valueOf(accountDTO.getCurrency());
-        this.typeAccount = TypeAccount.valueOf(accountDTO.getTypeAccount());
-        this.userId = accountDTO.getUserId();
-    }
 }
