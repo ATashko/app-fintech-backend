@@ -40,6 +40,7 @@ public class Account {
 	}
 	
     public Account(AccountDTO accountDTO) {
+    	this.accountNumber = accountDTO.getAccountNumber();
     	this.amount = 0.0f;
         this.currency = Currency.valueOf(accountDTO.getCurrency());
         this.typeAccount = TypeAccount.valueOf(accountDTO.getTypeAccount());
