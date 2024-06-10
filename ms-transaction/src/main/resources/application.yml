@@ -1,5 +1,39 @@
-spring:
+server:
+  port: 0
+
   application:
     name: ms-transaction
-  config:
-    import: optional:configserver:http://localhost:8888
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+    healthcheck:
+      enabled: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+spring:
+  cloud:
+    config:
+      import-check:
+        enabled: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/mstransactions
+    username: root
+    password: root
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      properties:
+        hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest

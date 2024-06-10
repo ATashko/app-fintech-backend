@@ -15,6 +15,7 @@ import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ import static com.msuser.msuser.util.keycloakProvider.getUserResource;
 @Slf4j
 public class UserServiceImpl implements IUserService {
 
+    @Autowired
     private final TokenProvider tokenProvider;
     private EmailService emailService;
 
@@ -239,4 +241,6 @@ public class UserServiceImpl implements IUserService {
     public void sendEmail(String email, String username) {
         emailService.sendActivationEmail(email, username);
     }
+
+
 }
