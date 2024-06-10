@@ -6,9 +6,10 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.msuser.msuser.configuration.feign.FeignInterceptor;
 import com.msuser.msuser.dto.AccountDTO;
 
-@FeignClient(name = "ms-transaction")
+@FeignClient(name = "ms-transaction", configuration = FeignInterceptor.class)
 public interface IAccountClient {
 
     @GetMapping("/account/accounts/{userId}")
