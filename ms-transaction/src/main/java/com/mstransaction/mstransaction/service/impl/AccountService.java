@@ -38,5 +38,13 @@ public class AccountService implements IAccountService {
 		AccountDTO accountDTO = new AccountDTO(repositoryAccount.findByAccountNumber(numberAccount));
         return accountDTO;
 	}
+
+	@Override
+	public void deleteAccount(String numberAccount) {
+		AccountDTO accountDTO = this.getAccountDetail(numberAccount);
+		if(accountDTO.getAmount() == 0.0f) {
+			repositoryAccount.deleteByAccountNumber(numberAccount);
+		}
+	}
 	
 }

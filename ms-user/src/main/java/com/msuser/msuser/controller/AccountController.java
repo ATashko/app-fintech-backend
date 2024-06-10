@@ -53,8 +53,14 @@ public class AccountController {
     }
     
     @GetMapping("/{numberAccount}")
-    public AccountDTO getAccountDetail(@PathVariable @Valid String numberAccount) {     
+    public AccountDTO getAccountDetail(@PathVariable String numberAccount) {     
         return accountClient.getAccountDetail(numberAccount);
+    }
+    
+    @DeleteMapping("/delete/{numberAccount}")
+    public ResponseEntity<?> deleteAccount(@PathVariable String numberAccount) {
+    	accountClient.deleteAccount(numberAccount);
+    	return ResponseEntity.noContent().build();
     }
 }
 

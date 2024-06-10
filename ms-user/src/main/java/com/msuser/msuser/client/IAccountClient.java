@@ -3,6 +3,7 @@ package com.msuser.msuser.client;
 import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -17,4 +18,7 @@ public interface IAccountClient {
     
     @GetMapping("/account/{numberAccount}")
     AccountDTO getAccountDetail(@PathVariable("numberAccount") String numberAccount);
+    
+    @DeleteMapping("/account/delete/{numberAccount}")
+    void deleteAccount(@PathVariable("numberAccount") String numberAccount);
 }

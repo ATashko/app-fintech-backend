@@ -8,4 +8,5 @@ public interface IAccountService {
 	void createAccount(AccountDTO account);
 	List<AccountDTO> getAccounts(String userId);
 	AccountDTO getAccountDetail(String userId);
+	void deleteAccount(String numberAccount);
 }
