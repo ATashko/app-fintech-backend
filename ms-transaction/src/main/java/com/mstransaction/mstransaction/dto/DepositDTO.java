@@ -1,5 +1,6 @@
 package com.mstransaction.mstransaction.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +10,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DepositResponseDTO {
+public class DepositDTO {
     private String userId;
     private String accountNumber;
     private float valueToTransfer;
     private String shippingCurrency;
+
 }

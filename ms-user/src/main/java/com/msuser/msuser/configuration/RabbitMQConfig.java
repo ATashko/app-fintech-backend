@@ -14,15 +14,15 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
     public static final String CREATE_ACCOUNT_QUEUE = "create-account-queue";
-    public static final String DEPOSIT_REQUEST_QUEUE = "depositRequestQueue";
+    public static final String DEPOSIT_QUEUE = "depositQueue";
     @Bean
     public Queue createAccountQueue() {
         return new Queue(CREATE_ACCOUNT_QUEUE, true);
     }
 
     @Bean
-    public Queue userDetailsRequestQueue() {
-        return new Queue(DEPOSIT_REQUEST_QUEUE, true);
+    public Queue depositQueue() {
+        return new Queue(DEPOSIT_QUEUE, true);
     }
 
 

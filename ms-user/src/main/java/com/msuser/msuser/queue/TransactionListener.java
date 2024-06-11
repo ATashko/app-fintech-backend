@@ -1,7 +1,7 @@
 package com.msuser.msuser.queue;
 
-import com.msuser.msuser.dto.DepositResponseDTO;
-import com.msuser.msuser.util.TokenProvider;
+import com.msuser.msuser.dto.DepositDTO;
+import com.msuser.msuser.service.impl.EmailService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +13,18 @@ import java.io.IOException;
 public class TransactionListener {
 
     @Autowired
-    private TokenProvider tokenProvider;
+    private EmailService emailService;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @RabbitListener(queues = "depositResponseQueue")
-    public void processDepositResponse(DepositResponseDTO depositResponse) {
+    @RabbitListener(queues = "depositQueue")
+    public void processDepositResponse(DepositDTO depositResponse, String email) throws IOException {
         System.out.println("Detalles de la transacción recibidos: " + depositResponse);
 
         String userId = depositResponse.getUserId();
-        try {
-            String result = TokenProvider.sendDepositVerificationEmail(userId);
-            System.out.println("Correo de confirmación: " + result);
-        } catch (IOException e) {
-            System.err.println("Error al enviar el correo de confirmación: " + e.getMessage());
-        }
+        emailService.sendDepositVerificationEmail(email, userId);
+
     }
 }
 

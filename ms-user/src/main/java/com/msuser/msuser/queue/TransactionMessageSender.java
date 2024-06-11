@@ -1,6 +1,6 @@
 package com.msuser.msuser.queue;
 
-import com.msuser.msuser.dto.DepositRequestDTO;
+import com.msuser.msuser.dto.DepositDTO;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +13,8 @@ public class TransactionMessageSender {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
-    public void sendDepositMessage(DepositRequestDTO depositRequest) {
-        rabbitTemplate.convertAndSend("depositRequestQueue", depositRequest);
+    public void sendDepositMessage(DepositDTO depositRequest) {
+        rabbitTemplate.convertAndSend("depositQueue", depositRequest);
     }
 
 

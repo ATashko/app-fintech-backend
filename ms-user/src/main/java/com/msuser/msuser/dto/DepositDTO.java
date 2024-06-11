@@ -1,17 +1,21 @@
 package com.msuser.msuser.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import lombok.*;
+import lombok.NoArgsConstructor;
+
+/*Esta clase encapsula los datos que entran a través de la peticion de depositar dinero
+en el controlador (endpoint) para enviarlos con Rabbit al ms-transactions donde se procesará
+la petición */
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DepositResponseDTO {
+public class DepositDTO {
     private String userId;
     private String accountNumber;
     private float valueToTransfer;
     private String shippingCurrency;
+
+
 }

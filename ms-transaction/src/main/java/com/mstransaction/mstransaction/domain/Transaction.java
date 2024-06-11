@@ -11,56 +11,59 @@ import java.io.Serializable;
 @Entity
 @Table(name = "transactions")
 
-public class Transaction implements Serializable {
+public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "transaction_id")
     private Long transactionId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "shipping_currency", nullable = false)
+    @Column(name = "shipping_currency")
     private ShippingCurrency shippingCurrency;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "receipt_currency", nullable = false)
+    @Column(name = "receipt_currency")
     private ReceiptCurrency receiptCurrency;
 
-    @Column(name = "value_to_transfer", nullable = false)
+    @Column(name = "value_to_transfer")
     private float valueToTransfer;
 
-    @Column(name = "rate", nullable = false)
+    @Column(name = "rate")
     private float rate;
 
-    @Column(name = "rate_value", nullable = false)
+    @Column(name = "rate_value")
     private float rateValue;
 
-    @Column(name = "transaction_total", nullable = false)
+    @Column(name = "transaction_total")
     private float transactionTotal;
 
-    @Column(name = "converted_transaction_total", nullable = false)
+    @Column(name = "converted_transaction_total")
     private float convertedTransactionTotal;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "method_of_payment", nullable = false)
+    @Column(name = "method_of_payment")
     private MethodOfPayment methodOfPayment;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "transfer_type", nullable = false)
+    @Column(name = "transfer_type")
     private TransferType transferType;
 
-    @Column(name = "name_of_recipient", nullable = false, length = 50)
+    @Column(name = "name_of_recipient", length = 50)
     private String nameOfRecipient;
 
-    @Column(name = "user_id", nullable = false, length = 36)
+    @Column(name = "user_id",length = 36)
     private String userId;
 
-    @Column(name = "username", nullable = false, length = 50)
+    @Column(name = "username", length = 50)
     private String username;
 
-    @Column(name = "email", nullable = false, length = 100)
+    @Column(name = "email", length = 100)
     private String email;
 
-    @Column(name = "transaction_details", nullable = false, length = 255)
+    @Column(name = "transaction_details", length = 255)
     private String transactionDetails;
+
+    @Column(name = "account_number")
+    private String accountNumber;
 
 }

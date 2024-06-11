@@ -149,44 +149,4 @@ public class TokenProvider {
         return response.toString();
     }
 
-    public static String sendDepositVerificationEmail(String userId) throws IOException {
-        try {
-            return sendDepositEmail("http://localhost:9090/admin/realms/triwal-realm-dev/users/" + userId + "/execute-actions-email",
-                    "triwal-app", "rOHF0th6B7xY2FCWg8CzH7oviF7wcFtW");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    private static String sendDepositEmail(String uri, String clientId, String clientSecret) throws IOException {
-        URL url = new URL(uri);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("PUT");
-        connection.setRequestProperty("Content-Type", "application/json");
-        connection.setRequestProperty("Authorization", "Bearer " + getAdminToken());
-        connection.setDoOutput(true);
-
-        String data = "[\"VERIFY_DEPOSIT\"]";
-        try (OutputStream os = connection.getOutputStream()) {
-            os.write(data.getBytes());
-            os.flush();
-        }
-
-        int responseCode = connection.getResponseCode();
-        StringBuilder response = new StringBuilder();
-
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(
-                responseCode >= 200 && responseCode < 300 ? connection.getInputStream() : connection.getErrorStream()))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                response.append(line);
-            }
-        }
-
-        return responseCode + ": " + response.toString();
-    }
-
-
 }

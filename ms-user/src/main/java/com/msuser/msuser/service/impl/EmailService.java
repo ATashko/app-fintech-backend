@@ -28,6 +28,18 @@ public class EmailService {
         sendEmail(userMail, subject, from, messageBuilder.toString());
     }
 
+    public void sendDepositVerificationEmail(String userMail, String userId) {
+
+        String subject = "Activación de la cuenta";
+        String from = "noreply@yourdomain.com";
+
+        StringBuilder messageBuilder = new StringBuilder();
+        messageBuilder.append("Tu deposito ha sido recibido, para confirmar, haz click aquí: ")
+                .append("http://localhost:5173/enable/").append(userId);
+
+        sendEmail(userMail, subject, from, messageBuilder.toString());
+    }
+
     private void sendEmail(String to, String subject, String from, String message) {
         MimeMessage mailMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mailMessage);

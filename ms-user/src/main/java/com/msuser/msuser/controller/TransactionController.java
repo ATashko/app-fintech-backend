@@ -1,7 +1,9 @@
 package com.msuser.msuser.controller;
 
-import com.msuser.msuser.dto.DepositRequestDTO;
+import com.msuser.msuser.client.IFeignClient;
+import com.msuser.msuser.dto.DepositDTO;
 import com.msuser.msuser.queue.TransactionMessageSender;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,18 @@ y traspaso de dinero a otro usuarios*/
 @RestController
 public class TransactionController{
 
-    @Autowired
+
     private TransactionMessageSender transactionMessageSender;
+    private IFeignClient feignClient;
+
+    @Autowired
+    public TransactionController(TransactionMessageSender transactionMessageSender, IFeignClient feignClient) {
+        this.transactionMessageSender = transactionMessageSender;
+        this.feignClient = feignClient;
+    }
 
     @PostMapping("/deposit")
-    public ResponseEntity<String> depositMoney(@RequestBody DepositRequestDTO depositRequest, Authentication authentication) {
+    public ResponseEntity<String> depositMoney(@RequestBody DepositDTO depositRequest, Authentication authentication) {
         try {
             Jwt jwt = (Jwt) authentication.getPrincipal();
             String userId = jwt.getClaimAsString("sub");
@@ -35,5 +44,22 @@ public class TransactionController{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al enviar la solicitud de depósito: " + e.getMessage());
         }
     }
+
+
+    @GetMapping("/deposit/{accountNumber}")
+    public ResponseEntity<DepositDTO> getDepositDetail(@PathVariable String accountNumber, Authentication authentication) {
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+        String userId = jwt.getClaimAsString("sub");
+
+        try {
+            return feignClient.getDepositDetail(accountNumber);
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+
+    }
+
 }
 
