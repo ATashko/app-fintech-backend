@@ -1,7 +1,6 @@
 package com.mstransaction.mstransaction.service.impl;
 
-import com.mstransaction.mstransaction.domain.Account;
-import com.mstransaction.mstransaction.domain.Transaction;
+import com.mstransaction.mstransaction.domain.*;
 import com.mstransaction.mstransaction.dto.DepositDTO;
 import com.mstransaction.mstransaction.queue.TransactionMessageSender;
 import com.mstransaction.mstransaction.repository.AccountRepository;
@@ -29,22 +28,34 @@ public class TransactionService implements ITransactionService {
         String userId = depositDTO.getUserId();
         String accountNumber = depositDTO.getAccountNumber();
         String shippingCurrency = depositDTO.getShippingCurrency();
+        String email = depositDTO.getEmail();
         float valueToTransfer = depositDTO.getValueToTransfer();
 
         if (userId == null || userId.isEmpty() || accountNumber == null || accountNumber.isEmpty()
-                || shippingCurrency == null || shippingCurrency.isEmpty() || valueToTransfer <= 0) {
+                || shippingCurrency == null || shippingCurrency.isEmpty() || valueToTransfer <= 0
+        || email.isEmpty() || email == null) {
             throw new IllegalArgumentException("Datos de transacción inválidos.");
         }
 
+        Transaction transaction = new Transaction();
         Account account = accountRepository.findByUserIdAndAccountNumber(userId, accountNumber)
                 .orElseThrow(() -> new IllegalArgumentException("Cuenta no encontrada para el usuario dado."));
 
         float newAmount = account.getAmount() + valueToTransfer;
         account.setAmount(newAmount);
-
+        System.out.println(account.getAccountNumber());
         accountRepository.save(account);
 
-        DepositDTO deposit = new DepositDTO(userId, accountNumber, valueToTransfer, shippingCurrency);
+        transaction.setTransferType(TransferType.valueOf("DEPOSIT"));
+        transaction.setMethodOfPayment(MethodOfPayment.valueOf("CASH"));
+        transaction.setAccountNumber(accountNumber);
+        transaction.setShippingCurrency(ShippingCurrency.valueOf(shippingCurrency));
+        transaction.setEmail(email);
+        transaction.setValueToTransfer(valueToTransfer);
+        System.out.println(transaction.getAccountNumber());
+        transactionRepository.save(transaction);
+
+        DepositDTO deposit = new DepositDTO(userId, accountNumber, valueToTransfer, shippingCurrency, email);
 
         transactionMessageSender.sendDepositResponseMessage(deposit);
     }
@@ -57,6 +68,7 @@ public class TransactionService implements ITransactionService {
                 transaction.getUserId(),
                 transaction.getAccountNumber(),
                 transaction.getValueToTransfer(),
+                transaction.getEmail(),
                 transaction.getShippingCurrency().toString()
         );
     }

@@ -1,5 +1,5 @@
 package com.mstransaction.mstransaction.domain;
 
 public enum MethodOfPayment {
-    CASH, TRIWALTRANSFER
+    CASH, TRIWAL_TRANSFER
 }

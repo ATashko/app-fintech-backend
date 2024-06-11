@@ -1,5 +1,6 @@
 package com.mstransaction.mstransaction.queue;
 
+import com.mstransaction.mstransaction.configuration.RabbitMQConfig;
 import com.mstransaction.mstransaction.dto.DepositDTO;
 import com.mstransaction.mstransaction.repository.AccountRepository;
 import com.mstransaction.mstransaction.service.impl.TransactionService;
@@ -19,7 +20,7 @@ public class TransactionListener {
     @Autowired
     private TransactionService transactionService;
 
-    @RabbitListener(queues = "depositQueue")
+    @RabbitListener(queues = RabbitMQConfig.DEPOSIT_QUEUE)
     public void handleDeposit(DepositDTO depositRequest) {
 
         transactionService.processDeposit(depositRequest);

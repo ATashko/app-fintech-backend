@@ -16,6 +16,7 @@ public class DepositDTO {
     private String accountNumber;
     private float valueToTransfer;
     private String shippingCurrency;
+    private String email;
 
 
 }

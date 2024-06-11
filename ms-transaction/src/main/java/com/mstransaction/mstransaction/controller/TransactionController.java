@@ -21,6 +21,8 @@ public class TransactionController {
     public ResponseEntity<DepositDTO> getDepositDetail(@PathVariable String accountNumber) {
         try {
             DepositDTO depositDetail = transactionService.getDepositDetail(accountNumber);
+            String account = depositDetail.getAccountNumber();
+            System.out.println(account);
             return new ResponseEntity<>(depositDetail, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -28,4 +30,6 @@ public class TransactionController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

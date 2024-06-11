@@ -1,5 +1,6 @@
 package com.msuser.msuser.queue;
 
+import com.msuser.msuser.configuration.RabbitMQConfig;
 import com.msuser.msuser.dto.DepositDTO;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class TransactionMessageSender {
     @Autowired
     private RabbitTemplate rabbitTemplate;
     public void sendDepositMessage(DepositDTO depositRequest) {
-        rabbitTemplate.convertAndSend("depositQueue", depositRequest);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.DEPOSIT_QUEUE, depositRequest);
     }
 
 
