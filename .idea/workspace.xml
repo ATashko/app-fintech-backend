@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="780cc464-ea95-4d4f-8d6b-1a1e5ea0bd25" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/triwal-fintech-backend - copia.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/triwal-fintech-backend.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransactionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransactionRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/ITransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/ITransactionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/client/IFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/client/IFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/TokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/TokenProvider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,13 +25,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="2hmKs2CfMlAFAOtRBH66cpeAuFk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -50,7 +34,9 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "feature/deposit",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RunManager" selected="Application.MsUserApplication">

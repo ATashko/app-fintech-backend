@@ -79,7 +79,7 @@ public class TransactionService implements ITransactionService {
     }
     @Override
     public List<Transaction> getAllTransactions(String userId) {
-        List<Transaction> transactions = transactionRepository.findByUserId(userId);
+        List<Transaction> transactions = transactionRepository.findAllByUserId(userId);
         return transactions;
     }
 

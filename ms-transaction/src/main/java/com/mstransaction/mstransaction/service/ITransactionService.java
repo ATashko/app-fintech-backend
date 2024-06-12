@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface ITransactionService {
     DepositDTO processDeposit(DepositDTO depositRequest);
     DepositDTO getDepositDetail(String numberAccount);
-    List getAllTransactions(String userId);
+    List<Transaction> getAllTransactions(String userId);
 }
