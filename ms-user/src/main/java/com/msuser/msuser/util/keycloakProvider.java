@@ -8,7 +8,7 @@ import org.keycloak.admin.client.resource.UsersResource;
 
 public class keycloakProvider {
 
-    private static final String SERVER_URL = "http://localhost:9090";
+    private static final String SERVER_URL = "https://keycloak-production-95bd.up.railway.app/";
     private static final String REALM_NAME = "triwal-realm-dev";
     private static final String REALM_MASTER ="master";
     private static final String ADMIN_CLI = "admin-cli";
