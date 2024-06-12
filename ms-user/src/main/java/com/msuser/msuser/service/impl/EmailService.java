@@ -23,7 +23,7 @@ public class EmailService {
 
         StringBuilder messageBuilder = new StringBuilder();
         messageBuilder.append("Para activar su cuenta, por favor haz clic aquí: ")
-                .append("http://localhost:5173/enable/").append(username);
+                .append("http://localhost:3333/enable/").append(username);
 
         sendEmail(userMail, subject, from, messageBuilder.toString());
     }
@@ -35,7 +35,7 @@ public class EmailService {
 
         StringBuilder messageBuilder = new StringBuilder();
         messageBuilder.append("Tu deposito ha sido recibido, para confirmar, haz click aquí: ")
-                .append("http://localhost:5173/enable/").append(userId);
+                .append("http://localhost:3333/enable/").append(userId);
 
         sendEmail(userMail, subject, from, messageBuilder.toString());
     }

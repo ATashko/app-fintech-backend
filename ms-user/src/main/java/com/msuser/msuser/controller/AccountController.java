@@ -13,6 +13,7 @@ import com.msuser.msuser.client.IFeignClient;
 import com.msuser.msuser.dto.AccountDTO;
 import com.msuser.msuser.queue.AccountMessageSender;
 
+@CrossOrigin(origins = "http://localhost:3333/")
 @RestController
 @RequestMapping("/account")
 public class AccountController {

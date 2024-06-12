@@ -1,22 +1,22 @@
 package com.msuser.msuser.controller;
 
+
 import com.msuser.msuser.dto.DataResponseToken;
-import com.msuser.msuser.dto.UserRegistrationDTO;
-import com.msuser.msuser.dto.UserResponseDTO;
-import com.msuser.msuser.service.IUserService;
-import com.msuser.msuser.util.TokenProvider;
-import jakarta.validation.Valid;
-import lombok.Getter;
-import org.keycloak.representations.idm.UserRepresentation;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+        import com.msuser.msuser.dto.UserRegistrationDTO;
+        import com.msuser.msuser.dto.UserResponseDTO;
+        import com.msuser.msuser.service.IUserService;
+        import com.msuser.msuser.util.TokenProvider;
+        import jakarta.validation.Valid;
+        import lombok.Getter;
+        import org.keycloak.representations.idm.UserRepresentation;
+        import org.springframework.http.ResponseEntity;
+        import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
+        import java.io.IOException;
+        import java.net.URISyntaxException;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3333")
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -29,7 +29,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> create(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO) throws URISyntaxException {
+    public ResponseEntity<?> create(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO)  {
         String response = userService.createUser(userRegistrationDTO);
         return ResponseEntity.ok(response);
     }
@@ -37,7 +37,6 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws IOException {
         UserRepresentation user = userService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
-
         if (user != null) {
             String accessToken = tokenProvider.requestToken(loginRequest.getUsername(), loginRequest.getPassword());
             UserResponseDTO userDTO = new UserResponseDTO(
@@ -47,8 +46,8 @@ public class AuthController {
                     user.getLastName(),
                     user.getEmail(),
                     user.isEmailVerified(),
-                    user.isEnabled(), "Colombia"); // todo: update with country persistence
-            System.out.println(user);
+                    user.isEnabled(),
+                    user.getAttributes().get("country").get(0).toString());
             return ResponseEntity.ok(new DataResponseToken(userDTO, accessToken));
         } else {
             return ResponseEntity.status(401).body("Invalid username or password");
@@ -56,10 +55,10 @@ public class AuthController {
 
 
     }
-    
+
     @PutMapping ("/resetPassword")
     public ResponseEntity<?> resetPassword(@RequestParam String userEmail) {
-    	String result = userService.resetPassword(userEmail);
+        String result = userService.resetPassword(userEmail);
         return ResponseEntity.ok(result);
     }
 
@@ -71,10 +70,9 @@ public class AuthController {
 
     @Getter
     public static class LoginRequest {
+
         private String username;
         private String password;
-
-        // Getters y setters
 
         public void setUsername(String username) {
             this.username = username;
