@@ -9,7 +9,10 @@ import com.mstransaction.mstransaction.service.ITransactionService;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionService implements ITransactionService {
@@ -22,8 +25,8 @@ public class TransactionService implements ITransactionService {
     private TransactionRepository transactionRepository;
     Logger log;
 
-    @Transactional
-    public void processDeposit(DepositDTO depositDTO) {
+
+    public DepositDTO processDeposit(DepositDTO depositDTO) {
 
         String userId = depositDTO.getUserId();
         String accountNumber = depositDTO.getAccountNumber();
@@ -43,9 +46,9 @@ public class TransactionService implements ITransactionService {
 
         float newAmount = account.getAmount() + valueToTransfer;
         account.setAmount(newAmount);
-        System.out.println(account.getAccountNumber());
         accountRepository.save(account);
 
+        transaction.setUserId(userId);
         transaction.setTransferType(TransferType.valueOf("DEPOSIT"));
         transaction.setMethodOfPayment(MethodOfPayment.valueOf("CASH"));
         transaction.setAccountNumber(accountNumber);
@@ -57,7 +60,8 @@ public class TransactionService implements ITransactionService {
 
         DepositDTO deposit = new DepositDTO(userId, accountNumber, valueToTransfer, shippingCurrency, email);
 
-        transactionMessageSender.sendDepositResponseMessage(deposit);
+        //transactionMessageSender.sendDepositResponseMessage(deposit);
+        return deposit;
     }
     @Override
     public DepositDTO getDepositDetail(String numberAccount) {
@@ -68,10 +72,18 @@ public class TransactionService implements ITransactionService {
                 transaction.getUserId(),
                 transaction.getAccountNumber(),
                 transaction.getValueToTransfer(),
-                transaction.getEmail(),
-                transaction.getShippingCurrency().toString()
+                transaction.getShippingCurrency().toString(),
+                transaction.getEmail()
+
         );
     }
+    @Override
+    public List<Transaction> getAllTransactions(String userId) {
+        List<Transaction> transactions = transactionRepository.findByUserId(userId);
+        return transactions;
+    }
+
+
 
         /*transaction.setUserId(userId);
         //transaction.setAccountNumber(accountNumber); ---REVISAR---

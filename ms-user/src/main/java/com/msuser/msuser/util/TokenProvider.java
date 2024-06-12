@@ -17,8 +17,8 @@ public class TokenProvider {
 
     public static String getAdminToken() {
         try {
-            return getToken("http://localhost:9090/realms/master/protocol/openid-connect/token",
-                    "admin-cli", "", "admin", "admin");
+            return getToken("http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/token",
+                    "admin-cli", "", "admin ", "admin");
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
@@ -110,7 +110,7 @@ public class TokenProvider {
 
             JSONObject jsonObject = new JSONObject(accessToken);
 
-            URL url = new URL("http://localhost:9090/admin/realms/triwal-realm-dev/users/" + userId + "/execute-actions-email");
+            URL url = new URL("http://localhost:9090/realms/triwal-realm-dev/users/" + userId + "/execute-actions-email");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("PUT");
             connection.setRequestProperty("Content-Type", "application/json");

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 /*Este controlador debería tener todos los métodos de transacción, como ingreso de dinero
 y traspaso de dinero a otro usuarios*/
 
-@CrossOrigin(origins = "http://localhost:3333/")
+@CrossOrigin(origins = "http://localhost:3333")
 @RequestMapping("/transactions")
 @RestController
 public class TransactionController{
@@ -29,15 +29,17 @@ public class TransactionController{
         this.feignClient = feignClient;
     }
 
-    @PostMapping("/deposit")
-    public ResponseEntity<String> depositMoney(@RequestBody DepositDTO depositRequest, Authentication authentication) {
+    @PostMapping("/deposit/")
+    public ResponseEntity<String> getDepositSaving(@RequestBody DepositDTO depositRequest, Authentication authentication) {
+        System.out.println("-------------------");
+        System.out.println(depositRequest.getEmail());
         try {
             Jwt jwt = (Jwt) authentication.getPrincipal();
             String userId = jwt.getClaimAsString("sub");
 
             depositRequest.setUserId(userId);
-
-            transactionMessageSender.sendDepositMessage(depositRequest);
+            feignClient.getDepositSaving(depositRequest);
+            //transactionMessageSender.sendDepositMessage(depositRequest);
 
             return ResponseEntity.status(HttpStatus.OK).body("Solicitud de depósito enviada correctamente");
         } catch (Exception e) {
@@ -53,6 +55,21 @@ public class TransactionController{
 
         try {
             return feignClient.getDepositDetail(accountNumber);
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllTransactions(Authentication authentication) {
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+        String userId = jwt.getClaimAsString("sub");
+
+        try {
+            return feignClient.getAll(userId);
         } catch (FeignException e) {
             return ResponseEntity.status(e.status()).body(null);
         } catch (Exception e) {

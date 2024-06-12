@@ -30,7 +30,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> create(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO)  {
-        String response = userService.createUser(userRegistrationDTO);
+        String response = userService.createUser(userRegistrationDTO);;
         return ResponseEntity.ok(response);
     }
 

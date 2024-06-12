@@ -86,9 +86,11 @@ public class UserServiceImpl implements IUserService {
         userRepresentation.setEmailVerified(false);
         userRepresentation.setEnabled(true);
 
-        System.out.println(userRepresentation.getAttributes());
         Response response = userResource.create(userRepresentation);
+        String responseBody = response.readEntity(String.class);
+        System.out.println(responseBody);
         status = response.getStatus();
+        System.out.println(status);
 
         if (status == 201) {
             String path = response.getLocation().getPath();
@@ -139,6 +141,7 @@ public class UserServiceImpl implements IUserService {
             log.error("User already exist");
             return "User already exist";
         } else {
+
             log.error("Error creating user");
             return "Error creating user";
         }

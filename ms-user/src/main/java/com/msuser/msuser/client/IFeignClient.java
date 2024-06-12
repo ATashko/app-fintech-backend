@@ -5,9 +5,7 @@ import com.msuser.msuser.dto.AccountDTO;
 import com.msuser.msuser.dto.DepositDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,4 +23,10 @@ public interface IFeignClient {
 
     @GetMapping("/transactions/deposit/{accountNumber}")
     ResponseEntity<DepositDTO> getDepositDetail(@PathVariable String accountNumber);
+
+    @PostMapping("/transactions/deposit/")
+    ResponseEntity<DepositDTO> getDepositSaving(@RequestBody DepositDTO depositRequest);
+
+    @GetMapping("/transactions/all/{userId}")
+    public ResponseEntity<List<?>> getAll(@PathVariable String userId);
 }
