@@ -35,7 +35,7 @@ public class EmailService {
 
         StringBuilder messageBuilder = new StringBuilder();
         messageBuilder.append("Tu deposito ha sido recibido, para confirmar, haz click aquí: ")
-                .append("http://localhost:3333/enable/").append(userId);
+                .append("http://localhost:3333/dashboard/deposit").append(userId);
 
         sendEmail(userMail, subject, from, messageBuilder.toString());
     }
