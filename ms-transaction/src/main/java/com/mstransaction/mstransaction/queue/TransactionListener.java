@@ -22,7 +22,6 @@ public class TransactionListener {
 
     @RabbitListener(queues = RabbitMQConfig.DEPOSIT_QUEUE)
     public void handleDeposit(DepositDTO depositRequest) {
-
         transactionService.processDeposit(depositRequest);
     }
 

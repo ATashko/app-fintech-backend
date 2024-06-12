@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="780cc464-ea95-4d4f-8d6b-1a1e5ea0bd25" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/TransactionAccounts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/TransactionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransactionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransactionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/queue/TransactionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/queue/TransactionListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/ITransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/ITransactionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +38,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -39,7 +49,14 @@
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.MsUserApplication">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MsTransactionApplication">
     <configuration name="ConfigServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.config.configserver.ConfigServerApplication" />
       <module name="config-server" />
@@ -92,8 +109,74 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="currencyconverter" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="currencyconverter" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="config-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.config.configserver.ConfigServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.eureka.eurekaserver.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gateway.gateway.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsTransactionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ms-transaction" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mstransaction.mstransaction.MsTransactionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsUserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ms-user" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.msuser.msuser.MsUserApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker/docker-compose.yaml.ms-transaction: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="ms-transaction" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker/docker-compose.yaml.ms-transaction: Compose Deployment" />
         <item itemvalue="Application.MsUserApplication" />
         <item itemvalue="Application.MsTransactionApplication" />
         <item itemvalue="Application.EurekaServerApplication" />

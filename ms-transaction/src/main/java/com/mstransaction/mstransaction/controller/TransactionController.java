@@ -2,6 +2,7 @@ package com.mstransaction.mstransaction.controller;
 
 import com.mstransaction.mstransaction.domain.Transaction;
 import com.mstransaction.mstransaction.dto.DepositDTO;
+import com.mstransaction.mstransaction.dto.TransactionDTO;
 import com.mstransaction.mstransaction.service.impl.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,7 +49,7 @@ public class TransactionController {
     }
 
     @PostMapping("/deposit/")
-    public ResponseEntity<DepositDTO> getDepositSaving(@RequestBody DepositDTO depositRequest) {
+    public ResponseEntity<DepositDTO> setDepositSaving(@RequestBody DepositDTO depositRequest) {
         System.out.println("*******************");
         System.out.println(depositRequest.getAccountNumber());
         try {
@@ -62,4 +63,18 @@ public class TransactionController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("setTransaction/")
+    public ResponseEntity<TransactionDTO> setTransaction(@RequestBody TransactionDTO transactionRequest) {
+        try {
+            TransactionDTO transaction = transactionService.proccessTransaction(transactionRequest);
+            return new ResponseEntity<>(transaction, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }
