@@ -17,7 +17,7 @@ public class TokenProvider {
 
     public static String getAdminToken() {
         try {
-            return getToken("http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/token",
+            return getToken("https://keycloak.triwal.tech/realms/triwal-realm-dev/protocol/openid-connect/token",
                     "admin-cli", "", "admin ", "admin");
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
@@ -54,9 +54,9 @@ public class TokenProvider {
     }
 
     public String requestLogout(String refreshToken) throws IOException {
-        String uri = "http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/logout";
+        String uri = "https://keycloak.triwal.tech/realms/triwal-realm-dev/protocol/openid-connect/logout";
         String clientId = "triwal-app";
-        String clientSecret = "o9QcPh61kKSpFZS1jjz2rm7ucz0npNW6";
+        String clientSecret = "aCTx9PfxRhp89RkMF4qfAgx2S3g139P7";
         return getLogout(uri, refreshToken, clientId, clientSecret);
 
     }
@@ -91,8 +91,8 @@ public class TokenProvider {
 
     public String requestToken(String username, String password) {
         try {
-            return getToken("http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/token",
-                    "triwal-app", "o9QcPh61kKSpFZS1jjz2rm7ucz0npNW6", username, password);
+            return getToken("https://keycloak.triwal.tech/realms/triwal-realm-dev/protocol/openid-connect/token",
+                    "triwal-app", "aCTx9PfxRhp89RkMF4qfAgx2S3g139P7", username, password);
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
@@ -110,7 +110,7 @@ public class TokenProvider {
 
             JSONObject jsonObject = new JSONObject(accessToken);
 
-            URL url = new URL("http://localhost:9090/realms/triwal-realm-dev/users/" + userId + "/execute-actions-email");
+            URL url = new URL("https://keycloak.triwal.tech/realms/triwal-realm-dev/users/" + userId + "/execute-actions-email");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("PUT");
             connection.setRequestProperty("Content-Type", "application/json");
