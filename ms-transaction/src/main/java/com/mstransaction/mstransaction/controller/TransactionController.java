@@ -2,12 +2,12 @@ package com.mstransaction.mstransaction.controller;
 
 import com.mstransaction.mstransaction.domain.Transaction;
 import com.mstransaction.mstransaction.dto.DepositDTO;
-import com.mstransaction.mstransaction.dto.TransactionDTO;
+import com.mstransaction.mstransaction.dto.TransactionRequestDTO;
+import com.mstransaction.mstransaction.dto.TransactionResponseDTO;
 import com.mstransaction.mstransaction.service.impl.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,7 +54,6 @@ public class TransactionController {
         System.out.println(depositRequest.getAccountNumber());
         try {
             DepositDTO depositDetail = transactionService.processDeposit(depositRequest);
-
             System.out.println(depositDetail.getAccountNumber());
             return new ResponseEntity<>(depositDetail, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
@@ -64,16 +63,10 @@ public class TransactionController {
         }
     }
 
-    @PostMapping("setTransaction/")
-    public ResponseEntity<TransactionDTO> setTransaction(@RequestBody TransactionDTO transactionRequest) {
-        try {
-            TransactionDTO transaction = transactionService.proccessTransaction(transactionRequest);
-            return new ResponseEntity<>(transaction, HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @PostMapping("/setTransaction")
+    public ResponseEntity<TransactionResponseDTO> setTransaction(@RequestBody TransactionRequestDTO transactionRequest) {
+        TransactionResponseDTO transactionDTO = transactionService.proccessTransaction(transactionRequest);
+            return new ResponseEntity<>(transactionDTO,HttpStatus.CREATED);
     }
 
 

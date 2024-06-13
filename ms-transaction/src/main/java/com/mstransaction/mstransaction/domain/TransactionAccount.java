@@ -6,12 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class TransactionAccounts {
+@Table(name = "transaction_account")
+public class TransactionAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,4 +72,7 @@ public class TransactionAccounts {
 
     @Column(name = "destination_account_number")
     private String destinationAccountNumber;
+
+    @Column(name = "transation_created_at")
+    private Date createdAt;
 }
