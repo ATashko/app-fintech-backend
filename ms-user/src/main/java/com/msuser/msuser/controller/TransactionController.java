@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 /*Este controlador debería tener todos los métodos de transacción, como ingreso de dinero
 y traspaso de dinero a otro usuarios*/
 
-@CrossOrigin(origins = "http://localhost:3333")
+@CrossOrigin(origins = {"http://localhost:3333","https://triwal.tech"})
 @RequestMapping("/transactions")
 @RestController
 public class TransactionController{

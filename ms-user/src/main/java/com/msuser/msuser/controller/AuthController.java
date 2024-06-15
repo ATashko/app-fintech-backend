@@ -16,7 +16,7 @@ import com.msuser.msuser.dto.DataResponseToken;
         import java.net.URISyntaxException;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3333")
+@CrossOrigin(origins = {"http://localhost:3333", "https://triwal.tech"})
 @RequestMapping("/auth")
 public class AuthController {
 

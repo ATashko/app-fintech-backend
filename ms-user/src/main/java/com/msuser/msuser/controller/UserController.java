@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3333/")
+@CrossOrigin(origins = {"http://localhost:3333/","https://triwal.tech"})
 @RequestMapping("/user")
 public class UserController {
 

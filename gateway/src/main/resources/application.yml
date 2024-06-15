@@ -1,7 +1,6 @@
 server:
   port: 8080
 
-
 spring:
   application:
     name: gateway
@@ -11,7 +10,7 @@ spring:
         provider:
           keycloak-gateway:
             user-name-attribute: preferred_username
-            issuer-uri: http://localhost:9090/realms/triwal-realm-dev
+            issuer-uri: https://keycloak.triwal.tech/realms/triwal-realm-dev
         registration:
           keycloak-gateway:
             client-id: gateway
@@ -19,7 +18,7 @@ spring:
             scope:
               - openid
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+            redirect-uri: https://keycloak.triwal.tech/login/oauth2/code/keycloak
 
   cloud:
     gateway:
@@ -45,14 +44,14 @@ management:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: eureka.triwal.tech
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka.triwal.tech/eureka
 
 
 

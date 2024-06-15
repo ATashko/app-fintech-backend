@@ -23,7 +23,7 @@ public class EmailService {
 
         StringBuilder messageBuilder = new StringBuilder();
         messageBuilder.append("Para activar su cuenta, por favor haz clic aquí: ")
-                .append("http://localhost:3333/enable/").append(username);
+                .append("https://triwal.tech/enable/").append(username);
 
         sendEmail(userMail, subject, from, messageBuilder.toString());
     }
@@ -35,7 +35,7 @@ public class EmailService {
 
         StringBuilder messageBuilder = new StringBuilder();
         messageBuilder.append("Tu deposito ha sido recibido, para confirmar, haz click aquí: ")
-                .append("http://localhost:3333/enable/").append(userId);
+                .append("https://triwal.tech/enable/").append(userId);
 
         sendEmail(userMail, subject, from, messageBuilder.toString());
     }
