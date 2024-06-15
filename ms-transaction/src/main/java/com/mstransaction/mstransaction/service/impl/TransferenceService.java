@@ -11,12 +11,13 @@ import com.mstransaction.mstransaction.dto.TransferenceResponseDTO;
 import com.mstransaction.mstransaction.repository.AccountRepository;
 import com.mstransaction.mstransaction.repository.TransferenceRepository;
 import com.mstransaction.mstransaction.service.ITransferenceService;
+import jakarta.servlet.ServletOutputStream;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.Objects;
-import java.util.Set;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.util.*;
 
 @Service
 public class TransferenceService implements ITransferenceService {
@@ -73,13 +74,13 @@ public class TransferenceService implements ITransferenceService {
                     float commissionValue = calculateCommission(transactionDTO.getRate(), transactionDTO.getValueToTransfer());
                     float total = calculateTotalTransaction(commissionValue, transactionDTO.getValueToTransfer());
                     destinationAccount.setAmount(destinationCurrentBalance + total);
-                    return persistTransaction(transactionDTO, sourceAccount, destinationAccount,"Transacción exitosa");
+                    return persistTransference(transactionDTO, sourceAccount, destinationAccount,total);
                 } else {
                     float commissionValue = calculateCommission(transactionDTO.getRate(), transactionDTO.getValueToTransfer());
                     float total = calculateTotalTransaction(commissionValue, transactionDTO.getValueToTransfer());
-                    String response = convertedTransactionTotal(total, transactionDTO.getShippingCurrency().toString(), transactionDTO.getReceiptCurrency().toString());
-                    destinationAccount.setAmount(destinationCurrentBalance + total);
-                    return persistTransaction(transactionDTO, sourceAccount, destinationAccount,response);
+                    float convertedValue = convertedTransference(total, transactionDTO.getShippingCurrency().toString(), transactionDTO.getReceiptCurrency().toString());
+                    destinationAccount.setAmount(destinationCurrentBalance + convertedValue);
+                    return persistTransference(transactionDTO, sourceAccount, destinationAccount,convertedValue);
                 }
             } catch (RuntimeException e) {
                 e.getLocalizedMessage();
@@ -95,27 +96,30 @@ public class TransferenceService implements ITransferenceService {
         return null;
     }
 
-    public TransferenceResponseDTO persistTransaction(TransferenceRequestDTO transferenceRequestDTO, Account fromAccount, Account toAccount, String response) {
+    public TransferenceResponseDTO persistTransference(TransferenceRequestDTO transferenceRequestDTO, Account fromAccount, Account toAccount, float value) {
         Transference transference = new Transference();
         transference.setShippingCurrency(transferenceRequestDTO.getShippingCurrency());
         transference.setReceiptCurrency(transferenceRequestDTO.getReceiptCurrency());
         transference.setValueToTransfer(transferenceRequestDTO.getValueToTransfer());
-
         if (fromAccount.getUserId().equals(toAccount.getUserId())) {
             transference.setTransferType(TransferType.TRANSFER_TO_MY_ACCOUNT);
         } else {
             transference.setTransferType(TransferType.TRANSFER_TO_USER);
         }
-
         transference.setUserId(transferenceRequestDTO.getUserId());
         transference.setMethodOfPayment(MethodOfPayment.TRIWAL_TRANSFER);
         transference.setRate(transferenceRequestDTO.getRate());
         transference.setRateValue(transferenceRequestDTO.getRateValue());
         transference.setTransactionTotal(transferenceRequestDTO.getTransactionTotal());
-        transference.setConvertedTransactionTotal(transferenceRequestDTO.getConvertedTransactionTotal());
+        transference.setConvertedTransactionTotal(value);
         transference.setUsername(transferenceRequestDTO.getUsername());
         transference.setEmail(transferenceRequestDTO.getEmail());
-        transference.setTransactionDetails(String.valueOf(response.matches("conversion_result"))); // obtain de converted value in methos converted to assign to attibute
+        if(!transferenceRequestDTO.getShippingCurrency().name().equals(transferenceRequestDTO.getReceiptCurrency().name())){
+            transference.setTransactionDetails("Transacción con conversión");
+        }else{
+            transference.setTransactionDetails("Transacción misma moneda");
+        }
+
         transference.setSourceAccountNumber(transferenceRequestDTO.getSourceAccountNumber());
         transference.setDestinationAccountNumber(transferenceRequestDTO.getDestinationAccountNumber());
         transference.setCreatedAt(new Date());
@@ -132,18 +136,25 @@ public class TransferenceService implements ITransferenceService {
         return value * rate;
     }
 
-    public String convertedTransactionTotal(float totalTransaction, String originCurrency, String destinationCurrency) throws JsonProcessingException {
+    public float convertedTransference(float totalTransaction, String originCurrency, String destinationCurrency) throws JsonProcessingException {
         String response = null;
+        float convertedResult = 0.000f;
         try {
             response = converterClient.convertCurrency(totalTransaction, originCurrency, destinationCurrency);
+            String[] res = response.split(",");
+            DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
+            String number = res[12].replaceAll("[^0-9]", "");
+            String formattedNumber = decimalFormat.format(number);
+            convertedResult = (float) decimalFormat.parse(formattedNumber);
             Thread.sleep(1000);
 
-        } catch (RuntimeException e) {
-            e.getLocalizedMessage();
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | ParseException e) {
             throw new RuntimeException(e);
         }
-        return response;
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("+++++" + convertedResult); // todo: replace al values with bigDecimal
+        System.out.println("-----------------------------------------------------------");
+        return convertedResult;
     }
 
     public float calculateTotalTransaction(float commissionValue, float transferValue) {
