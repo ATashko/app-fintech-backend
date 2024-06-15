@@ -34,7 +34,7 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private final TokenProvider tokenProvider;
-    private EmailService emailService;
+    private final EmailService emailService;
 
     public UserServiceImpl(TokenProvider tokenProvider, EmailService emailService) {
         this.tokenProvider = tokenProvider;
