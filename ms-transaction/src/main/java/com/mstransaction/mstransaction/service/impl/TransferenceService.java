@@ -152,7 +152,7 @@ public class TransferenceService implements ITransferenceService {
         try {
             response = converterClient.convertCurrency(totalTransaction, originCurrency, destinationCurrency);
             String[] res = response.split(",");
-            convertedResult = Float.parseFloat(res[12].replaceAll("[^0-9]", ""));
+            convertedResult = Float.parseFloat(res[12].replaceAll("[^0-9.]", ""));
             Thread.sleep(500);
 
         } catch (InterruptedException e) {

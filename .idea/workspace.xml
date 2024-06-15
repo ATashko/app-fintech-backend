@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="25e783fc-4a07-44cc-ba48-78b250773d3e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransferenceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransferenceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransferenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransferenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,10 +25,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2htm5KI7ArfcKMs0SUr9N2lnNmj" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -57,6 +57,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "com.diffblue.cover.intellij",
+    "spring.configuration.checksum": "4aaf92c55b9dffaddd678fefd2444a54",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -67,7 +68,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MsTransactionApplication">
+  <component name="RunManager" selected="Spring Boot.MsUserApplication">
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.config.configserver.ConfigServerApplication" />
@@ -120,7 +121,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1718421566138</updated>
-      <workItem from="1718421571840" duration="12493000" />
+      <workItem from="1718421571840" duration="12582000" />
+      <workItem from="1718463973471" duration="6912000" />
     </task>
     <servers />
   </component>
