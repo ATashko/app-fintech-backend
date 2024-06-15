@@ -82,10 +82,8 @@ public class TransferenceService implements ITransferenceService {
                     destinationAccount.setAmount(destinationCurrentBalance + convertedValue);
                     return persistTransference(transactionDTO, sourceAccount, destinationAccount,convertedValue);
                 }
-            } catch (RuntimeException e) {
+            } catch (RuntimeException | JsonProcessingException e) {
                 e.getLocalizedMessage();
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
             }
         }
         return null;
@@ -97,37 +95,49 @@ public class TransferenceService implements ITransferenceService {
     }
 
     public TransferenceResponseDTO persistTransference(TransferenceRequestDTO transferenceRequestDTO, Account fromAccount, Account toAccount, float value) {
-        Transference transference = new Transference();
-        transference.setShippingCurrency(transferenceRequestDTO.getShippingCurrency());
-        transference.setReceiptCurrency(transferenceRequestDTO.getReceiptCurrency());
-        transference.setValueToTransfer(transferenceRequestDTO.getValueToTransfer());
-        if (fromAccount.getUserId().equals(toAccount.getUserId())) {
-            transference.setTransferType(TransferType.TRANSFER_TO_MY_ACCOUNT);
-        } else {
-            transference.setTransferType(TransferType.TRANSFER_TO_USER);
+
+        Transference transference1 = null;
+        try {
+
+            Transference transference = new Transference();
+            transference.setShippingCurrency(transferenceRequestDTO.getShippingCurrency());
+            transference.setReceiptCurrency(transferenceRequestDTO.getReceiptCurrency());
+            transference.setValueToTransfer(transferenceRequestDTO.getValueToTransfer());
+            if (fromAccount.getUserId().equals(toAccount.getUserId())) {
+                transference.setTransferType(TransferType.TRANSFER_TO_MY_ACCOUNT);
+            } else {
+                transference.setTransferType(TransferType.TRANSFER_TO_USER);
+            }
+            transference.setUserId(transferenceRequestDTO.getUserId());
+            transference.setMethodOfPayment(MethodOfPayment.TRIWAL_TRANSFER);
+            transference.setRate(transferenceRequestDTO.getRate());
+            transference.setRateValue(transferenceRequestDTO.getRateValue());
+            transference.setTransactionTotal(transferenceRequestDTO.getTransactionTotal());
+            transference.setConvertedTransactionTotal(value);
+            transference.setUsername(transferenceRequestDTO.getUsername());
+            transference.setEmail(transferenceRequestDTO.getEmail());
+            if (!transferenceRequestDTO.getShippingCurrency().name().equals(transferenceRequestDTO.getReceiptCurrency().name())) {
+                transference.setTransactionDetails("Transacción con conversión");
+            } else {
+                transference.setTransactionDetails("Transacción misma moneda");
+            }
+
+            transference.setSourceAccountNumber(transferenceRequestDTO.getSourceAccountNumber());
+            transference.setDestinationAccountNumber(transferenceRequestDTO.getDestinationAccountNumber());
+            transference.setCreatedAt(new Date());
+
+            accountRepository.save(fromAccount);
+            accountRepository.save(toAccount);
+
+            transference1 = transferenceRepository.save(transference);
+
+
+        } catch (Exception e) {
+            e.getLocalizedMessage();
+
+
         }
-        transference.setUserId(transferenceRequestDTO.getUserId());
-        transference.setMethodOfPayment(MethodOfPayment.TRIWAL_TRANSFER);
-        transference.setRate(transferenceRequestDTO.getRate());
-        transference.setRateValue(transferenceRequestDTO.getRateValue());
-        transference.setTransactionTotal(transferenceRequestDTO.getTransactionTotal());
-        transference.setConvertedTransactionTotal(value);
-        transference.setUsername(transferenceRequestDTO.getUsername());
-        transference.setEmail(transferenceRequestDTO.getEmail());
-        if(!transferenceRequestDTO.getShippingCurrency().name().equals(transferenceRequestDTO.getReceiptCurrency().name())){
-            transference.setTransactionDetails("Transacción con conversión");
-        }else{
-            transference.setTransactionDetails("Transacción misma moneda");
-        }
 
-        transference.setSourceAccountNumber(transferenceRequestDTO.getSourceAccountNumber());
-        transference.setDestinationAccountNumber(transferenceRequestDTO.getDestinationAccountNumber());
-        transference.setCreatedAt(new Date());
-
-        accountRepository.save(fromAccount);
-        accountRepository.save(toAccount);
-
-        Transference transference1 = transferenceRepository.save(transference);
 
         return new TransferenceResponseDTO(transference1);
     }
@@ -142,13 +152,10 @@ public class TransferenceService implements ITransferenceService {
         try {
             response = converterClient.convertCurrency(totalTransaction, originCurrency, destinationCurrency);
             String[] res = response.split(",");
-            DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
-            String number = res[12].replaceAll("[^0-9]", "");
-            String formattedNumber = decimalFormat.format(number);
-            convertedResult = (float) decimalFormat.parse(formattedNumber);
-            Thread.sleep(1000);
+            convertedResult = Float.parseFloat(res[12].replaceAll("[^0-9]", ""));
+            Thread.sleep(500);
 
-        } catch (InterruptedException | ParseException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         System.out.println("-----------------------------------------------------------");

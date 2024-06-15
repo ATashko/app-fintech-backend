@@ -23,7 +23,6 @@ public class TransferenceController {
     public ResponseEntity<TransferenceResponseDTO> setTransaction(@RequestBody TransferenceRequestDTO transferenceRequestDTO) {
         TransferenceResponseDTO transactionDTO = transferenceService.processTransference(transferenceRequestDTO);
         return new ResponseEntity<>(transactionDTO, HttpStatus.CREATED);
-
     }
 
 
