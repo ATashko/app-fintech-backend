@@ -1,4 +1,4 @@
-package com.mstransaction.mstransaction.domain;
+package com.mstransaction.mstransaction.domain.enumTypes;
 
 public enum ReceiptCurrency {
    AOA, AUD, GBP, EUR, KMF, USD, KYD, ILS, XOF, SSP, NZD, EGP, LRD,

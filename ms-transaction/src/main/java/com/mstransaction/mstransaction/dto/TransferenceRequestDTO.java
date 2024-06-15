@@ -1,7 +1,7 @@
 package com.mstransaction.mstransaction.dto;
 
-import com.mstransaction.mstransaction.domain.*;
-
+import com.mstransaction.mstransaction.domain.enumTypes.ReceiptCurrency;
+import com.mstransaction.mstransaction.domain.enumTypes.ShippingCurrency;
 import lombok.*;
 
 @Data
@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransactionRequestDTO {
+public class TransferenceRequestDTO {
 
     private ShippingCurrency shippingCurrency;
     private ReceiptCurrency receiptCurrency;

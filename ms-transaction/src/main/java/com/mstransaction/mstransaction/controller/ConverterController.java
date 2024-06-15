@@ -12,7 +12,7 @@ import com.mstransaction.mstransaction.client.IConverterClient;
 @RequestMapping("/convert")
 public class ConverterController {
 	
-	@Autowired
+
 	private final IConverterClient converterClient;
 	
     public ConverterController(IConverterClient converterClient) {

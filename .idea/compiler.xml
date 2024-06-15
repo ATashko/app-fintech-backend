@@ -9,8 +9,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="ms-transaction" />
-        <module name="eureka-server" />
         <module name="currencyconverter" />
+        <module name="eureka-server" />
         <module name="gateway" />
         <module name="ms-user" />
       </profile>

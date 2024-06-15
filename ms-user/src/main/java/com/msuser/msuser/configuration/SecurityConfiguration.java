@@ -38,13 +38,10 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(http -> {
                     http
-
                             .requestMatchers("auth/**").permitAll()
                             .requestMatchers("auth/logout/**").authenticated()
                             .requestMatchers("user/setStatus/**").permitAll()
                             .requestMatchers("user/sendEmail/**").permitAll()
-
-
                             .anyRequest().authenticated();
 
                 })
@@ -55,9 +52,6 @@ public class SecurityConfiguration {
                 .cors(withDefaults())
                 .build();
     }
-
-
-
 
     @Bean
     public JwtDecoder jwtDecoder() {

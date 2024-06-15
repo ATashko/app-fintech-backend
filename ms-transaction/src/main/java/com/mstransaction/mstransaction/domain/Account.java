@@ -1,7 +1,10 @@
 package com.mstransaction.mstransaction.domain;
 
 import java.security.SecureRandom;
+import java.util.Date;
 
+import com.mstransaction.mstransaction.domain.enumTypes.Currency;
+import com.mstransaction.mstransaction.domain.enumTypes.TypeAccount;
 import com.mstransaction.mstransaction.dto.AccountDTO;
 
 import jakarta.persistence.Column;
@@ -36,6 +39,9 @@ public class Account {
     @Column(name = "user_id")
     private String userId;
 
+    @Column(name = "created_at")
+    private Date createdAt;
+
     public Account() {
     }
 
@@ -46,6 +52,7 @@ public class Account {
         this.typeAccount = TypeAccount.valueOf(accountDTO.getTypeAccount());
         this.amount = accountDTO.getAmount();
         this.userId = accountDTO.getUserId();
+        this.createdAt = new Date();
     }
 
     @PrePersist

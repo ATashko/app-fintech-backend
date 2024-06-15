@@ -2,10 +2,9 @@ package com.mstransaction.mstransaction.controller;
 
 import com.mstransaction.mstransaction.domain.Transaction;
 import com.mstransaction.mstransaction.dto.DepositDTO;
-import com.mstransaction.mstransaction.dto.TransactionRequestDTO;
-import com.mstransaction.mstransaction.dto.TransactionResponseDTO;
-import com.mstransaction.mstransaction.service.impl.TransactionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mstransaction.mstransaction.dto.TransferenceRequestDTO;
+import com.mstransaction.mstransaction.dto.TransferenceResponseDTO;
+import com.mstransaction.mstransaction.service.ITransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +16,13 @@ import java.util.List;
 @RequestMapping("/transactions")
 public class TransactionController {
 
-    @Autowired
-    TransactionService transactionService;
+
+    private final ITransactionService transactionService;
+
+    public TransactionController(ITransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
+
 
     @GetMapping("/all/{userId}")
     public ResponseEntity<List<?>> getAll(@PathVariable String userId) {
@@ -48,7 +52,7 @@ public class TransactionController {
         }
     }
 
-    @PostMapping("/deposit/")
+    @PostMapping("/deposit")
     public ResponseEntity<DepositDTO> setDepositSaving(@RequestBody DepositDTO depositRequest) {
         System.out.println("*******************");
         System.out.println(depositRequest.getAccountNumber());
@@ -63,11 +67,6 @@ public class TransactionController {
         }
     }
 
-    @PostMapping("/setTransaction")
-    public ResponseEntity<TransactionResponseDTO> setTransaction(@RequestBody TransactionRequestDTO transactionRequest) {
-        TransactionResponseDTO transactionDTO = transactionService.proccessTransaction(transactionRequest);
-            return new ResponseEntity<>(transactionDTO,HttpStatus.CREATED);
-    }
 
 
 }

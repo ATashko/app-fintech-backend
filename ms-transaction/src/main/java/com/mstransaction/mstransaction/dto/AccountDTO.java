@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -16,6 +18,7 @@ public class AccountDTO {
 	private String typeAccount;
 	private float amount;
 	private String userId;
+	private Date createdAt;
 
 	public AccountDTO(Account account) {
 		this.accountNumber = account.getAccountNumber();
@@ -23,6 +26,7 @@ public class AccountDTO {
 		this.typeAccount = account.getTypeAccount().toString();
 		this.amount = account.getAmount();
 		this.userId = account.getUserId();
+		this.createdAt = account.getCreatedAt();
 	}
 
 }

@@ -1,7 +1,7 @@
-package com.mstransaction.mstransaction.domain;
+package com.mstransaction.mstransaction.domain.enumTypes;
 
-public enum ShippingCurrency {
-    AOA, AUD, GBP, EUR, KMF, USD, KYD, ILS, XOF, SSP, NZD, EGP, LRD,
+public enum Currency {
+	AOA, AUD, GBP, EUR, KMF, USD, KYD, ILS, XOF, SSP, NZD, EGP, LRD,
 	SBD, UZS, ZWL, XAF, AED, ZMW, KHR, VND, XPF, ZAR, GYD, MZN, TMT,
 	LAK, HUF, ARS, TRY, HTG, SYP, SEK, BZD, CLP, RSD, DZD, BOB, CKD,
 	VUV, NAD, YER, MOP, MUR, AWG, KGS, GTQ, TOP, GNF, TTD, JMD, BSD,
