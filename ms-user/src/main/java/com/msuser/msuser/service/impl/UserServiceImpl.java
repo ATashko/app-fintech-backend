@@ -61,7 +61,6 @@ public class UserServiceImpl implements IUserService {
         return getRealmResource().users().searchByUsername(username, true);
     }
 
-    //todo: add method to validate: a user only can request information about his own user.
 
 
     /*
@@ -210,7 +209,6 @@ public class UserServiceImpl implements IUserService {
         if (users.isEmpty()) {
             return null;
         }
-
         return users.get(0);
     }
 

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
@@ -16,7 +17,7 @@ public class AccountDTO {
 	private String accountNumber;
 	private String currency;
 	private String typeAccount;
-	private float amount;
+	private BigDecimal amount;
 	private String userId;
 	private Date createdAt;
 

@@ -21,9 +21,9 @@ public class TransactionController{
 
 
     private TransactionMessageSender transactionMessageSender;
-    private IFeignClient feignClient;
+    private final IFeignClient feignClient;
 
-    @Autowired
+
     public TransactionController(TransactionMessageSender transactionMessageSender, IFeignClient feignClient) {
         this.transactionMessageSender = transactionMessageSender;
         this.feignClient = feignClient;

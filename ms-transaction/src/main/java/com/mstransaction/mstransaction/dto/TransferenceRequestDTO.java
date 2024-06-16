@@ -4,6 +4,8 @@ import com.mstransaction.mstransaction.domain.enumTypes.ReceiptCurrency;
 import com.mstransaction.mstransaction.domain.enumTypes.ShippingCurrency;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Data
 @Getter
 @Setter
@@ -13,14 +15,8 @@ public class TransferenceRequestDTO {
 
     private ShippingCurrency shippingCurrency;
     private ReceiptCurrency receiptCurrency;
-    private float valueToTransfer;
-    private float rate;
-    private float rateValue;
-    private float transactionTotal;
-    private float convertedTransactionTotal;
-    private String userId;
-    private String username;
-    private String email;
+    private BigDecimal transferValue;
+    private BigDecimal rate;
     private String sourceAccountNumber;
     private String destinationAccountNumber;
 

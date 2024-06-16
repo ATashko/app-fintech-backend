@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,7 +15,7 @@ import lombok.Setter;
 public class DepositDTO {
     private String userId;
     private String accountNumber;
-    private float valueToTransfer;
+    private BigDecimal valueToTransfer;
     private String shippingCurrency;
     private String email;
 

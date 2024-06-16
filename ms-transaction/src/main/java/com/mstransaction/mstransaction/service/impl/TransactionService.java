@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -42,10 +43,10 @@ public class TransactionService implements ITransactionService {
         String accountNumber = depositDTO.getAccountNumber();
         String shippingCurrency = depositDTO.getShippingCurrency();
         String email = depositDTO.getEmail();
-        float valueToTransfer = depositDTO.getValueToTransfer();
+        BigDecimal valueToTransfer = depositDTO.getValueToTransfer();
 
         if (userId == null || userId.isEmpty() || accountNumber == null || accountNumber.isEmpty()
-                || shippingCurrency == null || shippingCurrency.isEmpty() || valueToTransfer <= 0
+                || shippingCurrency == null || shippingCurrency.isEmpty() || valueToTransfer.compareTo(BigDecimal.ZERO) <= 0
                 || email.isEmpty() || email == null) {
             throw new IllegalArgumentException("Datos de transacción inválidos.");
         }
@@ -54,7 +55,7 @@ public class TransactionService implements ITransactionService {
         Account account = accountRepository.findByUserIdAndAccountNumber(userId, accountNumber)
                 .orElseThrow(() -> new IllegalArgumentException("Cuenta no encontrada para el usuario dado."));
 
-        float newAmount = account.getAmount() + valueToTransfer;
+        BigDecimal newAmount = account.getAmount().add(valueToTransfer);
         account.setAmount(newAmount);
         accountRepository.save(account);
 

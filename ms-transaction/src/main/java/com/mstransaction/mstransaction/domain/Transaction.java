@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -27,20 +28,20 @@ public class Transaction  {
     @Column(name = "receipt_currency")
     private ReceiptCurrency receiptCurrency;
 
-    @Column(name = "value_to_transfer")
-    private float valueToTransfer;
+    @Column(name = "value_to_transfer",precision = 10, scale = 3)
+    private BigDecimal valueToTransfer;
 
-    @Column(name = "rate")
-    private float rate;
+    @Column(name = "rate",precision = 10, scale = 3)
+    private BigDecimal rate;
 
-    @Column(name = "rate_value")
-    private float rateValue;
+    @Column(name = "rate_value",precision = 10, scale = 3)
+    private BigDecimal rateValue;
 
-    @Column(name = "transaction_total")
-    private float transactionTotal;
+    @Column(name = "transaction_total",precision = 10, scale = 3)
+    private BigDecimal transactionTotal;
 
-    @Column(name = "converted_transaction_total")
-    private float convertedTransactionTotal;
+    @Column(name = "converted_transaction_total",precision = 10, scale = 3)
+    private BigDecimal convertedTransactionTotal;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "method_of_payment")

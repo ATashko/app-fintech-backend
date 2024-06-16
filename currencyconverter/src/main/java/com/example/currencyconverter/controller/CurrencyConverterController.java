@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CurrencyConverterController {
 
-    @Autowired
+
     private final CurrencyConverterService currencyConverterService;
 
     public CurrencyConverterController(CurrencyConverterService currencyConverterService) {

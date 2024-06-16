@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
@@ -17,66 +18,57 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "transaction_account")
+@Table(name = "transferences")
 public class Transference {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "transaction_id")
-    private Long transactionId;
+    @Column(name = "transferece_id")
+    private Long transferenceId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "shipping_currency")
+    @Column(name = "shipping_currency",nullable = false)
     private ShippingCurrency shippingCurrency;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "receipt_currency")
+    @Column(name = "receipt_currency",nullable = false)
     private ReceiptCurrency receiptCurrency;
 
-    @Column(name = "value_to_transfer")
-    private float valueToTransfer;
+    @Column(name = "transference_value",nullable = false)
+    private BigDecimal transferValue;
 
-    @Column(name = "rate")
-    private float rate;
+    @Column(name = "commision_rate",nullable = false)
+    private BigDecimal rate;
 
-    @Column(name = "rate_value")
-    private float rateValue;
+    @Column(name = "commision_value",nullable = false)
+    private BigDecimal rateValue;
 
-    @Column(name = "transaction_total")
-    private float transactionTotal;
+    @Column(name = "transference_total",precision = 10, scale = 3,nullable = false)
+    private BigDecimal totalTransference;
 
-    @Column(name = "converted_transaction_total")
-    private float convertedTransactionTotal;
+    @Column(name = "from_user",nullable = false)
+    private String senderUser;
+
+    @Column(name = "to_user",nullable = false)
+    private String receiverUser;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "method_of_payment")
+    @Column(name = "method_of_payment",nullable = false)
     private MethodOfPayment methodOfPayment;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "transfer_type")
     private TransferType transferType;
 
-    @Column(name = "name_of_recipient", length = 50)
-    private String nameOfRecipient;
-
-    @Column(name = "user_id",length = 36)
-    private String userId;
-
-    @Column(name = "username", length = 50)
-    private String username;
-
-    @Column(name = "email", length = 100)
-    private String email;
-
-    @Column(name = "transaction_details", length = 255)
+    @Column(name = "transaction_details")
     private String transactionDetails;
 
-    @Column(name = "source_account_number")
+    @Column(name = "source_account_number",nullable = false)
     private String sourceAccountNumber;
 
-    @Column(name = "destination_account_number")
+    @Column(name = "destination_account_number",nullable = false)
     private String destinationAccountNumber;
 
-    @Column(name = "transfer_made_at")
+    @Column(name = "transfer_at")
     private Date createdAt;
 }

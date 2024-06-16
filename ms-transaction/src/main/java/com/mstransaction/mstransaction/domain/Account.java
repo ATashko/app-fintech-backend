@@ -1,5 +1,6 @@
 package com.mstransaction.mstransaction.domain;
 
+import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.util.Date;
 
@@ -27,8 +28,8 @@ public class Account {
     @Column(name = "account_number", nullable = false, unique = true)
     private String accountNumber;
 
-    @Column(name = "amount")
-    private float amount;
+    @Column(name = "amount",precision = 10, scale = 3)
+    private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
     private Currency currency;
@@ -47,7 +48,7 @@ public class Account {
 
     public Account(AccountDTO accountDTO) {
         this.accountNumber = accountDTO.getAccountNumber();
-        this.amount = 0.0f;
+        this.amount = new BigDecimal("0.00");
         this.currency = Currency.valueOf(accountDTO.getCurrency());
         this.typeAccount = TypeAccount.valueOf(accountDTO.getTypeAccount());
         this.amount = accountDTO.getAmount();
