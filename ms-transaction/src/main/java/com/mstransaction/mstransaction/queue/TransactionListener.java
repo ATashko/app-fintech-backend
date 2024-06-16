@@ -5,20 +5,25 @@ import com.mstransaction.mstransaction.dto.DepositDTO;
 import com.mstransaction.mstransaction.repository.AccountRepository;
 import com.mstransaction.mstransaction.service.impl.TransactionService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TransactionListener {
 
-    @Autowired
-    private AccountRepository accountRepository;
 
-    @Autowired
-    private TransactionMessageSender transactionMessageSender;
+    private final AccountRepository accountRepository;
 
-    @Autowired
-    private TransactionService transactionService;
+
+    private final TransactionMessageSender transactionMessageSender;
+
+
+    private final TransactionService transactionService;
+
+    public TransactionListener(AccountRepository accountRepository, TransactionMessageSender transactionMessageSender, TransactionService transactionService) {
+        this.accountRepository = accountRepository;
+        this.transactionMessageSender = transactionMessageSender;
+        this.transactionService = transactionService;
+    }
 
     @RabbitListener(queues = RabbitMQConfig.DEPOSIT_QUEUE)
     public void handleDeposit(DepositDTO depositRequest) {

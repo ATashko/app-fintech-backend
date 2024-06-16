@@ -1,6 +1,7 @@
 package com.mstransaction.mstransaction.controller;
 
 import com.mstransaction.mstransaction.dto.AccountDTO;
+import com.mstransaction.mstransaction.service.IAccountService;
 import com.mstransaction.mstransaction.service.impl.AccountService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequestMapping("/account")
 public class AccountController {
 	
-	private final AccountService accountService;
+	private final IAccountService accountService;
 
 	public AccountController(AccountService accountService) {
 		this.accountService = accountService;

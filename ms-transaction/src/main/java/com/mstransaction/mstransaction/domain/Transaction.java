@@ -1,16 +1,18 @@
 package com.mstransaction.mstransaction.domain;
 
+import com.mstransaction.mstransaction.domain.enumTypes.MethodOfPayment;
+import com.mstransaction.mstransaction.domain.enumTypes.ReceiptCurrency;
+import com.mstransaction.mstransaction.domain.enumTypes.ShippingCurrency;
+import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
 import jakarta.persistence.*;
 
 import lombok.*;
 
-
-import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "transactions")
-
 public class Transaction  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,6 +52,9 @@ public class Transaction  {
 
     @Column(name = "name_of_recipient", length = 50)
     private String nameOfRecipient;
+
+    @Column(name = "created_at")
+    private Date createdAt;
 
     @Column(name = "user_id",length = 36)
     private String userId;

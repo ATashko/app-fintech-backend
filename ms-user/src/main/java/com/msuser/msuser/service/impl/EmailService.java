@@ -35,7 +35,8 @@ public class EmailService {
 
         StringBuilder messageBuilder = new StringBuilder();
         messageBuilder.append("Tu deposito ha sido recibido, para confirmar, haz click aquí: ")
-                .append("https://triwal.tech/enable/").append(userId);
+                .append("https://triwal.tech/dashboard/deposit/").append(userId);
+
 
         sendEmail(userMail, subject, from, messageBuilder.toString());
     }

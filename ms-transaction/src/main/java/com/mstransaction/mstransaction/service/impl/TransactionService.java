@@ -1,31 +1,41 @@
 package com.mstransaction.mstransaction.service.impl;
 
 import com.mstransaction.mstransaction.domain.*;
+import com.mstransaction.mstransaction.domain.enumTypes.MethodOfPayment;
+import com.mstransaction.mstransaction.domain.enumTypes.ShippingCurrency;
+import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
 import com.mstransaction.mstransaction.dto.DepositDTO;
-import com.mstransaction.mstransaction.dto.TransactionDTO;
 import com.mstransaction.mstransaction.queue.TransactionMessageSender;
 import com.mstransaction.mstransaction.repository.AccountRepository;
 import com.mstransaction.mstransaction.repository.TransactionRepository;
 import com.mstransaction.mstransaction.service.ITransactionService;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class TransactionService implements ITransactionService {
 
-    @Autowired
-    private TransactionMessageSender transactionMessageSender;
-    @Autowired
-    private AccountRepository accountRepository;
-    @Autowired
-    private TransactionRepository transactionRepository;
+    private final TransactionMessageSender transactionMessageSender;
+
+    private final AccountRepository accountRepository;
+
+    private final TransactionRepository transactionRepository;
+
 
     Logger log;
 
+    public TransactionService(TransactionMessageSender transactionMessageSender, AccountRepository accountRepository, TransactionRepository transactionRepository) {
+        this.transactionMessageSender = transactionMessageSender;
+        this.accountRepository = accountRepository;
+        this.transactionRepository = transactionRepository;
+    }
 
+
+    @Transactional
+    @Override
     public DepositDTO processDeposit(DepositDTO depositDTO) {
 
         String userId = depositDTO.getUserId();
@@ -36,7 +46,7 @@ public class TransactionService implements ITransactionService {
 
         if (userId == null || userId.isEmpty() || accountNumber == null || accountNumber.isEmpty()
                 || shippingCurrency == null || shippingCurrency.isEmpty() || valueToTransfer <= 0
-        || email.isEmpty() || email == null) {
+                || email.isEmpty() || email == null) {
             throw new IllegalArgumentException("Datos de transacción inválidos.");
         }
 
@@ -58,20 +68,9 @@ public class TransactionService implements ITransactionService {
         System.out.println(transaction.getAccountNumber());
         transactionRepository.save(transaction);
 
-        DepositDTO deposit = new DepositDTO(userId, accountNumber, valueToTransfer, shippingCurrency, email);
-
         //transactionMessageSender.sendDepositResponseMessage(deposit);
-        return deposit;
+        return new DepositDTO(userId, accountNumber, valueToTransfer, shippingCurrency, email);
     }
-
-    @Override
-    public TransactionDTO proccessTransaction(TransactionDTO transaction) {
-        return null;
-    }
-
-
-
-
 
 
     @Override
@@ -88,13 +87,11 @@ public class TransactionService implements ITransactionService {
 
         );
     }
+
     @Override
     public List<Transaction> getAllTransactions(String userId) {
-        List<Transaction> transactions = transactionRepository.findAllByUserId(userId);
-        return transactions;
+        return transactionRepository.findAllByUserId(userId);
     }
-
-
 
 
 

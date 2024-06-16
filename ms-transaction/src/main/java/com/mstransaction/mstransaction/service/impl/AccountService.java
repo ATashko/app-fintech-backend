@@ -35,8 +35,7 @@ public class AccountService implements IAccountService {
 
 	@Override
 	public AccountDTO getAccountDetail(String numberAccount) {
-		AccountDTO accountDTO = new AccountDTO(repositoryAccount.findByAccountNumber(numberAccount));
-		return accountDTO;
+        return new AccountDTO(repositoryAccount.findByAccountNumber(numberAccount));
 	}
 
 	@Override

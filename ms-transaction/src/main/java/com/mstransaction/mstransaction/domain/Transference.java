@@ -1,17 +1,24 @@
 package com.mstransaction.mstransaction.domain;
 
+import com.mstransaction.mstransaction.domain.enumTypes.MethodOfPayment;
+import com.mstransaction.mstransaction.domain.enumTypes.ReceiptCurrency;
+import com.mstransaction.mstransaction.domain.enumTypes.ShippingCurrency;
+import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class TransactionAccounts {
+@Table(name = "transaction_account")
+public class Transference {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,4 +76,7 @@ public class TransactionAccounts {
 
     @Column(name = "destination_account_number")
     private String destinationAccountNumber;
+
+    @Column(name = "transfer_made_at")
+    private Date createdAt;
 }
