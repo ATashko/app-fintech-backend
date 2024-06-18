@@ -1,5 +1,6 @@
 package com.mstransaction.mstransaction.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,7 +42,7 @@ public class AccountService implements IAccountService {
 	@Override
 	public void deleteAccount(String numberAccount) {
 		AccountDTO accountDTO = this.getAccountDetail(numberAccount);
-		if(accountDTO.getAmount() == 0.0f) {
+		if(accountDTO.getAmount().compareTo(BigDecimal.ZERO) == 0.0) {
 			repositoryAccount.deleteByAccountNumber(numberAccount);
 		}
 	}

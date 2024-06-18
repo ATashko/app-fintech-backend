@@ -47,7 +47,6 @@ public class AccountController {
 
         Jwt jwt = (Jwt) authentication.getPrincipal();
         String userId = jwt.getClaimAsString("sub");
-
         return feignClient.getAccounts(userId);
     }
 

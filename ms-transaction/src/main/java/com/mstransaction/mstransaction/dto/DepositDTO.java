@@ -13,11 +13,11 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DepositDTO {
+
     private String userId;
     private String accountNumber;
     private BigDecimal valueToTransfer;
     private String shippingCurrency;
     private String email;
-
 
 }

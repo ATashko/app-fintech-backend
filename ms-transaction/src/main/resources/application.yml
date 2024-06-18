@@ -22,14 +22,26 @@ spring:
     config:
       import-check:
         enabled: false
+#  datasource:
+#    url: jdbc:mysql://josec.ddns.net:3310/transaction_db?allowPublicKeyRetrieval=true&useSSL=false
+#    username: user-transaction
+#    password: transaction-pass
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
-    url: jdbc:mysql://josec.ddns.net:3310/transaction_db?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://localhost:3310/transaction_db
     username: user-transaction
     password: transaction-pass
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
   rabbitmq:
     image: rabbitmq:3-management

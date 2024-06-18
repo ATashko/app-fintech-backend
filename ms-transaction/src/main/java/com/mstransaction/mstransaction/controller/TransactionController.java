@@ -16,7 +16,6 @@ import java.util.List;
 @RequestMapping("/transactions")
 public class TransactionController {
 
-
     private final ITransactionService transactionService;
 
     public TransactionController(ITransactionService transactionService) {
@@ -52,7 +51,7 @@ public class TransactionController {
         }
     }
 
-    @PostMapping("/deposit")
+    @PostMapping("/deposit/")
     public ResponseEntity<DepositDTO> setDepositSaving(@RequestBody DepositDTO depositRequest) {
         System.out.println("*******************");
         System.out.println(depositRequest.getAccountNumber());

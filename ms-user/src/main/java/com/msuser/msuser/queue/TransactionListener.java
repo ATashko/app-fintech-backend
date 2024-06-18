@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @Service
 public class TransactionListener {
@@ -26,11 +27,10 @@ public class TransactionListener {
 
     @RabbitListener(queues = RabbitMQConfig.DEPOSIT_QUEUE)
     public void processDepositResponse(DepositDTO depositResponse) throws IOException {
-
         String userId = depositResponse.getUserId();
         String account = depositResponse.getAccountNumber();
         String currency = depositResponse.getShippingCurrency();
-        float value = depositResponse.getValueToTransfer();
+        BigDecimal value = depositResponse.getValueToTransfer();
         String email = depositResponse.getEmail();
         System.out.println(userId + account + currency + value + email);
         emailService.sendDepositVerificationEmail(email, userId);

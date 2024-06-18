@@ -5,18 +5,12 @@ import com.mstransaction.mstransaction.domain.enumTypes.ReceiptCurrency;
 import com.mstransaction.mstransaction.domain.enumTypes.ShippingCurrency;
 import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "transferences")
 public class Transference {
@@ -47,10 +41,10 @@ public class Transference {
     private BigDecimal totalTransference;
 
     @Column(name = "from_user",nullable = false)
-    private String senderUser;
+    private String senderUserId;
 
     @Column(name = "to_user",nullable = false)
-    private String receiverUser;
+    private String receiverUserId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "method_of_payment",nullable = false)
@@ -69,6 +63,6 @@ public class Transference {
     @Column(name = "destination_account_number",nullable = false)
     private String destinationAccountNumber;
 
-    @Column(name = "transfer_at")
+    @Column(name = "transfered_at")
     private Date createdAt;
 }

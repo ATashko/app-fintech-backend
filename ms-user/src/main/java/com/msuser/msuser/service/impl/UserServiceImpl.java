@@ -32,7 +32,7 @@ import static com.msuser.msuser.util.keycloakProvider.getUserResource;
 @Slf4j
 public class UserServiceImpl implements IUserService {
 
-    @Autowired
+
     private final TokenProvider tokenProvider;
     private final EmailService emailService;
 

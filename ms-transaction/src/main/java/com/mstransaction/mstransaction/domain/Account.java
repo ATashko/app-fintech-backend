@@ -48,12 +48,15 @@ public class Account {
 
     public Account(AccountDTO accountDTO) {
         this.accountNumber = accountDTO.getAccountNumber();
-        this.amount = new BigDecimal("0.00");
         this.currency = Currency.valueOf(accountDTO.getCurrency());
         this.typeAccount = TypeAccount.valueOf(accountDTO.getTypeAccount());
-        this.amount = accountDTO.getAmount();
         this.userId = accountDTO.getUserId();
         this.createdAt = new Date();
+        if (accountDTO.getAmount() != null) {
+            this.amount = accountDTO.getAmount();
+        } else {
+            this.amount = BigDecimal.valueOf(0.000);
+        }
     }
 
     @PrePersist

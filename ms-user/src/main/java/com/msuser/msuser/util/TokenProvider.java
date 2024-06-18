@@ -15,16 +15,33 @@ import java.util.Base64;
 @Service
 public class TokenProvider {
 
+//    public static String getAdminToken() {
+//        try {
+//            return getToken("https://keycloak.triwal.tech/realms/triwal-realm-dev/protocol/openid-connect/token",
+//                    "admin-cli", "", "admin ", "admin");
+//        } catch (IOException | URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//    }
+
     public static String getAdminToken() {
         try {
-            return getToken("https://keycloak.triwal.tech/realms/triwal-realm-dev/protocol/openid-connect/token",
-                    "admin-cli", "", "admin ", "admin");
+            return getToken("http://localhost:9090/realms/master/protocol/openid-connect/token",
+                    "admin-cli", "", "admin", "admin");
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
 
         return null;
     }
+
+
+
+
+
+
 
     public static String getToken(String tokenUrl, String clientId, String clientSecret, String username, String password) throws IOException, URISyntaxException {
         String credentials = clientId + ":" + clientSecret;
@@ -53,13 +70,23 @@ public class TokenProvider {
         return response.toString();
     }
 
+//    public String requestLogout(String refreshToken) throws IOException {
+//        String uri = "https://keycloak.triwal.tech/realms/triwal-realm-dev/protocol/openid-connect/logout";
+//        String clientId = "triwal-app";
+//        String clientSecret = "aCTx9PfxRhp89RkMF4qfAgx2S3g139P7";
+//        return getLogout(uri, refreshToken, clientId, clientSecret);
+//
+//    }
+
     public String requestLogout(String refreshToken) throws IOException {
-        String uri = "https://keycloak.triwal.tech/realms/triwal-realm-dev/protocol/openid-connect/logout";
+        String uri = "http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/logout";
         String clientId = "triwal-app";
-        String clientSecret = "aCTx9PfxRhp89RkMF4qfAgx2S3g139P7";
+        String clientSecret = "2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p";
         return getLogout(uri, refreshToken, clientId, clientSecret);
 
     }
+
+
 
     private static String getLogout(String logoutUrl, String refreshToken, String clientId, String clientSecret) throws IOException {
         URL url = new URL(logoutUrl);
@@ -89,10 +116,21 @@ public class TokenProvider {
         return responseCode + ": " + response.toString();
     }
 
+//    public String requestToken(String username, String password) {
+//        try {
+//            return getToken("https://keycloak.triwal.tech/realms/triwal-realm-dev/protocol/openid-connect/token",
+//                    "triwal-app", "aCTx9PfxRhp89RkMF4qfAgx2S3g139P7", username, password);
+//        } catch (IOException | URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//    }
+
     public String requestToken(String username, String password) {
         try {
-            return getToken("https://keycloak.triwal.tech/realms/triwal-realm-dev/protocol/openid-connect/token",
-                    "triwal-app", "aCTx9PfxRhp89RkMF4qfAgx2S3g139P7", username, password);
+            return getToken("http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/token",
+                    "triwal-app", "2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p", username, password);
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
@@ -109,8 +147,9 @@ public class TokenProvider {
             String accessToken = getAdminToken();
 
             JSONObject jsonObject = new JSONObject(accessToken);
+            URL url = new URL("http://localhost:9090/admin/realms/triwal-realm-dev/users/" + userId + "/execute-actions-email");
 
-            URL url = new URL("https://keycloak.triwal.tech/realms/triwal-realm-dev/users/" + userId + "/execute-actions-email");
+            //URL url = new URL("https://keycloak.triwal.tech/realms/triwal-realm-dev/users/" + userId + "/execute-actions-email");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("PUT");
             connection.setRequestProperty("Content-Type", "application/json");

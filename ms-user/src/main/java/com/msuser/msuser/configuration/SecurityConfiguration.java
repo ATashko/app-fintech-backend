@@ -24,7 +24,8 @@ public class SecurityConfiguration {
 
     private final JwtAuthConverter jwtAuthConverter;
 
-    @Value("https://keycloak.triwal.tech/realms/triwal-realm-dev")
+    //@Value("https://keycloak.triwal.tech/realms/triwal-realm-dev")
+    @Value("http://localhost:9090/realms/triwal-realm-dev")
     private String issuerUri;
 
     public SecurityConfiguration(JwtAuthConverter jwtAuthConverter) {

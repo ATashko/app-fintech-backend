@@ -11,12 +11,14 @@ import com.mstransaction.mstransaction.repository.TransactionRepository;
 import com.mstransaction.mstransaction.service.ITransactionService;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 public class TransactionService implements ITransactionService {
 
     private final TransactionMessageSender transactionMessageSender;
@@ -35,7 +37,7 @@ public class TransactionService implements ITransactionService {
     }
 
 
-    @Transactional
+
     @Override
     public DepositDTO processDeposit(DepositDTO depositDTO) {
 
@@ -55,8 +57,9 @@ public class TransactionService implements ITransactionService {
         Account account = accountRepository.findByUserIdAndAccountNumber(userId, accountNumber)
                 .orElseThrow(() -> new IllegalArgumentException("Cuenta no encontrada para el usuario dado."));
 
-        BigDecimal newAmount = account.getAmount().add(valueToTransfer);
-        account.setAmount(newAmount);
+
+        BigDecimal newAmount = account.getAmount();
+        account.setAmount(newAmount.add(valueToTransfer));
         accountRepository.save(account);
 
         transaction.setUserId(userId);

@@ -1,2 +1,0 @@
-CREATE DATABASE IF NOT EXISTS ms_user_db;
-CREATE DATABASE IF NOT EXISTS ms_transactions_db;
