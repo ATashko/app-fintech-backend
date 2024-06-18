@@ -142,10 +142,10 @@ public class TransferenceService implements ITransferenceService {
         BigDecimal convertedResult;
         try {
             response = converterClient.convertCurrency(totalTransaction.doubleValue(), originCurrency, destinationCurrency);
+            Thread.sleep(2000);
             String[] res = response.split(",");
             convertedResult = new BigDecimal(res[12].replaceAll("[^0-9.]", ""));
             System.out.println(convertedResult);
-            Thread.sleep(500);
             return convertedResult;
 
         } catch (InterruptedException e) {
