@@ -24,6 +24,7 @@ public class SecurityConfiguration {
 
     private final JwtAuthConverter jwtAuthConverter;
 
+    //@Value("https://keycloak.triwal.tech/realms/triwal-realm-dev")
     @Value("http://localhost:9090/realms/triwal-realm-dev")
     private String issuerUri;
 
@@ -41,6 +42,7 @@ public class SecurityConfiguration {
                             .requestMatchers("auth/**").permitAll()
                             .requestMatchers("auth/logout/**").authenticated()
                             .requestMatchers("user/setStatus/**").permitAll()
+                            .requestMatchers("user/sendEmail/**").permitAll()
                             .anyRequest().authenticated();
 
                 })
@@ -51,9 +53,6 @@ public class SecurityConfiguration {
                 .cors(withDefaults())
                 .build();
     }
-
-
-
 
     @Bean
     public JwtDecoder jwtDecoder() {

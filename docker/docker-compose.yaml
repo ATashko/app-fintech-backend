@@ -1,39 +1,92 @@
-version: '3.7'
-
+version: '3'
 services:
-  keycloak:
-    image: quay.io/keycloak/keycloak:24.0.4
+  triwal-app-ui:
+    build:
+      context: ./ProyectoFront/Triwal-app-ui
+      dockerfile: Dockerfile
+    volumes:
+      - ./ProyectoFront/Triwal-app-ui/dist:/app/dist
     ports:
-      - "9091:8080"
-    environment:
-      DB_VENDOR: MYSQL
-      DB_ADDR: db
-      DB_SCHEMA: public
-      DB_DATABASE: keycloak_db
-      DB_USER: admin
-      DB_PASSWORD: pass
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    command: ['start-dev']
-    depends_on:
-      - db
+      - 3333:3333
 
   db:
-    image: mysql:8
+    image: mysql:8.0.34
+    container_name: db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: keycloak_db
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: pass
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: MyPassword$
     ports:
       - "3309:3306"
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.4
+    container_name: keycloak
+    restart: always
+    ports:
+      - "9090:8080"
+    environment:
+      KC_DB: mysql
+      KC_DB_URL: jdbc:mysql://db:3306/keycloak_db
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: MyPassword$
+      KC_HEALTH_ENABLED: true
+      KC_METRICS_ENABLED: true
+      KC_TRANSACTION_XA_ENABLED: false
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      PROXY_ADDRESS_FORWARDING: true
+      KC_HTTP_ENABLED: true
+      KC_HTTP_PORT: 8080
+      KC_HOSTNAME_STRICT: true
+      KC_HOSTNAME_STRICT_BACKCHANNEL: true
+      KC_HOSTNAME: keycloak.triwal.tech
+      KC_PROXY: edge
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+    command: start-dev --import-realm
+    depends_on:
+      db:
+        condition: service_healthy
+
+  config-server:
+    image: openjdk:17
+    # restart: unless-stopped
+    volumes:
+      - ./ProyecrtoBack/triwal-fintech-backend/config-server/config-server-0.0.1-SNAPSHOT.jar:/app/config-server.jar
+    command: java -jar /app/config-server.jar
+    ports:
+      - 8888:8888
+
+  db-transaction:
+    image: mysql:8.0.34
+    container_name: db-transaction
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: transaction_db
+      MYSQL_USER: user-transaction
+      MYSQL_PASSWORD: transaction-pass
+    ports:
+      - "3310:3306"
+    volumes:
+      - db_transaction:/var/lib/mysql
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
 
 volumes:
   db_data:
-
-
-
-
+  db_transaction:

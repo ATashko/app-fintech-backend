@@ -10,6 +10,7 @@
         <module name="config-server" />
         <module name="ms-transaction" />
         <module name="eureka-server" />
+        <module name="currencyconverter" />
         <module name="gateway" />
         <module name="ms-user" />
       </profile>
@@ -18,6 +19,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="config-server" options="-parameters" />
+      <module name="currencyconverter" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="ms-transaction" options="-parameters" />

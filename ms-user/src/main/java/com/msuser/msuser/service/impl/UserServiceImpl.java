@@ -15,12 +15,15 @@ import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.msuser.msuser.util.keycloakProvider.getRealmResource;
 import static com.msuser.msuser.util.keycloakProvider.getUserResource;
@@ -29,10 +32,13 @@ import static com.msuser.msuser.util.keycloakProvider.getUserResource;
 @Slf4j
 public class UserServiceImpl implements IUserService {
 
-    private final TokenProvider tokenProvider;
 
-    public UserServiceImpl(TokenProvider tokenProvider) {
+    private final TokenProvider tokenProvider;
+    private final EmailService emailService;
+
+    public UserServiceImpl(TokenProvider tokenProvider, EmailService emailService) {
         this.tokenProvider = tokenProvider;
+        this.emailService = emailService;
     }
 
 
@@ -55,7 +61,6 @@ public class UserServiceImpl implements IUserService {
         return getRealmResource().users().searchByUsername(username, true);
     }
 
-    //todo: add method to validate: a user only can request information about his own user.
 
 
     /*
@@ -74,11 +79,17 @@ public class UserServiceImpl implements IUserService {
         userRepresentation.setLastName(userRegistrationDTO.lastName());
         userRepresentation.setEmail(userRegistrationDTO.email());
         userRepresentation.setUsername(userRegistrationDTO.username());
+        Map<String, List<String>> attributes = new HashMap<>();
+        attributes.put("country", Collections.singletonList(userRegistrationDTO.country()));
+        userRepresentation.setAttributes(attributes);
         userRepresentation.setEmailVerified(false);
         userRepresentation.setEnabled(true);
 
         Response response = userResource.create(userRepresentation);
+        String responseBody = response.readEntity(String.class);
+        System.out.println(responseBody);
         status = response.getStatus();
+        System.out.println(status);
 
         if (status == 201) {
             String path = response.getLocation().getPath();
@@ -97,7 +108,7 @@ public class UserServiceImpl implements IUserService {
 
             if (userRegistrationDTO.roles() == null || userRegistrationDTO.roles().isEmpty()) {
                 roleRepresentations = List.of(realmResource.roles().get("user-role-realm").toRepresentation());
-            } else {//todo: actualizar roles para que permita hacer consultas por defecto.
+            } else {
                 roleRepresentations = realmResource.roles().list()
                         .stream().filter(role -> userRegistrationDTO.roles()
                                 .stream()
@@ -112,6 +123,7 @@ public class UserServiceImpl implements IUserService {
                     .add(roleRepresentations);
 
             List<UserRepresentation> representationList = userResource.searchByUsername(userRegistrationDTO.username(), true);
+
             if (!representationList.isEmpty()) {
                 UserRepresentation userRep = representationList.stream()
                         .filter(ur -> !ur.isEmailVerified())
@@ -123,10 +135,12 @@ public class UserServiceImpl implements IUserService {
                 }
             }
 
+
         } else if (status == 409) {
             log.error("User already exist");
             return "User already exist";
         } else {
+
             log.error("Error creating user");
             return "Error creating user";
         }
@@ -158,6 +172,9 @@ public class UserServiceImpl implements IUserService {
         userRepresentation.setLastName(userRegistrationDTO.lastName());
         userRepresentation.setEmail(userRegistrationDTO.email());
         userRepresentation.setUsername(userRegistrationDTO.username());
+        Map<String, List<String>> attributes = new HashMap<>();
+        attributes.put("country", Collections.singletonList(userRegistrationDTO.country()));
+        userRepresentation.setAttributes(attributes);
         userRepresentation.setEmailVerified(true);
         userRepresentation.setEnabled(true);
 
@@ -183,7 +200,7 @@ public class UserServiceImpl implements IUserService {
                 userRepresentation.get(0).getEmail(),
                 userRepresentation.get(0).isEmailVerified(),
                 userRepresentation.get(0).isEnabled(),
-                "Colombia");
+                userRepresentation.get(0).getAttributes().toString());
     }
 
     public UserRepresentation authenticateUser(String username, String password) {
@@ -192,7 +209,6 @@ public class UserServiceImpl implements IUserService {
         if (users.isEmpty()) {
             return null;
         }
-
         return users.get(0);
     }
 
@@ -230,4 +246,11 @@ public class UserServiceImpl implements IUserService {
         UsersResource usersResource = getUserResource();
         usersResource.get(userId).sendVerifyEmail();
     }
+
+    @Override
+    public void sendEmail(String email, String username) {
+        emailService.sendActivationEmail(email, username);
+    }
+
+
 }
