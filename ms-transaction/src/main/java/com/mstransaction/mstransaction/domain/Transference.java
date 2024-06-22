@@ -57,6 +57,9 @@ public class Transference {
     @Column(name = "transaction_details")
     private String transactionDetails;
 
+    @Column(name = "conversion_rate")
+    private String conversionRate;
+
     @Column(name = "source_account_number",nullable = false)
     private String sourceAccountNumber;
 

@@ -6,6 +6,7 @@ import com.mstransaction.mstransaction.domain.Account;
 import com.mstransaction.mstransaction.domain.Transference;
 import com.mstransaction.mstransaction.domain.enumTypes.MethodOfPayment;
 import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
+import com.mstransaction.mstransaction.dto.ConverterDTO;
 import com.mstransaction.mstransaction.dto.TransferenceInfoResponseDTO;
 import com.mstransaction.mstransaction.dto.TransferenceRequestDTO;
 import com.mstransaction.mstransaction.dto.TransferenceResponseDTO;
@@ -69,18 +70,21 @@ public class TransferenceService implements ITransferenceService {
                 }
 
                 sourceAccount.setAmount(sourceCurrentBalance.subtract(transferenceRequestDTO.getTransferValue()));
+                BigDecimal rate = new BigDecimal("0.02");
 
                 if (transferenceRequestDTO.getShippingCurrency().name().equals(transferenceRequestDTO.getReceiptCurrency().name())) {
-                    BigDecimal commissionValue = calculateCommission(new BigDecimal("0.02"), transferenceRequestDTO.getTransferValue());
+                    BigDecimal commissionValue = calculateCommission(rate, transferenceRequestDTO.getTransferValue());
                     BigDecimal total = calculateTotalTransference(commissionValue, transferenceRequestDTO.getTransferValue());
                     destinationAccount.setAmount(destinationCurrentBalance.add(total));
                     return persistTransference(transferenceRequestDTO, sourceAccount, destinationAccount, commissionValue, total);
                 } else {
-                    BigDecimal commissionValue = calculateCommission(new BigDecimal("0.02"), transferenceRequestDTO.getTransferValue());
+                    BigDecimal commissionValue = calculateCommission(rate, transferenceRequestDTO.getTransferValue());
                     BigDecimal total = calculateTotalTransference(commissionValue, transferenceRequestDTO.getTransferValue());
-                    BigDecimal convertedValue = convertedTransference(total, transferenceRequestDTO.getShippingCurrency().toString(), transferenceRequestDTO.getReceiptCurrency().toString());
+                    ConverterDTO convertedResponse = convertedTransference(total, transferenceRequestDTO.getShippingCurrency().toString(), transferenceRequestDTO.getReceiptCurrency().toString());
+                    BigDecimal convertedValue = convertedResponse.getConversionResult();
+                    String conversionRate = convertedResponse.getConversionRate();
                     destinationAccount.setAmount(destinationCurrentBalance.add(convertedValue));
-                    return persistTransference(transferenceRequestDTO, sourceAccount, destinationAccount, commissionValue, convertedValue);
+                    return persistTransference(transferenceRequestDTO, sourceAccount, destinationAccount, commissionValue, convertedValue, conversionRate);
                 }
             }
         } catch (IllegalArgumentException | JsonProcessingException e) {
@@ -95,7 +99,7 @@ public class TransferenceService implements ITransferenceService {
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public TransferenceResponseDTO persistTransference(TransferenceRequestDTO transferenceRequestDTO, Account fromAccount, Account toAccount, BigDecimal commissionValue, BigDecimal value) {
+    public TransferenceResponseDTO persistTransference(TransferenceRequestDTO transferenceRequestDTO, Account fromAccount, Account toAccount, BigDecimal commissionValue, BigDecimal value,String conversionRate) {
 
         try {
             BigDecimal rate = new BigDecimal("0.02");
@@ -117,8 +121,10 @@ public class TransferenceService implements ITransferenceService {
 
             if (!transferenceRequestDTO.getShippingCurrency().name().equals(transferenceRequestDTO.getReceiptCurrency().name())) {
                 transference.setTransactionDetails("Transacción con conversión");
+                transference.setConversionRate(conversionRate);
             } else {
                 transference.setTransactionDetails("Transacción misma moneda");
+                transference.setConversionRate("0.00");
             }
             transference.setSourceAccountNumber(transferenceRequestDTO.getSourceAccountNumber());
             transference.setDestinationAccountNumber(transferenceRequestDTO.getDestinationAccountNumber());
@@ -139,16 +145,22 @@ public class TransferenceService implements ITransferenceService {
         return value.multiply(rate);
     }
 
-    public BigDecimal convertedTransference(BigDecimal totalTransaction, String originCurrency, String destinationCurrency) throws JsonProcessingException {
+    public ConverterDTO convertedTransference(BigDecimal totalTransaction, String originCurrency, String destinationCurrency) throws JsonProcessingException {
         String response;
+        String conversionRate;
         BigDecimal convertedResult;
         try {
             response = converterClient.convertCurrency(totalTransaction.doubleValue(), originCurrency, destinationCurrency);
             Thread.sleep(2000);
             String[] res = response.split(",");
+            conversionRate = res[11].replaceAll("[^0-9.]", "");
             convertedResult = new BigDecimal(res[12].replaceAll("[^0-9.]", ""));
-            System.out.println(convertedResult);
-            return convertedResult;
+            ConverterDTO convertedResponse = new ConverterDTO();
+            convertedResponse.setBaseCode(originCurrency);
+            convertedResponse.setTargetCode(destinationCurrency);
+            convertedResponse.setConversionRate(conversionRate);
+            convertedResponse.setConversionResult(convertedResult);
+            return convertedResponse;
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -169,7 +181,7 @@ public class TransferenceService implements ITransferenceService {
         BigDecimal commission = calculateCommission(rate, newValue);
         BigDecimal totalValueToTransfer = calculateTotalTransference(commission, newValue);
         if(!originCurrency.equals(destinationCurrency) && !originCurrency.isEmpty() && !destinationCurrency.isEmpty()){
-           convertedValueToTransfer = convertedTransference(totalValueToTransfer,originCurrency,destinationCurrency);
+           convertedValueToTransfer = convertedTransference(totalValueToTransfer,originCurrency,destinationCurrency).getConversionResult();
         }
         TransferenceInfoResponseDTO transferenceCost = new TransferenceInfoResponseDTO();
         transferenceCost.setRate(String.valueOf(rate));

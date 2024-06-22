@@ -2,6 +2,8 @@ package com.mstransaction.mstransaction.dto;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -11,7 +13,7 @@ public class ConverterDTO {
 
     private String baseCode;
     private String targetCode;
-    private float conversionRate;
-    private float conversionResult;
+    private String conversionRate;
+    private BigDecimal conversionResult;
 
 }

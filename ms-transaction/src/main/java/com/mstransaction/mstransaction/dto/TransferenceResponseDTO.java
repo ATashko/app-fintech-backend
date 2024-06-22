@@ -27,6 +27,7 @@ public class TransferenceResponseDTO {
     private String receiverId;
     private MethodOfPayment methodOfPayment;
     private TransferType transferType;
+    private String conversionRate;
     private String sourceAccountNumber;
     private String destinationAccountNumber;
 
@@ -41,6 +42,7 @@ public class TransferenceResponseDTO {
         this.totalTransference = transference.getTotalTransference();
         this.methodOfPayment = MethodOfPayment.valueOf(transference.getMethodOfPayment().toString());
         this.transferType = TransferType.valueOf(transference.getTransferType().toString());
+        this.conversionRate = transference.getConversionRate();
         this.sourceAccountNumber = transference.getSourceAccountNumber();
         this.destinationAccountNumber = transference.getDestinationAccountNumber();
     }
