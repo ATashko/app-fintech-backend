@@ -76,7 +76,7 @@ public class TransferenceService implements ITransferenceService {
                     BigDecimal commissionValue = calculateCommission(rate, transferenceRequestDTO.getTransferValue());
                     BigDecimal total = calculateTotalTransference(commissionValue, transferenceRequestDTO.getTransferValue());
                     destinationAccount.setAmount(destinationCurrentBalance.add(total));
-                    return persistTransference(transferenceRequestDTO, sourceAccount, destinationAccount, commissionValue, total);
+                    return persistTransference(transferenceRequestDTO, sourceAccount, destinationAccount, commissionValue, total,"0.00");
                 } else {
                     BigDecimal commissionValue = calculateCommission(rate, transferenceRequestDTO.getTransferValue());
                     BigDecimal total = calculateTotalTransference(commissionValue, transferenceRequestDTO.getTransferValue());
@@ -124,7 +124,7 @@ public class TransferenceService implements ITransferenceService {
                 transference.setConversionRate(conversionRate);
             } else {
                 transference.setTransactionDetails("Transacción misma moneda");
-                transference.setConversionRate("0.00");
+                transference.setConversionRate(conversionRate);
             }
             transference.setSourceAccountNumber(transferenceRequestDTO.getSourceAccountNumber());
             transference.setDestinationAccountNumber(transferenceRequestDTO.getDestinationAccountNumber());
