@@ -2,6 +2,7 @@ package com.mstransaction.mstransaction.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 
 import com.mstransaction.mstransaction.domain.Transaction;
 import com.mstransaction.mstransaction.domain.Transference;
@@ -10,9 +11,7 @@ import com.mstransaction.mstransaction.domain.enumTypes.ReceiptCurrency;
 import com.mstransaction.mstransaction.domain.enumTypes.ShippingCurrency;
 import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -33,7 +32,6 @@ public class FinancialActivityHistoryDTO {
     private String destinationAccountNumber;
     
 	public FinancialActivityHistoryDTO(String type, Transaction transaction) {
-		
 		this.date = transaction.getCreatedAt();
 		this.type = type;
 		this.shippingCurrency = transaction.getShippingCurrency();
@@ -46,7 +44,6 @@ public class FinancialActivityHistoryDTO {
 	}
     
 	public FinancialActivityHistoryDTO(String type, Transference transference) {
-		
 		this.date = transference.getCreatedAt();
 		this.type = type;
 		this.shippingCurrency = transference.getShippingCurrency();
@@ -60,6 +57,6 @@ public class FinancialActivityHistoryDTO {
 		this.sourceAccountNumber = transference.getSourceAccountNumber();
 		this.destinationAccountNumber = transference.getDestinationAccountNumber();
 	}
-    
+
 }
 

@@ -24,7 +24,7 @@ import com.mstransaction.mstransaction.util.ConfigHourDate;
 public class ReportController {
 	
 	private final ReportService serviceReport;
-	private ConfigHourDate configHourDate = new ConfigHourDate();
+	private final ConfigHourDate configHourDate = new ConfigHourDate();
 	
 	@Autowired
     public ReportController(ReportService serviceRepor) {
@@ -32,9 +32,9 @@ public class ReportController {
     }
     
 	@GetMapping("/all")
-    public ResponseEntity<List<FinancialActivityHistoryDTO>> getTransationsByUser(Authentication authentication, 
-    		@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta) {
+    public ResponseEntity<List<FinancialActivityHistoryDTO>> getTransactionsByUser(Authentication authentication,
+                                                                                   @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
+                                                                                   @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta) {
 		
 		Jwt jwt = (Jwt) authentication.getPrincipal();
         String userId = jwt.getClaimAsString("sub");

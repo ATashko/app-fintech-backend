@@ -39,7 +39,7 @@ public class ReportService implements IReportService {
 	            history.add(dto);
 	        }
 
-	        for (Transference transference : transferencesSend) { 	
+	        for (Transference transference : transferencesSend) {
 	            FinancialActivityHistoryDTO senderDto = new FinancialActivityHistoryDTO("EXPENSE", transference);
 	            history.add(senderDto);
 	        }
@@ -49,7 +49,7 @@ public class ReportService implements IReportService {
 	            history.add(senderDto);
 	        }
 	        
-	        history.sort(Comparator.comparing(FinancialActivityHistoryDTO::getDate));
+	        //history.sort(Comparator.comparing(FinancialActivityHistoryDTO::getDate));
 	        
 	        return history;
 	    }
