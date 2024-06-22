@@ -2,6 +2,7 @@ package com.mstransaction.mstransaction.service.impl;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -26,14 +27,14 @@ public class ReportService implements IReportService {
 		}
 	    
 	    @Override
-		public List<FinancialActivityHistoryDTO> getTransactionHistoryByUserId(String userId) {
-	        List<Transaction> transactions = transactionRepository.findAllByUserId(userId);
-	        List<Transference> transferencesSend = transferenceRepository.findAllBySenderUserId(userId);
-	        List<Transference> transferencesReceive = transferenceRepository.findAllByReceiverUserId(userId);
+		public List<FinancialActivityHistoryDTO> getTransactionHistoryByUserId(Date fechaDesde, Date fechaHasta, String userId) {
+	        List<Transaction> transactions = transactionRepository.findAllByUserIdAndDateRange(userId, fechaDesde, fechaHasta);
+	        List<Transference> transferencesSend = transferenceRepository.findAllSendByUserIdAndDateRange(userId, fechaDesde, fechaHasta);
+	        List<Transference> transferencesReceive = transferenceRepository.findAllReceivedByUserIdAndDateRange(userId, fechaDesde, fechaHasta);
 
 	        List<FinancialActivityHistoryDTO> history = new ArrayList<>();
 
-	        for (Transaction transaction : transactions) {
+	       for (Transaction transaction : transactions) {
 	            FinancialActivityHistoryDTO dto = new FinancialActivityHistoryDTO("INCOME", transaction);
 	            history.add(dto);
 	        }
