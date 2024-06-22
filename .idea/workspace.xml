@@ -5,39 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a7d6d99-158c-4211-9af9-75627cbba4df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ms-transaction/ms-transaction-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/currencyconverter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/currencyconverter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/initdb.init_schemas.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/configuration/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/Transference.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/Transference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/DepositDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/DepositDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/TransferenceRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/TransferenceRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/TransferenceResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/TransferenceResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransferenceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransferenceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransferenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransferenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/test/java/com/mstransaction/mstransaction/MsTransactionApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/test/java/com/mstransaction/mstransaction/MsTransactionApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/configuration/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/configuration/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/dto/AccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/dto/AccountDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/dto/DepositDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/dto/DepositDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/queue/TransactionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/queue/TransactionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/TokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/TokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/keycloakProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/keycloakProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,35 +21,38 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2hw2bVAOtYrKzpT15DhU3NNi9nz" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/deposit&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3873563&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.diffblue.cover.intellij&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;1f9a223a7f752573fe4dbda03cdc49e5&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "develop",
+    "go.import.settings.migrated": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.3873563",
+    "settings.editor.selected.configurable": "com.diffblue.cover.intellij",
+    "spring.configuration.checksum": "1f9a223a7f752573fe4dbda03cdc49e5",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -88,7 +60,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.CurrencyConverterApplication">
+  <component name="RunManager" selected="Spring Boot.MsUserApplication">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="triwal-fintech-backend" />
       <working_directory value="$PROJECT_DIR$" />
