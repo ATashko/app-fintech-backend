@@ -31,7 +31,7 @@ public class ReportController {
 		this.serviceReport = serviceRepor;
     }
     
-	@GetMapping("/all/{userId}")
+	@GetMapping("/all")
     public ResponseEntity<List<FinancialActivityHistoryDTO>> getTransationsByUser(Authentication authentication, 
     		@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta) {
