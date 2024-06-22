@@ -17,5 +17,5 @@ public interface ITransferenceService {
     TransferenceInfoResponseDTO getTransferenceCost(BigDecimal rate, BigDecimal newValue, String originCurrency, String destinationCurrency) throws JsonProcessingException;
 
 
-    AccountMovementsResponseDTO getAccountMovementsByUserId(MovementsRequestDTO movementsRequestDTO);
+    AccountMovementsResponseDTO getAccountMovementsByAccountNumber(MovementsRequestDTO movementsRequestDTO);
 }

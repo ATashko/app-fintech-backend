@@ -196,7 +196,7 @@ public class TransferenceService implements ITransferenceService {
     }
 
     @Override
-    public AccountMovementsResponseDTO getAccountMovementsByUserId(MovementsRequestDTO movementsRequestDTO) {
+    public AccountMovementsResponseDTO getAccountMovementsByAccountNumber(MovementsRequestDTO movementsRequestDTO) {
         String accountNumber = movementsRequestDTO.getAccountNumber();
         String userId = movementsRequestDTO.getUserId();
         AccountMovementsResponseDTO accountMovementsResponseDTO = new AccountMovementsResponseDTO();

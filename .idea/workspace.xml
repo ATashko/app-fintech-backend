@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6cdf768-510d-47bf-8f86-e1fad34558fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/AccountMovementsResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/MovementsRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/MovementsResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/ReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/FinancialActivityHistoryDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/IReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/ReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/util/ConfigHourDate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransactionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransferenceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransferenceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransactionRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransferenceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransferenceRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/ITransferenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/ITransferenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransactionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransferenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransferenceService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,33 +48,33 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/transferenceEnhance&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.diffblue.cover.intellij&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;6071c4f70b0240bf423b0ffa1b9a0254&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Merging feature/transferenceEnhance",
+    "go.import.settings.migrated": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "com.diffblue.cover.intellij",
+    "spring.configuration.checksum": "6071c4f70b0240bf423b0ffa1b9a0254",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.mstransaction.mstransaction.controller" />

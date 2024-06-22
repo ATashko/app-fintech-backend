@@ -53,7 +53,7 @@ public class TransferenceController {
 
     @PostMapping("/movement")
     public ResponseEntity<?> getMovementsReports(@RequestBody MovementsRequestDTO movementsRequestDTO) {
-        AccountMovementsResponseDTO accountMovementsResponseDTO = transferenceService.getAccountMovementsByUserId(movementsRequestDTO);
+        AccountMovementsResponseDTO accountMovementsResponseDTO = transferenceService.getAccountMovementsByAccountNumber(movementsRequestDTO);
         return new ResponseEntity<>(accountMovementsResponseDTO, HttpStatus.ACCEPTED);
     }
 
