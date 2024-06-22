@@ -18,8 +18,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     @Query("SELECT t FROM Transaction t " +
             "WHERE t.userId = :userId " +
             "AND (:fechaDesde IS NULL OR t.createdAt >= :fechaDesde) " +
-            "AND (:fechaHasta IS NULL OR t.createdAt <= :fechaHasta)" +
-            "ORDER BY t.accountNumber ASC")
+            "AND (:fechaHasta IS NULL OR t.createdAt <= :fechaHasta)")
      List<Transaction> findAllByUserIdAndDateRange(
              @Param("userId") String userId,
              @Param("fechaDesde") Date fechaDesde,

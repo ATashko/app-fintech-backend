@@ -13,8 +13,7 @@ public interface TransferenceRepository extends JpaRepository<Transference, Long
     @Query("SELECT t FROM Transference t " +
             "WHERE t.senderUserId = :userId " +
             "AND (:fechaDesde IS NULL OR t.createdAt >= :fechaDesde) " +
-            "AND (:fechaHasta IS NULL OR t.createdAt <= :fechaHasta)" +
-            "ORDER BY t.sourceAccountNumber ASC")
+            "AND (:fechaHasta IS NULL OR t.createdAt <= :fechaHasta)")
      List<Transference> findAllSendByUserIdAndDateRange(
              @Param("userId") String userId,
              @Param("fechaDesde") Date fechaDesde,
@@ -23,8 +22,7 @@ public interface TransferenceRepository extends JpaRepository<Transference, Long
     @Query("SELECT t FROM Transference t " +
             "WHERE t.receiverUserId = :userId " +
             "AND (:fechaDesde IS NULL OR t.createdAt >= :fechaDesde) " +
-            "AND (:fechaHasta IS NULL OR t.createdAt <= :fechaHasta)" +
-            "ORDER BY t.destinationAccountNumber ASC")
+            "AND (:fechaHasta IS NULL OR t.createdAt <= :fechaHasta)")
      List<Transference> findAllReceivedByUserIdAndDateRange(
              @Param("userId") String userId,
              @Param("fechaDesde") Date fechaDesde,
