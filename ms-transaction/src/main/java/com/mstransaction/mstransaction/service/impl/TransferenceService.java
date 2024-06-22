@@ -70,12 +70,12 @@ public class TransferenceService implements ITransferenceService {
                 sourceAccount.setAmount(sourceCurrentBalance.subtract(transferenceRequestDTO.getTransferValue()));
 
                 if (transferenceRequestDTO.getShippingCurrency().name().equals(transferenceRequestDTO.getReceiptCurrency().name())) {
-                    BigDecimal commissionValue = calculateCommission(transferenceRequestDTO.getRate(), transferenceRequestDTO.getTransferValue());
+                    BigDecimal commissionValue = calculateCommission(new BigDecimal("0.02"), transferenceRequestDTO.getTransferValue());
                     BigDecimal total = calculateTotalTransference(commissionValue, transferenceRequestDTO.getTransferValue());
                     destinationAccount.setAmount(destinationCurrentBalance.add(total));
                     return persistTransference(transferenceRequestDTO, sourceAccount, destinationAccount, commissionValue, total);
                 } else {
-                    BigDecimal commissionValue = calculateCommission(transferenceRequestDTO.getRate(), transferenceRequestDTO.getTransferValue());
+                    BigDecimal commissionValue = calculateCommission(new BigDecimal("0.02"), transferenceRequestDTO.getTransferValue());
                     BigDecimal total = calculateTotalTransference(commissionValue, transferenceRequestDTO.getTransferValue());
                     BigDecimal convertedValue = convertedTransference(total, transferenceRequestDTO.getShippingCurrency().toString(), transferenceRequestDTO.getReceiptCurrency().toString());
                     destinationAccount.setAmount(destinationCurrentBalance.add(convertedValue));
@@ -109,7 +109,7 @@ public class TransferenceService implements ITransferenceService {
             transference.setSenderUserId(fromAccount.getUserId());
             transference.setReceiverUserId(toAccount.getUserId());
             transference.setMethodOfPayment(MethodOfPayment.TRIWAL_TRANSFER);
-            transference.setRate(transferenceRequestDTO.getRate());
+            transference.setRate(new BigDecimal("0.02"));
             transference.setRateValue(commissionValue);
             transference.setTotalTransference(value);
 

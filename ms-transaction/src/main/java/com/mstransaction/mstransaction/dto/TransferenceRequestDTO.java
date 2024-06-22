@@ -16,7 +16,6 @@ public class TransferenceRequestDTO {
     private ShippingCurrency shippingCurrency;
     private ReceiptCurrency receiptCurrency;
     private BigDecimal transferValue;
-    private BigDecimal rate; //todo: make decimal fired in proceessTransference
     private String sourceAccountNumber;
     private String destinationAccountNumber;
 

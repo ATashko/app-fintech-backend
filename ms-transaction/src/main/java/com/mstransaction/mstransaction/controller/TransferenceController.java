@@ -25,6 +25,8 @@ public class TransferenceController {
         return new ResponseEntity<>(transactionDTO, HttpStatus.CREATED);
     }
 
+    @GetMapping
+
 
 
 
