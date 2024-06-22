@@ -7,6 +7,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TransferenceRepository extends JpaRepository<Transference, Long> {
-	List<Transference> findAllBySenderUserId(String userId);
-	List<Transference> findAllByReceiverUserId(String userId);
+	List<Transference> findAllBySenderUserIdOrderBySourceAccountNumber(String userId);
+	List<Transference> findAllByReceiverUserIdOrderByDestinationAccountNumber(String userId);
 }
