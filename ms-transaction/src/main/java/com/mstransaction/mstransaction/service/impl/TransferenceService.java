@@ -3,22 +3,23 @@ package com.mstransaction.mstransaction.service.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mstransaction.mstransaction.client.IConverterClient;
 import com.mstransaction.mstransaction.domain.Account;
+import com.mstransaction.mstransaction.domain.Transaction;
 import com.mstransaction.mstransaction.domain.Transference;
 import com.mstransaction.mstransaction.domain.enumTypes.MethodOfPayment;
 import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
-import com.mstransaction.mstransaction.dto.ConverterDTO;
-import com.mstransaction.mstransaction.dto.TransferenceInfoResponseDTO;
-import com.mstransaction.mstransaction.dto.TransferenceRequestDTO;
-import com.mstransaction.mstransaction.dto.TransferenceResponseDTO;
+import com.mstransaction.mstransaction.dto.*;
 import com.mstransaction.mstransaction.repository.AccountRepository;
+import com.mstransaction.mstransaction.repository.TransactionRepository;
 import com.mstransaction.mstransaction.repository.TransferenceRepository;
 import com.mstransaction.mstransaction.service.ITransferenceService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,10 +33,13 @@ public class TransferenceService implements ITransferenceService {
 
     private final AccountRepository accountRepository;
 
-    public TransferenceService(TransferenceRepository transferenceRepository, IConverterClient converterClient, AccountRepository accountRepository) {
+    private final TransactionRepository transactionRepository;
+
+    public TransferenceService(TransferenceRepository transferenceRepository, IConverterClient converterClient, AccountRepository accountRepository, TransactionRepository transactionRepository) {
         this.transferenceRepository = transferenceRepository;
         this.converterClient = converterClient;
         this.accountRepository = accountRepository;
+        this.transactionRepository = transactionRepository;
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -189,5 +193,28 @@ public class TransferenceService implements ITransferenceService {
         transferenceCost.setNewTransferValue(String.valueOf(totalValueToTransfer));
         transferenceCost.setConvertedNewTransferValue(String.valueOf(convertedValueToTransfer));
         return transferenceCost;
+    }
+
+    @Override
+    public AccountMovementsResponseDTO getAccountMovementsByUserId(MovementsRequestDTO movementsRequestDTO) {
+        String accountNumber = movementsRequestDTO.getAccountNumber();
+        String userId = movementsRequestDTO.getUserId();
+        AccountMovementsResponseDTO accountMovementsResponseDTO = new AccountMovementsResponseDTO();
+        List<Transaction> depositList = transactionRepository.findAllByAccountNumber(accountNumber);
+        List<Transference> transferenceReceived = transferenceRepository.findReceivedTransference(accountNumber);
+        List<Transference> transferenceSent = transferenceRepository.findSentTransference(accountNumber);
+        Account account = accountRepository.findByAccountNumber(accountNumber);
+
+        accountMovementsResponseDTO.setAccountNumber(account.getAccountNumber());
+        accountMovementsResponseDTO.setTypeAccount(String.valueOf(account.getTypeAccount()));
+        accountMovementsResponseDTO.setUserId(account.getUserId());
+        accountMovementsResponseDTO.setCurrency(String.valueOf(account.getCurrency()));
+        accountMovementsResponseDTO.setCreatedAt(account.getCreatedAt());
+
+        accountMovementsResponseDTO.getTransferenceReceivedDTOList().addAll(transferenceReceived);
+        accountMovementsResponseDTO.getTransferenceSendedDTOList().addAll(transferenceSent);
+        accountMovementsResponseDTO.getDepositDTOList().addAll(depositList);
+
+        return  accountMovementsResponseDTO;
     }
 }

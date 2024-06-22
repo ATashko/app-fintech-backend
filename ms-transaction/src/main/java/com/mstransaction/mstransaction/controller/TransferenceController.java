@@ -2,9 +2,7 @@ package com.mstransaction.mstransaction.controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.mstransaction.mstransaction.dto.TransferenceInfoResponseDTO;
-import com.mstransaction.mstransaction.dto.TransferenceRequestDTO;
-import com.mstransaction.mstransaction.dto.TransferenceResponseDTO;
+import com.mstransaction.mstransaction.dto.*;
 import com.mstransaction.mstransaction.service.ITransferenceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,6 +49,12 @@ public class TransferenceController {
 
         return new ResponseEntity<>(transferenceCostInfo, HttpStatus.ACCEPTED);
 
+    }
+
+    @PostMapping("/movement")
+    public ResponseEntity<?> getMovementsReports(@RequestBody MovementsRequestDTO movementsRequestDTO) {
+        AccountMovementsResponseDTO accountMovementsResponseDTO = transferenceService.getAccountMovementsByUserId(movementsRequestDTO);
+        return new ResponseEntity<>(accountMovementsResponseDTO, HttpStatus.ACCEPTED);
     }
 
 
