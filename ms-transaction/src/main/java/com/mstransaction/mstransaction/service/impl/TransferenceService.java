@@ -6,6 +6,7 @@ import com.mstransaction.mstransaction.domain.Account;
 import com.mstransaction.mstransaction.domain.Transference;
 import com.mstransaction.mstransaction.domain.enumTypes.MethodOfPayment;
 import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
+import com.mstransaction.mstransaction.dto.TransferenceInfoResponseDTO;
 import com.mstransaction.mstransaction.dto.TransferenceRequestDTO;
 import com.mstransaction.mstransaction.dto.TransferenceResponseDTO;
 import com.mstransaction.mstransaction.repository.AccountRepository;
@@ -97,6 +98,7 @@ public class TransferenceService implements ITransferenceService {
     public TransferenceResponseDTO persistTransference(TransferenceRequestDTO transferenceRequestDTO, Account fromAccount, Account toAccount, BigDecimal commissionValue, BigDecimal value) {
 
         try {
+            BigDecimal rate = new BigDecimal("0.02");
             Transference transference = new Transference();
             transference.setShippingCurrency(transferenceRequestDTO.getShippingCurrency());
             transference.setReceiptCurrency(transferenceRequestDTO.getReceiptCurrency());
@@ -109,7 +111,7 @@ public class TransferenceService implements ITransferenceService {
             transference.setSenderUserId(fromAccount.getUserId());
             transference.setReceiverUserId(toAccount.getUserId());
             transference.setMethodOfPayment(MethodOfPayment.TRIWAL_TRANSFER);
-            transference.setRate(new BigDecimal("0.02"));
+            transference.setRate(rate);
             transference.setRateValue(commissionValue);
             transference.setTotalTransference(value);
 
@@ -154,6 +156,26 @@ public class TransferenceService implements ITransferenceService {
     }
 
     public BigDecimal calculateTotalTransference(BigDecimal commissionValue, BigDecimal transferValue) {
-        return transferValue.subtract(commissionValue);
+        return transferValue.subtract(commissionValue); // todo: here i need the enhance the ux comission experience
+    }
+
+    public BigDecimal getNewTransferValue(BigDecimal rate, BigDecimal transferValue){
+        BigDecimal commissionExtra = rate.add(BigDecimal.valueOf(1));
+        return transferValue.multiply(commissionExtra);
+    }
+
+    public TransferenceInfoResponseDTO getTransferenceCost(BigDecimal rate, BigDecimal newValue, String originCurrency, String destinationCurrency ) throws JsonProcessingException {
+        BigDecimal convertedValueToTransfer = null;
+        BigDecimal commission = calculateCommission(rate, newValue);
+        BigDecimal totalValueToTransfer = calculateTotalTransference(commission, newValue);
+        if(!originCurrency.equals(destinationCurrency) && !originCurrency.isEmpty() && !destinationCurrency.isEmpty()){
+           convertedValueToTransfer = convertedTransference(totalValueToTransfer,originCurrency,destinationCurrency);
+        }
+        TransferenceInfoResponseDTO transferenceCost = new TransferenceInfoResponseDTO();
+        transferenceCost.setRate(String.valueOf(rate));
+        transferenceCost.setCommissionValue(String.valueOf(commission));
+        transferenceCost.setNewTransferValue(String.valueOf(totalValueToTransfer));
+        transferenceCost.setConvertedNewTransferValue(String.valueOf(convertedValueToTransfer));
+        return transferenceCost;
     }
 }
