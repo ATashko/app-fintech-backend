@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.security.SecureRandom;
 import java.util.Date;
 
 @Data
@@ -57,6 +58,9 @@ public class Transference {
     @Column(name = "transaction_details")
     private String transactionDetails;
 
+    @Column(name = "conversion_rate")
+    private String conversionRate;
+
     @Column(name = "source_account_number",nullable = false)
     private String sourceAccountNumber;
 
@@ -65,4 +69,17 @@ public class Transference {
 
     @Column(name = "transfered_at")
     private Date createdAt;
+
+    @Column(name = "number_authorization", unique = true, nullable = false)
+    private String autorizationNumber;
+
+    @PrePersist
+    public void generateAccountNumber() {
+        SecureRandom secureRandom = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            sb.append(secureRandom.nextInt(10));
+        }
+        this.autorizationNumber= sb.toString();
+    }
 }

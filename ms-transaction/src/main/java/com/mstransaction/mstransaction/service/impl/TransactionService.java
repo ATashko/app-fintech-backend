@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -69,6 +70,7 @@ public class TransactionService implements ITransactionService {
         transaction.setShippingCurrency(ShippingCurrency.valueOf(shippingCurrency));
         transaction.setEmail(email);
         transaction.setValueToTransfer(valueToTransfer);
+        transaction.setCreatedAt(new Date());
         System.out.println(transaction.getAccountNumber());
         transactionRepository.save(transaction);
 
