@@ -14,7 +14,7 @@ public interface ITransferenceService {
 
     BigDecimal getNewTransferValue(BigDecimal rate, BigDecimal transferValue);
 
-    TransferenceInfoResponseDTO getTransferenceCost(BigDecimal rate, BigDecimal newValue, String originCurrency, String destinationCurrency) throws JsonProcessingException;
+    TransferenceInfoResponseDTO getTransferenceInfo(BigDecimal rate, BigDecimal newValue, String originCurrency, String destinationCurrency) throws JsonProcessingException;
 
 
     AccountMovementsResponseDTO getAccountMovementsByAccountNumber(MovementsRequestDTO movementsRequestDTO);

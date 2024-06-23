@@ -20,6 +20,7 @@ public class TransferenceResponseDTO {
     private ShippingCurrency shippingCurrency;
     private ReceiptCurrency receiptCurrency;
     private BigDecimal transferValue;
+    private BigDecimal netTransferValue;
     private BigDecimal rate;
     private BigDecimal rateValue;
     private BigDecimal totalTransference;
@@ -35,6 +36,7 @@ public class TransferenceResponseDTO {
         this.shippingCurrency = ShippingCurrency.valueOf(String.valueOf(transference.getShippingCurrency()));
         this.receiptCurrency = ReceiptCurrency.valueOf(String.valueOf(transference.getReceiptCurrency()));
         this.transferValue = transference.getTransferValue();
+        this.netTransferValue = transference.getNetTransferValue();
         this.rate = transference.getRate();
         this.rateValue = transference.getRateValue();
         this.senderId = transference.getSenderUserId();

@@ -34,15 +34,10 @@ public class TransferenceController {
             @RequestParam("destinationCurrency") String destinationCurrency) throws JsonProcessingException {
 
         BigDecimal rate = new BigDecimal("0.02");
-
-        BigDecimal newTransferValue =
-                transferenceService.getNewTransferValue(
-                        rate,
-                        new BigDecimal(value));
         TransferenceInfoResponseDTO transferenceCostInfo =
-                transferenceService.getTransferenceCost(
+                transferenceService.getTransferenceInfo(
                         rate,
-                        newTransferValue,
+                        new BigDecimal(value),
                         originCurrency,
                         destinationCurrency
                 );

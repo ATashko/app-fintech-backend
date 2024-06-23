@@ -2,6 +2,8 @@ package com.mstransaction.mstransaction.dto;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Data
 @Getter
 @Setter
@@ -9,10 +11,12 @@ import lombok.*;
 @NoArgsConstructor
 public class TransferenceInfoResponseDTO {
 
-    private String rate;
-    private String commissionValue;
-    private String newTransferValue;
-    private String convertedNewTransferValue;
+    private BigDecimal rate;
+    private BigDecimal commissionValue;
+    private BigDecimal transferValue;
+    private BigDecimal newTransferValue;
+    private String conversionRate;
+    private BigDecimal convertedTransferValue;
 
 
 }

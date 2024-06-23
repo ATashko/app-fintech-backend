@@ -32,6 +32,9 @@ public class Transference {
     @Column(name = "transference_value",nullable = false)
     private BigDecimal transferValue;
 
+    @Column(name = "net_transfer_value",nullable = false)
+    private BigDecimal netTransferValue;
+
     @Column(name = "commision_rate",nullable = false)
     private BigDecimal rate;
 
