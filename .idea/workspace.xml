@@ -4,30 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="8a7d6d99-158c-4211-9af9-75627cbba4df" name="Changes" comment="">
+    <list default="true" id="dca7c836-06f1-4966-90a2-28803e69b59f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
-=======
-    <list default="true" id="b6cdf768-510d-47bf-8f86-e1fad34558fd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/FinancialActivityHistoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/FinancialActivityHistoryDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/ReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/ReportService.java" afterDir="false" />
->>>>>>> a34a0c137cd8a7781fd437c2768d2cdad7b41e6c
+      <change beforePath="$PROJECT_DIR$/ms-transaction/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-user/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-user/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/target/classes/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,18 +24,11 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 1
-}</component>
-<<<<<<< HEAD
-  <component name="ProjectId" id="2hw2bVAOtYrKzpT15DhU3NNi9nz" />
-=======
-  <component name="ProjectId" id="2i7WGpvSsNxHskq8CqSyTfNq4RX" />
->>>>>>> a34a0c137cd8a7781fd437c2768d2cdad7b41e6c
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": -1
+}]]></component>
+  <component name="ProjectId" id="2iFxrKnkFUo6St3CgJ3LRjgWUDI" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -60,14 +42,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
-<<<<<<< HEAD
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "develop",
-=======
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feature/transferenceEnhance",
->>>>>>> a34a0c137cd8a7781fd437c2768d2cdad7b41e6c
     "go.import.settings.migrated": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -76,26 +52,11 @@
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-<<<<<<< HEAD
-    "project.structure.side.proportion": "0.3873563",
-    "settings.editor.selected.configurable": "com.diffblue.cover.intellij",
-    "spring.configuration.checksum": "1f9a223a7f752573fe4dbda03cdc49e5",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
-=======
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "com.diffblue.cover.intellij",
-    "spring.configuration.checksum": "6071c4f70b0240bf423b0ffa1b9a0254",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.mstransaction.mstransaction.controller" />
-    </key>
-  </component>
->>>>>>> a34a0c137cd8a7781fd437c2768d2cdad7b41e6c
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -103,13 +64,12 @@
       </set>
     </option>
   </component>
-<<<<<<< HEAD
   <component name="RunManager" selected="Spring Boot.MsUserApplication">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="triwal-fintech-backend" />
       <working_directory value="$PROJECT_DIR$" />
       <go_parameters value="-i" />
-      <kind value="FILE" />
+      <kind />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <method v="2" />
@@ -118,15 +78,12 @@
       <module name="triwal-fintech-backend" />
       <working_directory value="$PROJECT_DIR$" />
       <go_parameters value="-i" />
-      <kind value="DIRECTORY" />
+      <kind />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
       <method v="2" />
     </configuration>
-=======
-  <component name="RunManager" selected="Spring Boot.MsTransactionApplication">
->>>>>>> a34a0c137cd8a7781fd437c2768d2cdad7b41e6c
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.config.configserver.ConfigServerApplication" />
@@ -174,30 +131,17 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b6cdf768-510d-47bf-8f86-e1fad34558fd" name="Changes" comment="" />
-      <created>1718842007310</created>
+      <changelist id="dca7c836-06f1-4966-90a2-28803e69b59f" name="Changes" comment="" />
+      <created>1719100326817</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1718842007310</updated>
-      <workItem from="1718842010380" duration="4142000" />
-      <workItem from="1719026473824" duration="6841000" />
-      <workItem from="1719076089159" duration="7907000" />
+      <updated>1719100326817</updated>
+      <workItem from="1719100329648" duration="529000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
