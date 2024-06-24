@@ -51,7 +51,7 @@ public class TransactionController {
         }
     }
 
-    @PostMapping("/deposit/")
+    @PostMapping("/deposit")
     public ResponseEntity<DepositDTO> setDepositSaving(@RequestBody DepositDTO depositRequest) {
         System.out.println("*******************");
         System.out.println(depositRequest.getAccountNumber());

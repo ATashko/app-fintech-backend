@@ -40,6 +40,15 @@ public class Account {
     @Column(name = "user_id")
     private String userId;
 
+    /*@Column(name = "username")
+    private String username;*/
+
+    @Column(name = "name")
+    private String name;
+
+    /*@Column(name = "last_name")
+    private String lastName;*/
+
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -51,6 +60,7 @@ public class Account {
         this.currency = Currency.valueOf(accountDTO.getCurrency());
         this.typeAccount = TypeAccount.valueOf(accountDTO.getTypeAccount());
         this.userId = accountDTO.getUserId();
+        this.name = accountDTO.getName();
         this.createdAt = new Date();
         if (accountDTO.getAmount() != null) {
             this.amount = accountDTO.getAmount();

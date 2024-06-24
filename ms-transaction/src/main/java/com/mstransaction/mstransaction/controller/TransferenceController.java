@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:3333")
 @RestController
 @RequestMapping("/transference")
@@ -24,6 +26,14 @@ public class TransferenceController {
         TransferenceResponseDTO transactionDTO = transferenceService.processTransference(transferenceRequestDTO);
         return new ResponseEntity<>(transactionDTO, HttpStatus.CREATED);
     }
+
+    @GetMapping("/movements")
+    public List<TransferenceResponseDTO> getAllTransfers() {
+        return (List<TransferenceResponseDTO>) transferenceService.getAllTransferences();
+    }
+
+
+
 
 
 

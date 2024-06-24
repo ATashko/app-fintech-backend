@@ -1,15 +1,24 @@
 package com.mstransaction.mstransaction.service.impl;
 
+import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.mstransaction.mstransaction.util.AccountCertificationPDF;
+import org.apache.http.annotation.Contract;
 import org.springframework.stereotype.Service;
 
 import com.mstransaction.mstransaction.domain.Account;
 import com.mstransaction.mstransaction.dto.AccountDTO;
 import com.mstransaction.mstransaction.repository.AccountRepository;
 import com.mstransaction.mstransaction.service.IAccountService;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.security.auth.login.AccountNotFoundException;
 
 @Service
 public class AccountService implements IAccountService {
@@ -47,4 +56,16 @@ public class AccountService implements IAccountService {
 		}
 	}
 
+	@Override
+	public byte[] generateAccountPdfAsBytes(String accountNumber) {
+
+		Account account = repositoryAccount.findByAccountNumber(accountNumber);
+
+		AccountDTO accountDTO = new AccountDTO(account);
+		AccountCertificationPDF pdfGenerator = new AccountCertificationPDF();
+
+		return pdfGenerator.generatePdf(accountDTO);
+	}
 }
+
+

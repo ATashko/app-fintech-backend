@@ -1,11 +1,15 @@
 package com.mstransaction.mstransaction.controller;
 
+import com.mstransaction.mstransaction.domain.Account;
 import com.mstransaction.mstransaction.dto.AccountDTO;
 import com.mstransaction.mstransaction.service.IAccountService;
 import com.mstransaction.mstransaction.service.impl.AccountService;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -38,8 +42,16 @@ public class AccountController {
                 .map(account -> accountService.getAccountDetail(numberAccount))
                 .orElse(new AccountDTO());
     }
-	
-	@DeleteMapping("/delete/{numberAccount}")
+
+    @GetMapping(value = "/accountCertification", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> generateAccountPdf(@RequestParam String accountNumber) {
+        byte[] pdfBytes = accountService.generateAccountPdfAsBytes(accountNumber);
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(pdfBytes);
+    }
+
+    @DeleteMapping("/delete/{numberAccount}")
     public void deleteAccount(@PathVariable String numberAccount) {
 		accountService.deleteAccount(numberAccount);
     }

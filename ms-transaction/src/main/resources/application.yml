@@ -9,7 +9,7 @@ eureka:
     healthcheck:
       enabled: true
     service-url:
-      default-zone: http://eureka.triwal.tech/eureka
+      default-zone: http://localhost:8761/eureka
   instance:
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 5
@@ -22,6 +22,12 @@ spring:
     config:
       import-check:
         enabled: false
+  mvc:
+    contentnegotiation:
+      favor-parameter: true
+      media-types:
+        pdf: application/pdf
+
 #  datasource:
 #    url: jdbc:mysql://josec.ddns.net:3310/transaction_db?allowPublicKeyRetrieval=true&useSSL=false
 #    username: user-transaction

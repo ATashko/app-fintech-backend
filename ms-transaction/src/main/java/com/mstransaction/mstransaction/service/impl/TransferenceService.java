@@ -17,8 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -155,5 +157,12 @@ public class TransferenceService implements ITransferenceService {
 
     public BigDecimal calculateTotalTransference(BigDecimal commissionValue, BigDecimal transferValue) {
         return transferValue.subtract(commissionValue);
+    }
+
+    public List<TransferenceResponseDTO> getAllTransfers() {
+        return this.transferenceRepository.findAll()
+                .stream()
+                .map(TransferenceResponseDTO::new)
+                .collect(Collectors.toList());
     }
 }

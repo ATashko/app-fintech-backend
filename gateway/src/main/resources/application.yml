@@ -15,7 +15,7 @@ spring:
         registration:
           keycloak-gateway:
             client-id: gateway
-            client-secret: aCTx9PfxRhp89RkMF4qfAgx2S3g139P7
+            client-secret: NFt8ecGfMOYs05P12YoCvghvVrHarXpT
             scope:
               - openid
             authorization-grant-type: authorization_code
@@ -46,14 +46,14 @@ management:
 
 eureka:
   instance:
-    hostname: eureka.triwal.tech
+    hostname: localhost
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://eureka.triwal.tech/eureka
+      defaultZone: http://localhost:8761/eureka
 
 
 

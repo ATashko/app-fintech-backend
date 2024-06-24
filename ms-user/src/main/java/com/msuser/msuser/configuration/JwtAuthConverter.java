@@ -77,4 +77,8 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
     public <U> Converter<Jwt, U> andThen(Converter<? super AbstractAuthenticationToken, ? extends U> after) {
         return Converter.super.andThen(after);
     }
+
+    /*public String extractName(Jwt jwt) {
+        return jwt.getClaim("given_name");
+    }*/
 }

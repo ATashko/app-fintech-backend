@@ -5,47 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a7d6d99-158c-4211-9af9-75627cbba4df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ms-transaction/ms-transaction-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/util/AccountCertificationPDF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/currencyconverter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/currencyconverter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/initdb.init_schemas.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/configuration/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/AccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransactionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransferenceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/TransferenceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/Transference.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/Transference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/DepositDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/DepositDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/TransferenceRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/TransferenceRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/TransferenceResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/TransferenceResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransferenceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/repository/TransferenceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/AccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/AccountDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/IAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/IAccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransactionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransferenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/TransferenceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/test/java/com/mstransaction/mstransaction/MsTransactionApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/test/java/com/mstransaction/mstransaction/MsTransactionApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/configuration/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/configuration/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-transaction/target/classes/com/mstransaction/mstransaction/MsTransactionApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/target/classes/com/mstransaction/mstransaction/MsTransactionApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/client/IFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/client/IFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/configuration/JwtAuthConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/configuration/JwtAuthConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/controller/AccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/dto/AccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/dto/AccountDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/dto/DepositDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/dto/DepositDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/queue/TransactionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/queue/TransactionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/TokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/TokenProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/keycloakProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/keycloakProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-user/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-user/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-user/target/classes/com/msuser/msuser/MsUserApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/target/classes/com/msuser/msuser/MsUserApplication.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -57,6 +61,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -65,9 +70,11 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;feature/deposit&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -81,6 +88,12 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\USUARIO\Documents\CTD\TRIWAL\triwal-fintech-backend\ms-transaction\src\main\resources" />
+      <recent name="C:\Users\USUARIO\Documents\CTD\TRIWAL\triwal-fintech-backend\ms-user\src\main\resources" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -88,7 +101,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.CurrencyConverterApplication">
+  <component name="RunManager" selected="Application.MsTransactionApplication">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="triwal-fintech-backend" />
       <working_directory value="$PROJECT_DIR$" />
@@ -107,6 +120,71 @@
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
       <method v="2" />
+    </configuration>
+    <configuration name="CurrencyConverterApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.currencyconverter.CurrencyConverterApplication" />
+      <module name="currencyconverter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.currencyconverter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.eureka.eurekaserver.EurekaServerApplication" />
+      <module name="eureka-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.eureka.eurekaserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.gateway.gateway.GatewayApplication" />
+      <module name="gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gateway.gateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsTransactionApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mstransaction.mstransaction.MsTransactionApplication" />
+      <module name="ms-transaction" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mstransaction.mstransaction.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsUserApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.msuser.msuser.MsUserApplication" />
+      <module name="ms-user" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.msuser.msuser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-server" />
@@ -151,18 +229,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Write tests for method TransferenceService.convertedTransference" type="com.diffblue.cover.write-tests-run-configuration" factoryName="com.diffblue.cover.write-tests-run-configuration" activateToolWindowBeforeRun="false" temporary="true">
-      <module name="ms-transaction" />
-      <settings run-config-name="Write tests for method TransferenceService.convertedTransference" include-system-env-vars="true">
-        <jvm-args />
-        <selection-scope>method</selection-scope>
-        <selected-element key="com.mstransaction.mstransaction.service.impl.TransferenceService.convertedTransference:(Ljava/math/BigDecimal;Ljava/lang/String;Ljava/lang/String;)Ljava/math/BigDecimal;" />
-      </settings>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Diffblue Cover.Write tests for method TransferenceService.convertedTransference" />
+        <item itemvalue="Application.MsUserApplication" />
+        <item itemvalue="Application.MsTransactionApplication" />
+        <item itemvalue="Application.CurrencyConverterApplication" />
+        <item itemvalue="Application.GatewayApplication" />
+        <item itemvalue="Application.EurekaServerApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -199,5 +278,20 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/AccountService.java</url>
+          <line>32</line>
+          <properties class="com.mstransaction.mstransaction.service.impl.AccountService" method="createAccount">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
