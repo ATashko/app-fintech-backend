@@ -18,12 +18,14 @@ import lombok.*;
 @RequiredArgsConstructor
 public class FinancialActivityHistoryDTO {
     
-    private Date date;
+	private Long historyId;
+    private Date createAt;
     private String type;
     private ShippingCurrency shippingCurrency;
     private ReceiptCurrency receiptCurrency;
     private BigDecimal rateValue;
     private BigDecimal totalTransference;
+    private BigDecimal transferValue;
     private String senderId;
     private String receiverId;
     private MethodOfPayment methodOfPayment;
@@ -32,24 +34,28 @@ public class FinancialActivityHistoryDTO {
     private String destinationAccountNumber;
     
 	public FinancialActivityHistoryDTO(String type, Transaction transaction) {
-		this.date = transaction.getCreatedAt();
+		this.historyId = transaction.getTransactionId();
+		this.createAt = transaction.getCreatedAt();
 		this.type = type;
 		this.shippingCurrency = transaction.getShippingCurrency();
 		this.receiptCurrency = transaction.getReceiptCurrency();
 		this.rateValue = transaction.getRateValue();
 		this.totalTransference = transaction.getConvertedTransactionTotal();
-		this.methodOfPayment = transaction.getMethodOfPayment();
+		this.transferValue = transaction.getValueToTransfer();
+ 		this.methodOfPayment = transaction.getMethodOfPayment();
 		this.transferType = transaction.getTransferType();
 		this.destinationAccountNumber = transaction.getAccountNumber();
 	}
     
 	public FinancialActivityHistoryDTO(String type, Transference transference) {
-		this.date = transference.getCreatedAt();
+		this.historyId = transference.getTransferenceId();
+		this.createAt = transference.getCreatedAt();
 		this.type = type;
 		this.shippingCurrency = transference.getShippingCurrency();
 		this.receiptCurrency = transference.getReceiptCurrency();
 		this.rateValue = transference.getRateValue();
 		this.totalTransference = transference.getTotalTransference();
+		this.transferValue = transference.getTransferValue();
 		this.senderId = transference.getSenderUserId();
 		this.receiverId = transference.getReceiverUserId();
 		this.methodOfPayment = transference.getMethodOfPayment();
