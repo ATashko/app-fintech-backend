@@ -5,8 +5,10 @@ import java.text.DecimalFormatSymbols;
 
 public class DecimalFormatter {
 
+
     public static String formatDecimal(double number, char decimalSeparator, char groupingSeparator) {
         // Configurar los símbolos de formato
+
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator(decimalSeparator);
         symbols.setGroupingSeparator(groupingSeparator);
@@ -26,13 +28,14 @@ public class DecimalFormatter {
         double number = 1234567.89;
 
         // Formatear con diferentes separadores
-        String formatted1 = formatDecimal(number, '.', ','); // Separador decimal: punto, Separador de miles: coma
-        String formatted2 = formatDecimal(number, ',', '.'); // Separador decimal: coma, Separador de miles: punto
-        String formatted3 = formatDecimal(number, '.', ' '); // Separador decimal: punto, Separador de miles: espacio
+        String formatted1 = formatDecimal(number, '.', '.'); // Separador decimal: punto, Separador de miles: coma
+
 
         // Mostrar los resultados
-        System.out.println("Formatted (.,): " + formatted1);
-        System.out.println("Formatted (,.): " + formatted2);
-        System.out.println("Formatted (. ): " + formatted3);
+        System.out.println("Formatted (..): " + formatted1);
+
     }
-}
+
+
+};
+

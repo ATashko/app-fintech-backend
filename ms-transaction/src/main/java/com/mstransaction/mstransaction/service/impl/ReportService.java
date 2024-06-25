@@ -17,9 +17,9 @@ import com.mstransaction.mstransaction.service.IReportService;
 @Service
 public class ReportService implements IReportService {
 	
-	    private TransactionRepository transactionRepository;
+	    private final TransactionRepository transactionRepository;
 
-	    private TransferenceRepository transferenceRepository;
+	    private final TransferenceRepository transferenceRepository;
 
 	    public ReportService(TransactionRepository transactionRepository, TransferenceRepository transferenceRepository) {
 			this.transactionRepository = transactionRepository;
