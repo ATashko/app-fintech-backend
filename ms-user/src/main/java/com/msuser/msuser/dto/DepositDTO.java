@@ -20,5 +20,7 @@ public class DepositDTO {
     private BigDecimal valueToTransfer;
     private String shippingCurrency;
     private String email;
+    private String username;
+    private String userFullName;
 
 }

@@ -36,8 +36,12 @@ public class TransactionController{
         try {
             Jwt jwt = (Jwt) authentication.getPrincipal();
             String userId = jwt.getClaimAsString("sub");
+            String fullName = jwt.getClaimAsString("name");
+            String userName = jwt.getClaimAsString("preferred_username");
 
             depositRequest.setUserId(userId);
+            depositRequest.setUserFullName(fullName);
+            depositRequest.setUsername(userName);
             feignClient.getDepositSaving(depositRequest);
             //transactionMessageSender.sendDepositMessage(depositRequest);
 

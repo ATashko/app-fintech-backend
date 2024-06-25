@@ -1,6 +1,7 @@
 package com.mstransaction.mstransaction.service.impl;
 
-import com.mstransaction.mstransaction.domain.*;
+import com.mstransaction.mstransaction.domain.Account;
+import com.mstransaction.mstransaction.domain.Transaction;
 import com.mstransaction.mstransaction.domain.enumTypes.MethodOfPayment;
 import com.mstransaction.mstransaction.domain.enumTypes.ShippingCurrency;
 import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
@@ -46,6 +47,7 @@ public class TransactionService implements ITransactionService {
         String accountNumber = depositDTO.getAccountNumber();
         String shippingCurrency = depositDTO.getShippingCurrency();
         String email = depositDTO.getEmail();
+        String fullname = depositDTO.getUserFullName();
         BigDecimal valueToTransfer = depositDTO.getValueToTransfer();
 
         if (userId == null || userId.isEmpty() || accountNumber == null || accountNumber.isEmpty()
@@ -64,11 +66,12 @@ public class TransactionService implements ITransactionService {
         accountRepository.save(account);
 
         transaction.setUserId(userId);
-        transaction.setUsername(account.getName());
+        transaction.setUsername(account.getUserName());
+        transaction.setUserFullName(account.getName());
         transaction.setTransferType(TransferType.valueOf("DEPOSIT"));
         transaction.setMethodOfPayment(MethodOfPayment.valueOf("CASH"));
         transaction.setAccountNumber(accountNumber);
-        transaction.setShippingCurrency(ShippingCurrency.valueOf(shippingCurrency));
+        transaction.setCurrency(ShippingCurrency.valueOf(shippingCurrency));
         transaction.setEmail(email);
         transaction.setValueToTransfer(valueToTransfer);
         transaction.setCreatedAt(new Date());
@@ -76,7 +79,7 @@ public class TransactionService implements ITransactionService {
         transactionRepository.save(transaction);
 
         //transactionMessageSender.sendDepositResponseMessage(deposit);
-        return new DepositDTO(userId, accountNumber, valueToTransfer, shippingCurrency, email, account.getName());
+        return new DepositDTO(userId, accountNumber, valueToTransfer, shippingCurrency, email, account.getUserName(), account.getName());
     }
 
 
@@ -89,9 +92,12 @@ public class TransactionService implements ITransactionService {
                 transaction.getUserId(),
                 transaction.getAccountNumber(),
                 transaction.getValueToTransfer(),
-                transaction.getShippingCurrency().toString(),
+                transaction.getCurrency().toString(),
                 transaction.getEmail(),
-                transaction.getUsername()
+                transaction.getUsername(),
+                transaction.getUserFullName()
+
+
         );
     }
 
@@ -99,7 +105,6 @@ public class TransactionService implements ITransactionService {
     public List<Transaction> getAllTransactions(String userId) {
         return transactionRepository.findAllByUserId(userId);
     }
-
 
 
         /*transaction.setUserId(userId);
