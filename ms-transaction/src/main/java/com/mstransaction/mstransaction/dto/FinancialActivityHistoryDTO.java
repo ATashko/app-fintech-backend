@@ -42,6 +42,7 @@ public class FinancialActivityHistoryDTO {
 		this.type = type;
 		this.shippingCurrency = transaction.getShippingCurrency();
 		this.receiptCurrency = transaction.getReceiptCurrency();
+		this.receiverUserName = transaction.getUsername();
 		this.rateValue = transaction.getRateValue();
 		this.totalTransference = transaction.getConvertedTransactionTotal();
 		this.transferValue = transaction.getValueToTransfer();

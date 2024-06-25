@@ -64,6 +64,7 @@ public class TransactionService implements ITransactionService {
         accountRepository.save(account);
 
         transaction.setUserId(userId);
+        transaction.setUsername(account.getName());
         transaction.setTransferType(TransferType.valueOf("DEPOSIT"));
         transaction.setMethodOfPayment(MethodOfPayment.valueOf("CASH"));
         transaction.setAccountNumber(accountNumber);
@@ -75,7 +76,7 @@ public class TransactionService implements ITransactionService {
         transactionRepository.save(transaction);
 
         //transactionMessageSender.sendDepositResponseMessage(deposit);
-        return new DepositDTO(userId, accountNumber, valueToTransfer, shippingCurrency, email);
+        return new DepositDTO(userId, accountNumber, valueToTransfer, shippingCurrency, email, account.getName());
     }
 
 
@@ -89,8 +90,8 @@ public class TransactionService implements ITransactionService {
                 transaction.getAccountNumber(),
                 transaction.getValueToTransfer(),
                 transaction.getShippingCurrency().toString(),
-                transaction.getEmail()
-
+                transaction.getEmail(),
+                transaction.getUsername()
         );
     }
 
