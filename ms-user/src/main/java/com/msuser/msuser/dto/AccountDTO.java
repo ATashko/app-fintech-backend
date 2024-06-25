@@ -16,6 +16,7 @@ public class AccountDTO {
 	private String typeAccount;
 	private BigDecimal amount;
 	private String userId;
+	private String userName;
 	private String name;
 	private Date createdAt;
 }
