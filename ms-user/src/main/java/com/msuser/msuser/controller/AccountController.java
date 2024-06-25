@@ -33,8 +33,12 @@ public class AccountController {
         try {
             Jwt jwt = (Jwt) authentication.getPrincipal();
             String userId = jwt.getClaimAsString("sub");
+            String fullName = jwt.getClaimAsString("name");
+            String userName = jwt.getClaimAsString("preferred_username");
 
             accountDTO.setUserId(userId);
+            accountDTO.setName(fullName);
+            accountDTO.setUserName(userName);
 
             accountMessageSender.sendCreateAccountMessage(accountDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body("Account creation message sent successfully");

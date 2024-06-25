@@ -45,6 +45,9 @@ public class Account {
 
     @Column(name = "name")
     private String name;
+    
+    @Column(name = "user_name")
+	private String userName;
 
     /*@Column(name = "last_name")
     private String lastName;*/
@@ -61,6 +64,7 @@ public class Account {
         this.typeAccount = TypeAccount.valueOf(accountDTO.getTypeAccount());
         this.userId = accountDTO.getUserId();
         this.name = accountDTO.getName();
+        this.userName = accountDTO.getUserName();
         this.createdAt = new Date();
         if (accountDTO.getAmount() != null) {
             this.amount = accountDTO.getAmount();

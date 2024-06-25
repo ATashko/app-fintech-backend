@@ -1,14 +1,13 @@
 package com.mstransaction.mstransaction.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.math.BigDecimal;
+import java.util.Date;
+
 import com.mstransaction.mstransaction.domain.Account;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -20,6 +19,7 @@ public class AccountDTO {
 	private BigDecimal amount;
 	private String userId;
 	private String name;
+	private String userName;
 	private Date createdAt;
 
 	public AccountDTO(Account account) {
@@ -29,6 +29,7 @@ public class AccountDTO {
 		this.amount = account.getAmount();
 		this.userId = account.getUserId();
 		this.name = account.getName();
+		this.userName = account.getUserName();
 		this.createdAt = account.getCreatedAt();
 	}
 
