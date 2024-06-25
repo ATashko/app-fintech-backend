@@ -1,5 +1,15 @@
 package com.mstransaction.mstransaction.service.impl;
 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mstransaction.mstransaction.client.IConverterClient;
 import com.mstransaction.mstransaction.domain.Account;
@@ -7,21 +17,16 @@ import com.mstransaction.mstransaction.domain.Transaction;
 import com.mstransaction.mstransaction.domain.Transference;
 import com.mstransaction.mstransaction.domain.enumTypes.MethodOfPayment;
 import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
-import com.mstransaction.mstransaction.dto.*;
+import com.mstransaction.mstransaction.dto.AccountMovementsResponseDTO;
+import com.mstransaction.mstransaction.dto.ConverterDTO;
+import com.mstransaction.mstransaction.dto.MovementsRequestDTO;
+import com.mstransaction.mstransaction.dto.TransferenceInfoResponseDTO;
+import com.mstransaction.mstransaction.dto.TransferenceRequestDTO;
+import com.mstransaction.mstransaction.dto.TransferenceResponseDTO;
 import com.mstransaction.mstransaction.repository.AccountRepository;
 import com.mstransaction.mstransaction.repository.TransactionRepository;
 import com.mstransaction.mstransaction.repository.TransferenceRepository;
 import com.mstransaction.mstransaction.service.ITransferenceService;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 
 @Service
@@ -118,7 +123,9 @@ public class TransferenceService implements ITransferenceService {
                 transference.setTransferType(TransferType.TRANSFER_TO_USER);
             }
             transference.setSenderUserId(fromAccount.getUserId());
+            transference.setSenderUserName(fromAccount.getName());
             transference.setReceiverUserId(toAccount.getUserId());
+            transference.setReceiverUserName(toAccount.getName());
             transference.setMethodOfPayment(MethodOfPayment.TRIWAL_TRANSFER);
             transference.setRate(rate);
             transference.setRateValue(commissionValue);
