@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mstransaction.mstransaction.dto.FinancialActivityHistoryDTO;
 import com.mstransaction.mstransaction.service.impl.ReportService;
 import com.mstransaction.mstransaction.util.ConfigHourDate;
 
@@ -32,7 +31,7 @@ public class ReportController {
     }
     
 	@GetMapping("/all")
-    public ResponseEntity<List<FinancialActivityHistoryDTO>> getTransactionsByUser(Authentication authentication,
+    public ResponseEntity<List<Object>> getTransactionsByUser(Authentication authentication,
                                                                                    @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
                                                                                    @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta) {
 		
@@ -47,7 +46,7 @@ public class ReportController {
             fechaHasta = configHourDate.setHoraFinal(fechaHasta);
         }
 		
-        List<FinancialActivityHistoryDTO> history = serviceReport.getTransactionHistoryByUserId(fechaDesde, fechaHasta, userId);
+        List<Object> history = serviceReport.getTransactionHistoryByUserId(fechaDesde, fechaHasta, userId);
         
         if (history.isEmpty()) {
             return ResponseEntity.noContent().build();

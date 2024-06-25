@@ -20,9 +20,8 @@ public class Transaction  {
     private Long transactionId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "currency")
+    @Column(name = "shipping_currency")
     private ShippingCurrency currency;
-
 
     @Column(name = "value_to_transfer",precision = 10, scale = 3)
     private BigDecimal valueToTransfer;
