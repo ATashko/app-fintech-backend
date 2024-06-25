@@ -1,7 +1,6 @@
 package com.mstransaction.mstransaction.service.impl;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.mstransaction.mstransaction.domain.Transaction;
 import com.mstransaction.mstransaction.domain.Transference;
-import com.mstransaction.mstransaction.dto.FinancialActivityHistoryDTO;
+import com.mstransaction.mstransaction.dto.DepositHistoryDTO;
+import com.mstransaction.mstransaction.dto.TransferenceHistoryDTO;
 import com.mstransaction.mstransaction.repository.TransactionRepository;
 import com.mstransaction.mstransaction.repository.TransferenceRepository;
 import com.mstransaction.mstransaction.service.IReportService;
@@ -27,25 +27,25 @@ public class ReportService implements IReportService {
 		}
 	    
 	    @Override
-		public List<FinancialActivityHistoryDTO> getTransactionHistoryByUserId(Date fechaDesde, Date fechaHasta, String userId) {
+		public List<Object> getTransactionHistoryByUserId(Date fechaDesde, Date fechaHasta, String userId) {
 	        List<Transaction> transactions = transactionRepository.findAllByUserIdAndDateRange(userId, fechaDesde, fechaHasta);
 	        List<Transference> transferencesSend = transferenceRepository.findAllSendByUserIdAndDateRange(userId, fechaDesde, fechaHasta);
 	        List<Transference> transferencesReceive = transferenceRepository.findAllReceivedByUserIdAndDateRange(userId, fechaDesde, fechaHasta);
 
-	        List<FinancialActivityHistoryDTO> history = new ArrayList<>();
+	        List<Object> history = new ArrayList<>();
 
 	       for (Transaction transaction : transactions) {
-	            FinancialActivityHistoryDTO dto = new FinancialActivityHistoryDTO("INCOME", transaction);
+	    	   DepositHistoryDTO dto = new DepositHistoryDTO("INCOME", transaction);
 	            history.add(dto);
 	        }
 
 	        for (Transference transference : transferencesSend) {
-	            FinancialActivityHistoryDTO senderDto = new FinancialActivityHistoryDTO("EXPENSE", transference);
+	            TransferenceHistoryDTO senderDto = new TransferenceHistoryDTO("EXPENSE", transference);
 	            history.add(senderDto);
 	        }
 	        
 	        for (Transference transference : transferencesReceive) { 	
-	            FinancialActivityHistoryDTO senderDto = new FinancialActivityHistoryDTO("INCOME", transference);
+	            TransferenceHistoryDTO senderDto = new TransferenceHistoryDTO("INCOME", transference);
 	            history.add(senderDto);
 	        }
 	        
