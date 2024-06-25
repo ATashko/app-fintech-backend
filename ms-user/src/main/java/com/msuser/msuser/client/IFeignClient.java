@@ -4,6 +4,7 @@ import com.msuser.msuser.configuration.feign.FeignInterceptor;
 import com.msuser.msuser.dto.AccountDTO;
 import com.msuser.msuser.dto.DepositDTO;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,8 @@ public interface IFeignClient {
     @DeleteMapping("/account/delete/{numberAccount}")
     void deleteAccount(@PathVariable("numberAccount") String numberAccount);
 
+    @GetMapping(value = "account/accountCertification", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> generateAccountPdf(@RequestParam String accountNumber);
     @GetMapping("/transactions/deposit/{accountNumber}")
     ResponseEntity<DepositDTO> getDepositDetail(@PathVariable String accountNumber);
 

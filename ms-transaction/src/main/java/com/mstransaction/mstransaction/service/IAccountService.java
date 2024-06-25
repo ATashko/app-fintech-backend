@@ -9,4 +9,6 @@ public interface IAccountService {
 	List<AccountDTO> getAccounts(String userId);
 	AccountDTO getAccountDetail(String userId);
 	void deleteAccount(String numberAccount);
+	public byte[] generateAccountPdfAsBytes(String accountNumber);
+
 }

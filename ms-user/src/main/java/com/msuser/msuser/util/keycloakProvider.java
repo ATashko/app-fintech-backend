@@ -22,7 +22,7 @@ public class keycloakProvider {
     private static final String ADMIN_CLI = "admin-cli";
     private static final String USER_CONSOLE = "admin";
     private static final String USER_PASS = "admin";
-    private static final String CLIENT_SECRET = "2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p"; // todo: ENV
+    private static final String CLIENT_SECRET = "2IsrSCMRAAiDGHDnXPj5aPZ48Zt1IZp3"; // todo: ENV
 
 
     public static RealmResource getRealmResource(){

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.mstransaction.mstransaction.util.AccountCertificationPDF;
 import org.springframework.stereotype.Service;
 
 import com.mstransaction.mstransaction.domain.Account;
@@ -46,5 +47,17 @@ public class AccountService implements IAccountService {
 			repositoryAccount.deleteByAccountNumber(numberAccount);
 		}
 	}
+
+	@Override
+	public byte[] generateAccountPdfAsBytes(String accountNumber) {
+
+		Account account = repositoryAccount.findByAccountNumber(accountNumber);
+
+		AccountDTO accountDTO = new AccountDTO(account);
+		AccountCertificationPDF pdfGenerator = new AccountCertificationPDF();
+
+		return pdfGenerator.generatePdf(accountDTO);
+	}
+
 
 }

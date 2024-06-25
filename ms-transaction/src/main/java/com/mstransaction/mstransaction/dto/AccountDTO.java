@@ -19,6 +19,7 @@ public class AccountDTO {
 	private String typeAccount;
 	private BigDecimal amount;
 	private String userId;
+	private String name;
 	private Date createdAt;
 
 	public AccountDTO(Account account) {
@@ -27,6 +28,7 @@ public class AccountDTO {
 		this.typeAccount = account.getTypeAccount().toString();
 		this.amount = account.getAmount();
 		this.userId = account.getUserId();
+		this.name = account.getName();
 		this.createdAt = account.getCreatedAt();
 	}
 
