@@ -25,7 +25,9 @@ public class TransferenceResponseDTO {
     private BigDecimal rateValue;
     private BigDecimal totalTransference;
     private String senderId;
+    private String senderUserName;
     private String receiverId;
+    private String receiverUserName;
     private MethodOfPayment methodOfPayment;
     private TransferType transferType;
     private String conversionRate;
@@ -40,7 +42,9 @@ public class TransferenceResponseDTO {
         this.rate = transference.getRate();
         this.rateValue = transference.getRateValue();
         this.senderId = transference.getSenderUserId();
+        this.senderUserName = transference.getSenderUserName();
         this.receiverId = transference.getReceiverUserId();
+        this.receiverUserName = transference.getReceiverUserName();
         this.totalTransference = transference.getTotalTransference();
         this.methodOfPayment = MethodOfPayment.valueOf(transference.getMethodOfPayment().toString());
         this.transferType = TransferType.valueOf(transference.getTransferType().toString());

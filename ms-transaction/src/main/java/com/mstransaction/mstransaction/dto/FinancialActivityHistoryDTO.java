@@ -2,7 +2,6 @@ package com.mstransaction.mstransaction.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Objects;
 
 import com.mstransaction.mstransaction.domain.Transaction;
 import com.mstransaction.mstransaction.domain.Transference;
@@ -11,7 +10,9 @@ import com.mstransaction.mstransaction.domain.enumTypes.ReceiptCurrency;
 import com.mstransaction.mstransaction.domain.enumTypes.ShippingCurrency;
 import com.mstransaction.mstransaction.domain.enumTypes.TransferType;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -27,7 +28,9 @@ public class FinancialActivityHistoryDTO {
     private BigDecimal totalTransference;
     private BigDecimal transferValue;
     private String senderId;
+    private String senderUserName;
     private String receiverId;
+    private String receiverUserName;
     private MethodOfPayment methodOfPayment;
     private TransferType transferType;
     private String sourceAccountNumber;
@@ -57,7 +60,9 @@ public class FinancialActivityHistoryDTO {
 		this.totalTransference = transference.getTotalTransference();
 		this.transferValue = transference.getTransferValue();
 		this.senderId = transference.getSenderUserId();
+		this.senderUserName = transference.getSenderUserName();
 		this.receiverId = transference.getReceiverUserId();
+		this.receiverUserName = transference.getReceiverUserName();
 		this.methodOfPayment = transference.getMethodOfPayment();
 		this.transferType = transference.getTransferType();
 		this.sourceAccountNumber = transference.getSourceAccountNumber();

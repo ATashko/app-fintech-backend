@@ -46,9 +46,15 @@ public class Transference {
 
     @Column(name = "from_user",nullable = false)
     private String senderUserId;
-
+    
+    @Column(name = "from_user_name",nullable = false)
+    private String senderUserName;
+    
     @Column(name = "to_user",nullable = false)
     private String receiverUserId;
+    
+    @Column(name = "to_user_name",nullable = false)
+    private String receiverUserName;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "method_of_payment",nullable = false)
