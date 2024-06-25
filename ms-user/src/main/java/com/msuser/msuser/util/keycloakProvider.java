@@ -16,13 +16,15 @@ public class keycloakProvider {
 //    private static final String USER_PASS = "admin";
 //    private static final String CLIENT_SECRET = "aCTx9PfxRhp89RkMF4qfAgx2S3g139P7"; // todo: ENV
 
+    //2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p
+
     private static final String SERVER_URL = "http://localhost:9090";
     private static final String REALM_NAME = "triwal-realm-dev";
     private static final String REALM_MASTER ="master";
     private static final String ADMIN_CLI = "admin-cli";
     private static final String USER_CONSOLE = "admin";
     private static final String USER_PASS = "admin";
-    private static final String CLIENT_SECRET = "2IsrSCMRAAiDGHDnXPj5aPZ48Zt1IZp3"; // todo: ENV
+    private static final String CLIENT_SECRET = "2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p"; // todo: ENV
 
 
     public static RealmResource getRealmResource(){

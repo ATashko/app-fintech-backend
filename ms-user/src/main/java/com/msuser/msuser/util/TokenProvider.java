@@ -81,8 +81,10 @@ public class TokenProvider {
     public String requestLogout(String refreshToken) throws IOException {
         String uri = "http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/logout";
         String clientId = "triwal-app";
-        String clientSecret = "2IsrSCMRAAiDGHDnXPj5aPZ48Zt1IZp3";
+        String clientSecret = "2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p";
         return getLogout(uri, refreshToken, clientId, clientSecret);
+
+        //2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p
 
     }
 
@@ -130,7 +132,7 @@ public class TokenProvider {
     public String requestToken(String username, String password) {
         try {
             return getToken("http://localhost:9090/realms/triwal-realm-dev/protocol/openid-connect/token",
-                    "triwal-app", "2IsrSCMRAAiDGHDnXPj5aPZ48Zt1IZp3", username, password);
+                    "triwal-app", "2AW8lVZlq25DVBwI8UTLRYaK95bQsg9p", username, password);
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }

@@ -39,7 +39,8 @@ public class SecurityConfiguration {
 	private ServerLogoutSuccessHandler oidcServerLogoutSuccessHandler() {
 		OidcClientInitiatedServerLogoutSuccessHandler oidcClientInitiatedServerLogoutSuccesHandler
 		            = new OidcClientInitiatedServerLogoutSuccessHandler(reactiveClientRegistrationRepository);
-		oidcClientInitiatedServerLogoutSuccesHandler.setPostLogoutRedirectUri("https://keycloak.triwal.tech/login");
+		//oidcClientInitiatedServerLogoutSuccesHandler.setPostLogoutRedirectUri("https://keycloak.triwal.tech/login");
+		oidcClientInitiatedServerLogoutSuccesHandler.setPostLogoutRedirectUri("http://localhost:8080/login");
 		return oidcClientInitiatedServerLogoutSuccesHandler;
 	}
 }

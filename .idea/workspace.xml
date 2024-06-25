@@ -5,24 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dca7c836-06f1-4966-90a2-28803e69b59f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/util/AccountCertificationPDF.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/resources/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/resources/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-transaction/src/main/resources/logo.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/gateway/configuration/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/gateway/configuration/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/domain/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/AccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/dto/AccountDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/IAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/IAccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/java/com/mstransaction/mstransaction/service/impl/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-transaction/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-transaction/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/client/IFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/client/IFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/dto/AccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/dto/AccountDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/TokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/TokenProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/keycloakProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-user/src/main/java/com/msuser/msuser/util/keycloakProvider.java" afterDir="false" />
     </list>
@@ -91,26 +76,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MsTransactionApplication">
-    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
-      <module name="triwal-fintech-backend" />
-      <working_directory value="$PROJECT_DIR$" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
-      <module name="triwal-fintech-backend" />
-      <working_directory value="$PROJECT_DIR$" />
-      <go_parameters value="-i" />
-      <kind value="DIRECTORY" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.MsTransactionApplication">
     <configuration name="CurrencyConverterApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.currencyconverter.CurrencyConverterApplication" />
       <module name="currencyconverter" />
@@ -175,6 +141,25 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="triwal-fintech-backend" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="triwal-fintech-backend" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="DIRECTORY" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
     </configuration>
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-server" />
@@ -245,6 +230,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

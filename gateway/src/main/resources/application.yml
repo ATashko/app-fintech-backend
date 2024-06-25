@@ -1,6 +1,6 @@
 server:
   port: 8080
-
+  #siO1CZ3A6lodGpQb1dGAz5ncKezRcotX
 spring:
   application:
     name: gateway
@@ -15,7 +15,7 @@ spring:
         registration:
           keycloak-gateway:
             client-id: gateway
-            client-secret: NFt8ecGfMOYs05P12YoCvghvVrHarXpT
+            client-secret: siO1CZ3A6lodGpQb1dGAz5ncKezRcotX
             scope:
               - openid
             authorization-grant-type: authorization_code
