@@ -227,6 +227,7 @@ public class TransferenceService implements ITransferenceService {
         Account account = accountRepository.findByAccountNumber(accountNumber);
 
         accountMovementsResponseDTO.setAccountNumber(account.getAccountNumber());
+        accountMovementsResponseDTO.setAmount(account.getAmount());
         accountMovementsResponseDTO.setTypeAccount(String.valueOf(account.getTypeAccount()));
         accountMovementsResponseDTO.setUserId(account.getUserId());
         accountMovementsResponseDTO.setCurrency(String.valueOf(account.getCurrency()));
