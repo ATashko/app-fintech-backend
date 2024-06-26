@@ -10,17 +10,16 @@ spring:
         provider:
           keycloak-gateway:
             user-name-attribute: preferred_username
-            issuer-uri: http://localhost:9090/realms/triwal-realm-dev
-            #issuer-uri: https://keycloak.triwal.tech/realms/triwal-realm-dev
+            issuer-uri: https://keycloak.triwal.tech/realms/triwal-realm-dev
         registration:
           keycloak-gateway:
             client-id: gateway
-            client-secret: siO1CZ3A6lodGpQb1dGAz5ncKezRcotX
+            client-secret: aCTx9PfxRhp89RkMF4qfAgx2S3g139P7
             scope:
               - openid
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
-            #redirect-uri: https://keycloak.triwal.tech/login/oauth2/code/keycloak
+            #redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+            redirect-uri: https://keycloak.triwal.tech/login/oauth2/code/keycloak
 
   cloud:
     gateway:
