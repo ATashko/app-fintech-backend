@@ -214,7 +214,7 @@ public class CurrencyFormatter {
 //
 //    }
 
-    public static BigDecimal formatNumber(BigDecimal number) {
+    public static void formatNumber(BigDecimal number) {
 
         // Configurar el formato de número para separador de miles punto y separador decimal coma
         Locale spanishLocale = new Locale("es", "ES");
